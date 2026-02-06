@@ -37,9 +37,11 @@ class Settings(BaseSettings):
 
     # Database
     database_url: str = "postgresql+asyncpg://atlas:password@localhost:5432/atlas_db"
+    database_pool_size: int = 5
 
     # Redis
     redis_url: str = "redis://localhost:6379/0"
+    redis_max_connections: int = 10
 
     # Celery
     celery_broker_url: str = "redis://localhost:6379/1"

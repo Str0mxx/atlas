@@ -22,8 +22,33 @@ async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
     _setup_logging()
     logger.info("ATLAS baslatiliyor... ortam=%s", settings.app_env)
 
-    # TODO: Redis baglantisi
-    # TODO: Veritabani baglantisi
+    # Redis baglantisi
+    from app.core.memory.short_term import ShortTermMemory
+
+    short_term: ShortTermMemory | None = ShortTermMemory()
+    try:
+        await short_term.connect()
+        logger.info("Redis baglantisi hazir")
+    except Exception as exc:
+        logger.error("Redis baglanti hatasi: %s", exc)
+        short_term = None
+
+    # Veritabani baglantisi
+    from app.core.database import close_db, create_tables, init_db
+    from app.core.memory.long_term import LongTermMemory
+
+    try:
+        await init_db()
+        if settings.app_debug:
+            await create_tables()
+        logger.info("Veritabani baglantisi hazir")
+    except Exception as exc:
+        logger.error("Veritabani baglanti hatasi: %s", exc)
+
+    # Hafiza nesnelerini app.state'e kaydet
+    app.state.short_term_memory = short_term
+    app.state.long_term_memory = LongTermMemory()
+
     # TODO: Telegram bot baslat
     # TODO: Master Agent baslat
 
@@ -32,7 +57,13 @@ async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
 
     # --- Kapanis ---
     logger.info("ATLAS kapatiliyor...")
-    # TODO: Kaynaklari serbest birak
+
+    if short_term is not None:
+        await short_term.close()
+
+    await close_db()
+
+    logger.info("ATLAS kapatildi.")
 
 
 app = FastAPI(
