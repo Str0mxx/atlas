@@ -38,6 +38,8 @@ class TelegramBot:
         self.admin_chat_id = settings.telegram_admin_chat_id
         self.app: Application | None = None  # type: ignore[type-arg]
 
+        self.master_agent: Any = None
+
         if not token:
             logger.warning("Telegram bot token ayarlanmamis!")
             return
@@ -75,13 +77,28 @@ class TelegramBot:
         """'/status' komutu - sistem durumunu gosterir."""
         if not update.effective_message:
             return
-        # TODO: Gercek sistem durumunu goster
-        await update.effective_message.reply_text(
-            "ATLAS Durum Raporu:\n"
-            "- Sistem: Aktif\n"
-            "- Master Agent: Hazir\n"
-            "- Aktif gorev: 0"
-        )
+
+        if self.master_agent:
+            agents = self.master_agent.get_registered_agents()
+            agent_lines = "\n".join(
+                f"  - {a['name']}: {a['status']} (gorev: {a['task_count']})"
+                for a in agents
+            )
+            text = (
+                "ATLAS Durum Raporu:\n"
+                f"- Sistem: Aktif\n"
+                f"- Master Agent: {self.master_agent.status.value}\n"
+                f"- Kayitli agent: {len(agents)}\n"
+                f"{agent_lines}"
+            )
+        else:
+            text = (
+                "ATLAS Durum Raporu:\n"
+                "- Sistem: Aktif\n"
+                "- Master Agent: Baslamamis"
+            )
+
+        await update.effective_message.reply_text(text)
 
     async def _cmd_help(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         """'/help' komutu - yardim mesaji gosterir."""
@@ -106,10 +123,24 @@ class TelegramBot:
 
         logger.info("Mesaj alindi: chat_id=%s, text=%s", chat_id, text[:50])
 
-        # TODO: Master Agent'a ilet
-        await update.effective_message.reply_text(
-            f"Mesajiniz alindi: '{text[:100]}'\nIslem kuyruguna eklendi."
-        )
+        if self.master_agent:
+            try:
+                result = await self.master_agent.run({
+                    "description": text,
+                    "source": "telegram",
+                    "chat_id": chat_id,
+                })
+                report = await self.master_agent.report(result)
+                await update.effective_message.reply_text(report)
+            except Exception as exc:
+                logger.error("Master Agent islem hatasi: %s", exc)
+                await update.effective_message.reply_text(
+                    f"Islem sirasinda hata olustu: {exc}"
+                )
+        else:
+            await update.effective_message.reply_text(
+                f"Mesajiniz alindi: '{text[:100]}'\nIslem kuyruguna eklendi."
+            )
 
     async def _handle_callback(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         """Buton tiklamalarini isler."""

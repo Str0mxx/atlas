@@ -4,7 +4,7 @@ import logging
 from contextlib import asynccontextmanager
 from typing import AsyncGenerator
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 
 from app.config import settings
@@ -49,14 +49,72 @@ async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
     app.state.short_term_memory = short_term
     app.state.long_term_memory = LongTermMemory()
 
-    # TODO: Telegram bot baslat
-    # TODO: Master Agent baslat
+    # Telegram bot baslat
+    from app.tools.telegram_bot import TelegramBot
 
-    logger.info("ATLAS hazir.")
+    telegram_bot: TelegramBot | None = None
+    try:
+        telegram_bot = TelegramBot()
+        await telegram_bot.start_polling()
+        logger.info("Telegram bot baslatildi")
+    except Exception as exc:
+        logger.error("Telegram bot baslatilamadi: %s", exc)
+        telegram_bot = None
+
+    # Master Agent baslat ve agent'lari kaydet
+    from app.agents import (
+        CodingAgent,
+        CommunicationAgent,
+        MarketingAgent,
+        ResearchAgent,
+        SecurityAgent,
+        ServerMonitorAgent,
+    )
+    from app.core.master_agent import MasterAgent
+
+    master_agent = MasterAgent()
+
+    for agent_cls in [
+        ServerMonitorAgent,
+        SecurityAgent,
+        ResearchAgent,
+        MarketingAgent,
+        CodingAgent,
+        CommunicationAgent,
+    ]:
+        try:
+            agent = agent_cls()
+            master_agent.register_agent(agent)
+        except Exception as exc:
+            logger.error(
+                "Agent kaydedilemedi (%s): %s",
+                agent_cls.__name__,
+                exc,
+            )
+
+    # Telegram <-> Master Agent baglantisi
+    if telegram_bot:
+        master_agent.telegram_bot = telegram_bot
+        telegram_bot.master_agent = master_agent
+
+    app.state.master_agent = master_agent
+    app.state.telegram_bot = telegram_bot
+
+    logger.info(
+        "ATLAS hazir. Kayitli agent: %d",
+        len(master_agent.agents),
+    )
     yield
 
     # --- Kapanis ---
     logger.info("ATLAS kapatiliyor...")
+
+    # Telegram bot durdur
+    if getattr(app.state, "telegram_bot", None):
+        try:
+            await app.state.telegram_bot.stop()
+        except Exception as exc:
+            logger.error("Telegram bot durdurma hatasi: %s", exc)
 
     if short_term is not None:
         await short_term.close()
@@ -93,17 +151,24 @@ async def health_check() -> dict[str, str]:
 
 
 @app.get("/status")
-async def system_status() -> dict[str, object]:
+async def system_status(request: Request) -> dict[str, object]:
     """Detayli sistem durumu."""
+    master_agent = getattr(request.app.state, "master_agent", None)
+
+    agents_info: dict[str, object] = {"master": "idle"}
+    if master_agent:
+        agents_info = {
+            "master": master_agent.status.value,
+            "registered": master_agent.get_registered_agents(),
+            "count": len(master_agent.agents),
+        }
+
     return {
         "service": "atlas",
         "version": "0.1.0",
         "environment": settings.app_env,
         "debug": settings.app_debug,
-        "agents": {
-            "master": "idle",
-            # Diger agent durumlari buraya eklenecek
-        },
+        "agents": agents_info,
     }
 
 
@@ -111,25 +176,37 @@ async def system_status() -> dict[str, object]:
 
 
 @app.post("/tasks")
-async def create_task(payload: dict[str, object]) -> JSONResponse:
+async def create_task(request: Request, payload: dict[str, object]) -> JSONResponse:
     """Yeni gorev olusturur ve Master Agent'a iletir.
 
     Args:
+        request: FastAPI Request nesnesi.
         payload: Gorev detaylarini iceren sozluk.
 
     Returns:
-        Olusturulan gorev bilgisi.
+        Gorev sonuc bilgisi.
     """
     logger.info("Yeni gorev alindi: %s", payload.get("description", "tanimsiz"))
 
-    # TODO: Master Agent'a yonlendir
-    task_id = "task_placeholder"
+    master_agent = getattr(request.app.state, "master_agent", None)
+    if not master_agent:
+        return JSONResponse(
+            status_code=503,
+            content={
+                "status": "error",
+                "message": "Master Agent hazir degil",
+            },
+        )
+
+    result = await master_agent.run(payload)
 
     return JSONResponse(
-        status_code=201,
+        status_code=200 if result.success else 500,
         content={
-            "task_id": task_id,
-            "status": "queued",
-            "message": "Gorev kuyruga eklendi",
+            "success": result.success,
+            "message": result.message,
+            "data": result.data,
+            "errors": result.errors,
+            "timestamp": result.timestamp.isoformat(),
         },
     )

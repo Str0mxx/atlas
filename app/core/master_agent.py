@@ -34,6 +34,7 @@ class MasterAgent(BaseAgent):
         super().__init__(name="MasterAgent")
         self.decision_matrix = DecisionMatrix()
         self.agents: dict[str, BaseAgent] = {}
+        self.telegram_bot: Any = None
         self.logger.info("Master Agent hazir. Kayitli agent sayisi: %d", len(self.agents))
 
     def register_agent(self, agent: BaseAgent) -> None:
@@ -144,8 +145,17 @@ class MasterAgent(BaseAgent):
 
     async def _handle_notify(self, task: dict[str, Any]) -> TaskResult:
         """Bildirim gonder aksiyonu."""
-        self.logger.info("Bildirim gonderilecek: %s", task.get("description", ""))
-        # TODO: Telegram bot uzerinden bildirim gonder
+        description = task.get("description", "")
+        self.logger.info("Bildirim gonderilecek: %s", description)
+
+        if self.telegram_bot:
+            try:
+                await self.telegram_bot.send_message(
+                    f"ATLAS Bildirim:\n{description}",
+                )
+            except Exception as exc:
+                self.logger.error("Telegram bildirim hatasi: %s", exc)
+
         return TaskResult(success=True, message="Bildirim gonderildi")
 
     async def _handle_auto_fix(self, task: dict[str, Any]) -> TaskResult:
@@ -163,8 +173,27 @@ class MasterAgent(BaseAgent):
 
     async def _handle_immediate(self, task: dict[str, Any]) -> TaskResult:
         """Acil mudahale aksiyonu."""
-        self.logger.critical("ACIL MUDAHALE: %s", task.get("description", ""))
-        # TODO: Telegram ile aninda bildirim + otomatik aksiyon
+        description = task.get("description", "")
+        self.logger.critical("ACIL MUDAHALE: %s", description)
+
+        if self.telegram_bot:
+            try:
+                await self.telegram_bot.send_buttons(
+                    text=f"ACIL MUDAHALE GEREKIYOR:\n{description}",
+                    buttons=[
+                        {"text": "Onayla", "callback_data": "approve_immediate"},
+                        {"text": "Reddet", "callback_data": "reject_immediate"},
+                    ],
+                )
+            except Exception as exc:
+                self.logger.error("Telegram acil bildirim hatasi: %s", exc)
+
+        # Hedef agent varsa otomatik calistir
+        target = task.get("target_agent")
+        if target and target in self.agents:
+            agent = self.agents[target]
+            return await agent.run(task)
+
         return TaskResult(success=True, message="Acil mudahale baslatildi")
 
     def get_registered_agents(self) -> list[dict[str, Any]]:
