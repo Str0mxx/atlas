@@ -55,6 +55,13 @@ class Settings(BaseSettings):
     # Research
     tavily_api_key: SecretStr = Field(default=SecretStr(""))
 
+    # Google Ads
+    google_ads_developer_token: SecretStr = Field(default=SecretStr(""))
+    google_ads_client_id: str = ""
+    google_ads_client_secret: SecretStr = Field(default=SecretStr(""))
+    google_ads_refresh_token: SecretStr = Field(default=SecretStr(""))
+    google_ads_customer_id: str = ""
+
     # Master Agent
     master_agent_auto_mode: bool = False
     master_agent_max_retries: int = 3
