@@ -2,6 +2,17 @@
 
 from app.models.agent_log import AgentLogCreate, AgentLogRecord, AgentLogResponse
 from app.models.decision import DecisionCreate, DecisionRecord, DecisionResponse
+from app.models.security import (
+    BannedIPEntry,
+    FailedLoginEntry,
+    OpenPort,
+    SecurityCheckType,
+    SecurityScanConfig,
+    SecurityScanResult,
+    SSLCertInfo,
+    SuspiciousProcess,
+    ThreatLevel,
+)
 from app.models.server import (
     CpuMetrics,
     DiskMetrics,
@@ -24,6 +35,16 @@ __all__ = [
     "ServerConfig",
     "ServerMetrics",
     "ServiceStatus",
+    # Guvenlik modelleri
+    "BannedIPEntry",
+    "FailedLoginEntry",
+    "OpenPort",
+    "SecurityCheckType",
+    "SecurityScanConfig",
+    "SecurityScanResult",
+    "SSLCertInfo",
+    "SuspiciousProcess",
+    "ThreatLevel",
     # Gorev modelleri
     "TaskCreate",
     "TaskRecord",
