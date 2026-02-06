@@ -1,6 +1,22 @@
 """ATLAS veri modelleri."""
 
 from app.models.agent_log import AgentLogCreate, AgentLogRecord, AgentLogResponse
+from app.models.communication import (
+    BulkSendResult,
+    CommunicationAnalysisResult,
+    CommunicationConfig,
+    EmailLanguage,
+    EmailMessage,
+    EmailRecipient,
+    EmailTaskType,
+    EmailTemplate,
+    EmailTone,
+    FollowUpEntry,
+    FollowUpStatus,
+    InboxMessage,
+    ResponseAnalysis,
+    ResponseSentiment,
+)
 from app.models.coding import (
     CodeAnalysisResult,
     CodeIssue,
@@ -57,6 +73,21 @@ from app.models.server import (
 from app.models.task import TaskCreate, TaskRecord, TaskResponse, TaskStatus
 
 __all__ = [
+    # Iletisim modelleri
+    "BulkSendResult",
+    "CommunicationAnalysisResult",
+    "CommunicationConfig",
+    "EmailLanguage",
+    "EmailMessage",
+    "EmailRecipient",
+    "EmailTaskType",
+    "EmailTemplate",
+    "EmailTone",
+    "FollowUpEntry",
+    "FollowUpStatus",
+    "InboxMessage",
+    "ResponseAnalysis",
+    "ResponseSentiment",
     # Coding modelleri
     "CodeAnalysisResult",
     "CodeIssue",

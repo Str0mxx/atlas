@@ -62,6 +62,13 @@ class Settings(BaseSettings):
     google_ads_refresh_token: SecretStr = Field(default=SecretStr(""))
     google_ads_customer_id: str = ""
 
+    # Gmail API
+    gmail_client_id: str = ""
+    gmail_client_secret: SecretStr = Field(default=SecretStr(""))
+    gmail_refresh_token: SecretStr = Field(default=SecretStr(""))
+    gmail_sender_email: str = ""
+    gmail_sender_name: str = ""
+
     # Master Agent
     master_agent_auto_mode: bool = False
     master_agent_max_retries: int = 3
