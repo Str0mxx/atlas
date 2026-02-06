@@ -45,9 +45,21 @@ async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
     except Exception as exc:
         logger.error("Veritabani baglanti hatasi: %s", exc)
 
+    # Qdrant (vektor veritabani) baglantisi
+    from app.core.memory.semantic import SemanticMemory
+
+    semantic: SemanticMemory | None = SemanticMemory()
+    try:
+        await semantic.connect()
+        logger.info("Qdrant baglantisi hazir")
+    except Exception as exc:
+        logger.error("Qdrant baglanti hatasi: %s", exc)
+        semantic = None
+
     # Hafiza nesnelerini app.state'e kaydet
     app.state.short_term_memory = short_term
     app.state.long_term_memory = LongTermMemory()
+    app.state.semantic_memory = semantic
 
     # Telegram bot baslat
     from app.tools.telegram_bot import TelegramBot
@@ -115,6 +127,9 @@ async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
             await app.state.telegram_bot.stop()
         except Exception as exc:
             logger.error("Telegram bot durdurma hatasi: %s", exc)
+
+    if semantic is not None:
+        await semantic.close()
 
     if short_term is not None:
         await short_term.close()

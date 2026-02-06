@@ -43,6 +43,15 @@ class Settings(BaseSettings):
     redis_url: str = "redis://localhost:6379/0"
     redis_max_connections: int = 10
 
+    # Qdrant (Vektor Veritabani)
+    qdrant_host: str = "localhost"
+    qdrant_port: int = 6333
+    qdrant_grpc_port: int = 6334
+    qdrant_api_key: SecretStr | None = Field(default=None)
+    qdrant_collection_prefix: str = "atlas"
+    qdrant_embedding_model: str = "BAAI/bge-small-en-v1.5"
+    qdrant_embedding_dimension: int = 384
+
     # Celery
     celery_broker_url: str = "redis://localhost:6379/1"
     celery_result_backend: str = "redis://localhost:6379/2"
