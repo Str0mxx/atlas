@@ -78,6 +78,9 @@ class Settings(BaseSettings):
     gmail_sender_email: str = ""
     gmail_sender_name: str = ""
 
+    # Webhook
+    webhook_secret: SecretStr = Field(default=SecretStr(""))
+
     # OpenAI (Whisper STT)
     openai_api_key: SecretStr = Field(default=SecretStr(""))
 

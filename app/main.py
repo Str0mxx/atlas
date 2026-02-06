@@ -146,6 +146,11 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
+# Router'lari kaydet
+from app.api.webhooks import router as webhooks_router
+
+app.include_router(webhooks_router)
+
 
 def _setup_logging() -> None:
     """Loglama yapilandirmasini kurar."""
