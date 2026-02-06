@@ -2,6 +2,16 @@
 
 from app.models.agent_log import AgentLogCreate, AgentLogRecord, AgentLogResponse
 from app.models.decision import DecisionCreate, DecisionRecord, DecisionResponse
+from app.models.research import (
+    CompanyInfo,
+    ReliabilityLevel,
+    ResearchConfig,
+    ResearchResult,
+    ResearchType,
+    ScrapedPage,
+    SupplierScore,
+    WebSearchResult,
+)
 from app.models.security import (
     BannedIPEntry,
     FailedLoginEntry,
@@ -45,6 +55,15 @@ __all__ = [
     "SSLCertInfo",
     "SuspiciousProcess",
     "ThreatLevel",
+    # Arastirma modelleri
+    "CompanyInfo",
+    "ReliabilityLevel",
+    "ResearchConfig",
+    "ResearchResult",
+    "ResearchType",
+    "ScrapedPage",
+    "SupplierScore",
+    "WebSearchResult",
     # Gorev modelleri
     "TaskCreate",
     "TaskRecord",

@@ -52,6 +52,9 @@ class Settings(BaseSettings):
     ssh_default_user: str = ""
     ssh_default_key_path: str = "~/.ssh/id_rsa"
 
+    # Research
+    tavily_api_key: SecretStr = Field(default=SecretStr(""))
+
     # Master Agent
     master_agent_auto_mode: bool = False
     master_agent_max_retries: int = 3
