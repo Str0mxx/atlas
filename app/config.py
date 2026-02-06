@@ -78,6 +78,12 @@ class Settings(BaseSettings):
     gmail_sender_email: str = ""
     gmail_sender_name: str = ""
 
+    # OpenAI (Whisper STT)
+    openai_api_key: SecretStr = Field(default=SecretStr(""))
+
+    # ElevenLabs (TTS)
+    elevenlabs_api_key: SecretStr = Field(default=SecretStr(""))
+
     # Master Agent
     master_agent_auto_mode: bool = False
     master_agent_max_retries: int = 3

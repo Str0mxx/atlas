@@ -7,6 +7,7 @@ from app.agents.marketing_agent import MarketingAgent
 from app.agents.research_agent import ResearchAgent
 from app.agents.security_agent import SecurityAgent
 from app.agents.server_monitor_agent import ServerMonitorAgent
+from app.agents.voice_agent import VoiceAgent
 
 __all__ = [
     "BaseAgent",
@@ -18,4 +19,5 @@ __all__ = [
     "ResearchAgent",
     "SecurityAgent",
     "ServerMonitorAgent",
+    "VoiceAgent",
 ]

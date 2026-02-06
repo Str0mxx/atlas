@@ -71,6 +71,16 @@ from app.models.server import (
     ServiceStatus,
 )
 from app.models.task import TaskCreate, TaskRecord, TaskResponse, TaskStatus
+from app.models.voice import (
+    CommandAnalysis,
+    CommandIntent,
+    SynthesisResult,
+    TranscriptionResult,
+    VoiceAnalysisResult,
+    VoiceConfig,
+    VoiceLanguage,
+    VoiceTaskType,
+)
 
 __all__ = [
     # Iletisim modelleri
@@ -148,4 +158,13 @@ __all__ = [
     "AgentLogCreate",
     "AgentLogRecord",
     "AgentLogResponse",
+    # Ses modelleri
+    "CommandAnalysis",
+    "CommandIntent",
+    "SynthesisResult",
+    "TranscriptionResult",
+    "VoiceAnalysisResult",
+    "VoiceConfig",
+    "VoiceLanguage",
+    "VoiceTaskType",
 ]
