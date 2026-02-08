@@ -75,8 +75,10 @@ async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
 
     # Master Agent baslat ve agent'lari kaydet
     from app.agents import (
+        AnalysisAgent,
         CodingAgent,
         CommunicationAgent,
+        CreativeAgent,
         MarketingAgent,
         ResearchAgent,
         SecurityAgent,
@@ -93,6 +95,8 @@ async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
         MarketingAgent,
         CodingAgent,
         CommunicationAgent,
+        AnalysisAgent,
+        CreativeAgent,
     ]:
         try:
             agent = agent_cls()
