@@ -5,7 +5,6 @@ from contextlib import asynccontextmanager
 from typing import AsyncGenerator
 
 from fastapi import FastAPI, Request
-from fastapi.responses import JSONResponse
 
 from app.config import settings
 
@@ -171,8 +170,10 @@ app = FastAPI(
 )
 
 # Router'lari kaydet
+from app.api.routes import router as api_router
 from app.api.webhooks import router as webhooks_router
 
+app.include_router(api_router)
 app.include_router(webhooks_router)
 
 
@@ -214,56 +215,3 @@ async def system_status(request: Request) -> dict[str, object]:
         "debug": settings.app_debug,
         "agents": agents_info,
     }
-
-
-# === Gorev endpoint'leri ===
-
-
-@app.post("/tasks")
-async def create_task(request: Request, payload: dict[str, object]) -> JSONResponse:
-    """Yeni gorev olusturur ve TaskManager'a iletir.
-
-    Gorev arkaplanda islenecek sekilde kuyruga eklenir.
-    Yanit olarak gorev ID'si ve durumu dondurulur (202 Accepted).
-
-    Args:
-        request: FastAPI Request nesnesi.
-        payload: Gorev detaylarini iceren sozluk.
-
-    Returns:
-        Gorev kabul bilgisi.
-    """
-    logger.info("Yeni gorev alindi: %s", payload.get("description", "tanimsiz"))
-
-    task_manager = getattr(request.app.state, "task_manager", None)
-    if not task_manager:
-        return JSONResponse(
-            status_code=503,
-            content={
-                "status": "error",
-                "message": "TaskManager hazir degil",
-            },
-        )
-
-    from app.core.task_manager import TaskSubmission
-
-    submission = TaskSubmission(
-        description=str(payload.get("description", "tanimsiz gorev")),
-        risk=str(payload.get("risk", "low")),
-        urgency=str(payload.get("urgency", "low")),
-        target_agent=str(payload["target_agent"]) if payload.get("target_agent") else None,
-        source="api",
-        metadata={k: v for k, v in payload.items() if k not in ("description", "risk", "urgency", "target_agent")},
-    )
-
-    task_response = await task_manager.submit_task(submission)
-
-    return JSONResponse(
-        status_code=202,
-        content={
-            "status": "accepted",
-            "message": "Gorev kuyruga eklendi",
-            "task_id": task_response.id,
-            "task_status": task_response.status.value,
-        },
-    )
