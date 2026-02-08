@@ -91,6 +91,11 @@ class Settings(BaseSettings):
     master_agent_auto_mode: bool = False
     master_agent_max_retries: int = 3
 
+    # TaskManager
+    task_manager_max_concurrent: int = 5
+    task_manager_retry_backoff_base: int = 5
+    task_manager_retry_backoff_max: int = 300
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""

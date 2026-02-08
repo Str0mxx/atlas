@@ -112,6 +112,19 @@ async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
     app.state.master_agent = master_agent
     app.state.telegram_bot = telegram_bot
 
+    # TaskManager baslat
+    from app.core.task_manager import TaskManager
+
+    task_manager = TaskManager(
+        master_agent=master_agent,
+        long_term=app.state.long_term_memory,
+        short_term=short_term,
+        semantic=semantic,
+        telegram_bot=telegram_bot,
+    )
+    await task_manager.start()
+    app.state.task_manager = task_manager
+
     logger.info(
         "ATLAS hazir. Kayitli agent: %d",
         len(master_agent.agents),
@@ -120,6 +133,13 @@ async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
 
     # --- Kapanis ---
     logger.info("ATLAS kapatiliyor...")
+
+    # TaskManager durdur
+    if getattr(app.state, "task_manager", None):
+        try:
+            await app.state.task_manager.stop()
+        except Exception as exc:
+            logger.error("TaskManager durdurma hatasi: %s", exc)
 
     # Telegram bot durdur
     if getattr(app.state, "telegram_bot", None):
@@ -197,36 +217,49 @@ async def system_status(request: Request) -> dict[str, object]:
 
 @app.post("/tasks")
 async def create_task(request: Request, payload: dict[str, object]) -> JSONResponse:
-    """Yeni gorev olusturur ve Master Agent'a iletir.
+    """Yeni gorev olusturur ve TaskManager'a iletir.
+
+    Gorev arkaplanda islenecek sekilde kuyruga eklenir.
+    Yanit olarak gorev ID'si ve durumu dondurulur (202 Accepted).
 
     Args:
         request: FastAPI Request nesnesi.
         payload: Gorev detaylarini iceren sozluk.
 
     Returns:
-        Gorev sonuc bilgisi.
+        Gorev kabul bilgisi.
     """
     logger.info("Yeni gorev alindi: %s", payload.get("description", "tanimsiz"))
 
-    master_agent = getattr(request.app.state, "master_agent", None)
-    if not master_agent:
+    task_manager = getattr(request.app.state, "task_manager", None)
+    if not task_manager:
         return JSONResponse(
             status_code=503,
             content={
                 "status": "error",
-                "message": "Master Agent hazir degil",
+                "message": "TaskManager hazir degil",
             },
         )
 
-    result = await master_agent.run(payload)
+    from app.core.task_manager import TaskSubmission
+
+    submission = TaskSubmission(
+        description=str(payload.get("description", "tanimsiz gorev")),
+        risk=str(payload.get("risk", "low")),
+        urgency=str(payload.get("urgency", "low")),
+        target_agent=str(payload["target_agent"]) if payload.get("target_agent") else None,
+        source="api",
+        metadata={k: v for k, v in payload.items() if k not in ("description", "risk", "urgency", "target_agent")},
+    )
+
+    task_response = await task_manager.submit_task(submission)
 
     return JSONResponse(
-        status_code=200 if result.success else 500,
+        status_code=202,
         content={
-            "success": result.success,
-            "message": result.message,
-            "data": result.data,
-            "errors": result.errors,
-            "timestamp": result.timestamp.isoformat(),
+            "status": "accepted",
+            "message": "Gorev kuyruga eklendi",
+            "task_id": task_response.id,
+            "task_status": task_response.status.value,
         },
     )
