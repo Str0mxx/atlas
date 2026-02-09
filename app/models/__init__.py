@@ -1,6 +1,7 @@
 """ATLAS veri modelleri."""
 
 from app.models.agent_log import AgentLogCreate, AgentLogRecord, AgentLogResponse
+from app.models.agent_response import AgentAction, AgentResponse, ResponseStatus
 from app.models.communication import (
     BulkSendResult,
     CommunicationAnalysisResult,
@@ -175,6 +176,10 @@ __all__ = [
     "AgentLogCreate",
     "AgentLogRecord",
     "AgentLogResponse",
+    # Agent yanit modelleri
+    "AgentAction",
+    "AgentResponse",
+    "ResponseStatus",
     # Ses modelleri
     "CommandAnalysis",
     "CommandIntent",
