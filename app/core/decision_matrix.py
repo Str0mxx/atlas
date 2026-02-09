@@ -2,6 +2,7 @@
 
 Gelen olaylarin risk, aciliyet ve aksiyon tipini belirler.
 Master Agent bu matrisi kullanarak karar verir.
+Olasiliksal karar destegi, guven esigi ve risk toleransi icerir.
 """
 
 import logging
@@ -65,31 +66,68 @@ DECISION_RULES: dict[tuple[RiskLevel, UrgencyLevel], tuple[ActionType, float]] =
     (RiskLevel.HIGH, UrgencyLevel.HIGH): (ActionType.IMMEDIATE, 0.90),
 }
 
+# Risk seviyesi -> float eslesmesi
+_RISK_LEVEL_MAP: dict[str, float] = {
+    "low": 0.2,
+    "medium": 0.5,
+    "high": 0.9,
+}
+
 
 class DecisionMatrix:
     """Karar matrisi sinifi.
 
     Olaylari risk ve aciliyet seviyesine gore degerlendirip
-    uygun aksiyon tipini belirler.
+    uygun aksiyon tipini belirler. Olasiliksal karar destegi,
+    guven esigi ve risk toleransi parametreleri icerir.
     """
 
-    def __init__(self) -> None:
-        """Karar matrisini baslatir."""
+    def __init__(
+        self,
+        confidence_threshold: float = 0.6,
+        risk_tolerance: float = 0.5,
+    ) -> None:
+        """Karar matrisini baslatir.
+
+        Args:
+            confidence_threshold: Otonom aksiyon icin minimum guven esigi.
+            risk_tolerance: Risk toleransi (0=kacinan, 1=arayan).
+        """
         self.rules = DECISION_RULES
-        logger.info("Karar matrisi yuklendi (%d kural)", len(self.rules))
+        self.confidence_threshold = confidence_threshold
+        self.risk_tolerance = risk_tolerance
+
+        # Lazy import — dairesel bagimliligi onler
+        from app.core.autonomy.uncertainty import UncertaintyManager
+
+        self._uncertainty_mgr = UncertaintyManager(
+            risk_tolerance=risk_tolerance,
+        )
+        self._bayesian_net: Any = None
+
+        logger.info(
+            "Karar matrisi yuklendi (%d kural, guven_esigi=%.2f, "
+            "risk_toleransi=%.2f)",
+            len(self.rules), confidence_threshold, risk_tolerance,
+        )
 
     async def evaluate(
         self,
         risk: RiskLevel,
         urgency: UrgencyLevel,
         context: dict[str, Any] | None = None,
+        beliefs: dict[str, float] | None = None,
     ) -> Decision:
         """Olayi degerlendirir ve karar uretir.
+
+        Beliefs verildiginde guven esigi kontrolu yaparak
+        dusuk guvenli durumlarda aksiyonu NOTIFY'a dusurur.
 
         Args:
             risk: Risk seviyesi.
             urgency: Aciliyet seviyesi.
             context: Ek baglamsal bilgi.
+            beliefs: Belief key -> confidence eslesmesi (opsiyonel).
 
         Returns:
             Uretilen karar.
@@ -98,6 +136,22 @@ class DecisionMatrix:
             (risk, urgency),
             (ActionType.NOTIFY, 0.5),  # Bilinmeyen kombinasyon icin varsayilan
         )
+
+        # Olasiliksal guven kontrolu
+        if beliefs:
+            avg_confidence = self._uncertainty_mgr.aggregate_confidence(
+                list(beliefs.values()),
+            )
+            risk_float = self._risk_level_to_float(risk)
+            if not self._uncertainty_mgr.should_act(
+                avg_confidence,
+                risk_float,
+                self.confidence_threshold,
+            ):
+                # Guven yetersiz, aksiyonu dusur
+                if action in (ActionType.AUTO_FIX, ActionType.IMMEDIATE):
+                    action = ActionType.NOTIFY
+                    confidence *= avg_confidence
 
         decision = Decision(
             risk=risk,
@@ -115,6 +169,111 @@ class DecisionMatrix:
             confidence * 100,
         )
         return decision
+
+    async def evaluate_probabilistic(
+        self,
+        risk: RiskLevel,
+        urgency: UrgencyLevel,
+        evidence: list[Any] | None = None,
+        context: dict[str, Any] | None = None,
+    ) -> Decision:
+        """Olasiliksal karar verir (Bayesci ag destegi ile).
+
+        Evidence verildiginde Bayesci ag uzerinden posterior
+        guncelleme yapar ve guncel posterior'a gore karar verir.
+
+        Args:
+            risk: Risk seviyesi.
+            urgency: Aciliyet seviyesi.
+            evidence: Kanit listesi (Evidence nesneleri).
+            context: Ek baglamsal bilgi.
+
+        Returns:
+            Olasiliksal olarak guncellenmis karar.
+        """
+        action, base_confidence = self.rules.get(
+            (risk, urgency),
+            (ActionType.NOTIFY, 0.5),
+        )
+
+        confidence = base_confidence
+
+        # Bayesci ag varsa ve kanit verilmisse
+        if self._bayesian_net is not None and evidence:
+            posteriors = {}
+            for ev in evidence:
+                results = self._bayesian_net.propagate_evidence(ev)
+                posteriors.update(results)
+
+            # Posterior'lardan ortalama guven cikart
+            if posteriors:
+                posterior_confidences: list[float] = []
+                for result in posteriors.values():
+                    max_prob = max(
+                        result.posterior.values(),
+                    ) if result.posterior else 0.5
+                    posterior_confidences.append(max_prob)
+
+                avg_posterior = self._uncertainty_mgr.aggregate_confidence(
+                    posterior_confidences,
+                )
+                confidence = base_confidence * avg_posterior
+
+                risk_float = self._risk_level_to_float(risk)
+                if not self._uncertainty_mgr.should_act(
+                    avg_posterior,
+                    risk_float,
+                    self.confidence_threshold,
+                ):
+                    if action in (
+                        ActionType.AUTO_FIX, ActionType.IMMEDIATE,
+                    ):
+                        action = ActionType.NOTIFY
+
+        decision = Decision(
+            risk=risk,
+            urgency=urgency,
+            action=action,
+            confidence=confidence,
+            reason=self._build_reason(risk, urgency, action, context),
+        )
+
+        logger.info(
+            "Olasiliksal karar: risk=%s, aciliyet=%s -> "
+            "aksiyon=%s (guven=%.0f%%)",
+            risk.value, urgency.value,
+            action.value, confidence * 100,
+        )
+        return decision
+
+    def set_bayesian_network(self, network: Any) -> None:
+        """Bayesci agi ayarlar.
+
+        Args:
+            network: Kullanilacak Bayesci ag (BayesianNetwork).
+        """
+        self._bayesian_net = network
+        logger.info("Bayesci ag ayarlandi")
+
+    def set_confidence_threshold(self, threshold: float) -> None:
+        """Guven esigini gunceller.
+
+        Args:
+            threshold: Yeni guven esigi (0-1).
+        """
+        self.confidence_threshold = max(0.0, min(1.0, threshold))
+
+    def set_risk_tolerance(self, tolerance: float) -> None:
+        """Risk toleransini gunceller.
+
+        Args:
+            tolerance: Yeni risk toleransi (0-1).
+        """
+        self.risk_tolerance = max(0.0, min(1.0, tolerance))
+        from app.core.autonomy.uncertainty import UncertaintyManager
+        self._uncertainty_mgr = UncertaintyManager(
+            risk_tolerance=self.risk_tolerance,
+        )
 
     def _build_reason(
         self,
@@ -150,3 +309,15 @@ class DecisionMatrix:
             (ActionType.NOTIFY, 0.5),
         )
         return action
+
+    @staticmethod
+    def _risk_level_to_float(risk: RiskLevel) -> float:
+        """RiskLevel enum'ini float'a cevirir.
+
+        Args:
+            risk: Risk seviyesi.
+
+        Returns:
+            Float risk degeri.
+        """
+        return _RISK_LEVEL_MAP.get(risk.value, 0.5)

@@ -95,6 +95,23 @@ from app.models.notification import (
     NotificationStatus,
 )
 from app.models.task import TaskCreate, TaskRecord, TaskResponse, TaskStatus
+from app.models.probability import (
+    ConfidenceInterval,
+    ConditionalProbability,
+    DecisionCriterion,
+    DecisionResult,
+    DistributionType,
+    Evidence,
+    PosteriorResult,
+    PriorBelief,
+    RiskAttitude,
+    RiskQuantification,
+    ScenarioAnalysis,
+    SensitivityResult,
+    SimulationConfig,
+    SimulationResult,
+    UtilityOutcome,
+)
 from app.models.voice import (
     CommandAnalysis,
     CommandIntent,
@@ -207,6 +224,22 @@ __all__ = [
     "Plan",
     "PlanStatus",
     "PlanStep",
+    # Olasiliksal karar modelleri
+    "ConfidenceInterval",
+    "ConditionalProbability",
+    "DecisionCriterion",
+    "DecisionResult",
+    "DistributionType",
+    "Evidence",
+    "PosteriorResult",
+    "PriorBelief",
+    "RiskAttitude",
+    "RiskQuantification",
+    "ScenarioAnalysis",
+    "SensitivityResult",
+    "SimulationConfig",
+    "SimulationResult",
+    "UtilityOutcome",
     # Ses modelleri
     "CommandAnalysis",
     "CommandIntent",
