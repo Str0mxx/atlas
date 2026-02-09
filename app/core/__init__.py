@@ -6,6 +6,7 @@ Lazy import ile dairesel bagimliligi onler.
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
+    from app.core.autonomy.bdi_agent import BDIAgent
     from app.core.decision_matrix import (
         ActionType,
         DecisionMatrix,
@@ -17,6 +18,7 @@ if TYPE_CHECKING:
 
 __all__ = [
     "ActionType",
+    "BDIAgent",
     "DecisionMatrix",
     "MasterAgent",
     "RiskLevel",
@@ -42,4 +44,7 @@ def __getattr__(name: str) -> type:
     if name == "TaskManager":
         from app.core.task_manager import TaskManager
         return TaskManager
+    if name == "BDIAgent":
+        from app.core.autonomy.bdi_agent import BDIAgent
+        return BDIAgent
     raise AttributeError(f"module 'app.core' has no attribute {name!r}")
