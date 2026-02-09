@@ -96,6 +96,12 @@ class Settings(BaseSettings):
     task_manager_retry_backoff_base: int = 5
     task_manager_retry_backoff_max: int = 300
 
+    # Monitor Intervals (saniye)
+    server_monitor_interval: int = 300
+    security_monitor_interval: int = 3600
+    ads_monitor_interval: int = 3600
+    opportunity_monitor_interval: int = 86400
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""

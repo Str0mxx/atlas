@@ -70,6 +70,15 @@ from app.models.server import (
     ServerMetrics,
     ServiceStatus,
 )
+from app.models.notification import (
+    NotificationChannel,
+    NotificationCreate,
+    NotificationEventType,
+    NotificationPriority,
+    NotificationRecord,
+    NotificationResponse,
+    NotificationStatus,
+)
 from app.models.task import TaskCreate, TaskRecord, TaskResponse, TaskStatus
 from app.models.voice import (
     CommandAnalysis,
@@ -145,6 +154,14 @@ __all__ = [
     "ScrapedPage",
     "SupplierScore",
     "WebSearchResult",
+    # Bildirim modelleri
+    "NotificationChannel",
+    "NotificationCreate",
+    "NotificationEventType",
+    "NotificationPriority",
+    "NotificationRecord",
+    "NotificationResponse",
+    "NotificationStatus",
     # Gorev modelleri
     "TaskCreate",
     "TaskRecord",

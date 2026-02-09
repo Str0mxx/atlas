@@ -49,7 +49,7 @@ class TestAlembicMigrations:
         cfg = Config(str(PROJECT_ROOT / "alembic.ini"))
         scripts = ScriptDirectory.from_config(cfg)
         head = scripts.get_current_head()
-        assert head == "a1b2c3d4e5f6"
+        assert head == "b2c3d4e5f6g7"
 
     def test_initial_revision_has_no_parent(self) -> None:
         cfg = Config(str(PROJECT_ROOT / "alembic.ini"))

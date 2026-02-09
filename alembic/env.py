@@ -19,6 +19,7 @@ from app.core.database import Base
 from app.models.task import TaskRecord  # noqa: F401
 from app.models.agent_log import AgentLogRecord  # noqa: F401
 from app.models.decision import DecisionRecord  # noqa: F401
+from app.models.notification import NotificationRecord  # noqa: F401
 
 # Alembic Config nesnesi (.ini dosyasina erisim saglar)
 config = context.config
