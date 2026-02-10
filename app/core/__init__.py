@@ -13,14 +13,26 @@ if TYPE_CHECKING:
         RiskLevel,
         UrgencyLevel,
     )
+    from app.core.learning import (
+        AdaptiveAgent,
+        ExperienceBuffer,
+        Policy,
+        QLearner,
+        RewardFunction,
+    )
     from app.core.master_agent import MasterAgent
     from app.core.task_manager import TaskManager
 
 __all__ = [
     "ActionType",
+    "AdaptiveAgent",
     "BDIAgent",
     "DecisionMatrix",
+    "ExperienceBuffer",
     "MasterAgent",
+    "Policy",
+    "QLearner",
+    "RewardFunction",
     "RiskLevel",
     "TaskManager",
     "UrgencyLevel",
@@ -47,4 +59,15 @@ def __getattr__(name: str) -> type:
     if name == "BDIAgent":
         from app.core.autonomy.bdi_agent import BDIAgent
         return BDIAgent
+    if name in ("AdaptiveAgent", "ExperienceBuffer", "Policy", "QLearner", "RewardFunction"):
+        from app.core.learning import (
+            AdaptiveAgent,
+            ExperienceBuffer,
+            Policy,
+            QLearner,
+            RewardFunction,
+        )
+        return {"AdaptiveAgent": AdaptiveAgent, "ExperienceBuffer": ExperienceBuffer,
+                "Policy": Policy, "QLearner": QLearner,
+                "RewardFunction": RewardFunction}[name]
     raise AttributeError(f"module 'app.core' has no attribute {name!r}")

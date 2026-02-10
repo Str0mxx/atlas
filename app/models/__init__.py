@@ -112,6 +112,20 @@ from app.models.probability import (
     SimulationResult,
     UtilityOutcome,
 )
+from app.models.learning import (
+    AdaptationState,
+    DriftDetection,
+    DriftType,
+    Experience,
+    LearningConfig,
+    LearningMetrics,
+    PolicyConfig,
+    PolicyType,
+    PrioritizedExperience,
+    QTableEntry,
+    RewardConfig,
+    RewardSignal,
+)
 from app.models.voice import (
     CommandAnalysis,
     CommandIntent,
@@ -240,6 +254,19 @@ __all__ = [
     "SimulationConfig",
     "SimulationResult",
     "UtilityOutcome",
+    # Ogrenme modelleri
+    "AdaptationState",
+    "DriftDetection",
+    "DriftType",
+    "Experience",
+    "LearningConfig",
+    "LearningMetrics",
+    "PolicyConfig",
+    "PolicyType",
+    "PrioritizedExperience",
+    "QTableEntry",
+    "RewardConfig",
+    "RewardSignal",
     # Ses modelleri
     "CommandAnalysis",
     "CommandIntent",
