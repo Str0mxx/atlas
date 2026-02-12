@@ -120,6 +120,33 @@ class MasterAgent(BaseAgent):
         self.agents[agent.name] = agent
         self.logger.info("Agent kaydedildi: %s", agent.name)
 
+    def unregister_agent(self, agent_name: str) -> None:
+        """Agent kaydini siler.
+
+        Args:
+            agent_name: Silinecek agent adi.
+        """
+        removed = self.agents.pop(agent_name, None)
+        if removed:
+            self.logger.info("Agent kaydi silindi: %s", agent_name)
+
+    def register_agent_keywords(self, agent_type: str, keywords: list[str]) -> None:
+        """Agent tipi icin yeni anahtar kelimeler ekler.
+
+        Plugin'lerin kendi agent'lari icin keyword tanimlamasini saglar.
+
+        Args:
+            agent_type: Agent tipi (AGENT_KEYWORDS anahtari).
+            keywords: Eklenecek anahtar kelimeler.
+        """
+        if agent_type in AGENT_KEYWORDS:
+            AGENT_KEYWORDS[agent_type].extend(keywords)
+        else:
+            AGENT_KEYWORDS[agent_type] = list(keywords)
+        self.logger.info(
+            "Agent keyword'leri guncellendi: %s (+%d)", agent_type, len(keywords),
+        )
+
     # === Akilli Agent Secimi ===
 
     def select_agent(self, task: dict[str, Any]) -> str | None:

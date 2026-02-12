@@ -116,6 +116,28 @@ async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
     app.state.master_agent = master_agent
     app.state.telegram_bot = telegram_bot
 
+    # Plugin sistemi baslat
+    plugin_manager = None
+    if settings.plugins_enabled:
+        from app.core.plugins.manager import PluginManager
+
+        plugin_manager = PluginManager(
+            master_agent=master_agent,
+            plugins_dir=settings.plugins_dir,
+        )
+        try:
+            await plugin_manager.initialize()
+            if settings.plugins_auto_load:
+                await plugin_manager.load_all()
+            logger.info(
+                "Plugin sistemi hazir. Etkin: %d",
+                plugin_manager.registry.count_enabled(),
+            )
+        except Exception as exc:
+            logger.error("Plugin sistemi baslatilamadi: %s", exc)
+
+    app.state.plugin_manager = plugin_manager
+
     # TaskManager baslat
     from app.core.task_manager import TaskManager
 
@@ -137,6 +159,13 @@ async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
 
     # --- Kapanis ---
     logger.info("ATLAS kapatiliyor...")
+
+    # Plugin sistemi kapat
+    if getattr(app.state, "plugin_manager", None):
+        try:
+            await app.state.plugin_manager.shutdown()
+        except Exception as exc:
+            logger.error("Plugin sistemi kapatma hatasi: %s", exc)
 
     # TaskManager durdur
     if getattr(app.state, "task_manager", None):
@@ -173,9 +202,11 @@ app = FastAPI(
 # Router'lari kaydet
 from app.api.routes import router as api_router
 from app.api.webhooks import router as webhooks_router
+from app.api.plugin_routes import router as plugin_router
 
 app.include_router(api_router)
 app.include_router(webhooks_router)
+app.include_router(plugin_router)
 
 
 def _setup_logging() -> None:

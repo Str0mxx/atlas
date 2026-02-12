@@ -85,14 +85,23 @@ atlas/
 │   │   │   ├── resource.py            # Kaynak planlaması (tahsis, çatışma, optimizasyon)
 │   │   │   └── strategy.py            # Strateji motoru (senaryo, KPI, adaptif strateji)
 │   │   │
-│   │   └── collaboration/      # Multi-agent işbirliği sistemi
+│   │   ├── collaboration/      # Multi-agent işbirliği sistemi
+│   │   │   ├── __init__.py
+│   │   │   ├── protocol.py            # Mesaj geçişi (öncelik kuyruğu, pub/sub, istek-yanıt)
+│   │   │   ├── negotiation.py         # Contract Net Protocol (CFP, teklif, değerlendirme)
+│   │   │   ├── coordination.py        # Koordinasyon (Blackboard, SyncBarrier, MutexLock)
+│   │   │   ├── team.py               # Takım yönetimi (oluşturma, yetenek eşleme, iş yükü)
+│   │   │   ├── consensus.py           # Konsensüs (çoğunluk, oybirliği, ağırlıklı, quorum)
+│   │   │   └── workflow.py            # İş akışı orkestrasyon (seri, paralel, koşullu, merge)
+│   │   │
+│   │   └── plugins/            # Plugin/Extension sistemi
 │   │       ├── __init__.py
-│   │       ├── protocol.py            # Mesaj geçişi (öncelik kuyruğu, pub/sub, istek-yanıt)
-│   │       ├── negotiation.py         # Contract Net Protocol (CFP, teklif, değerlendirme)
-│   │       ├── coordination.py        # Koordinasyon (Blackboard, SyncBarrier, MutexLock)
-│   │       ├── team.py               # Takım yönetimi (oluşturma, yetenek eşleme, iş yükü)
-│   │       ├── consensus.py           # Konsensüs (çoğunluk, oybirliği, ağırlıklı, quorum)
-│   │       └── workflow.py            # İş akışı orkestrasyon (seri, paralel, koşullu, merge)
+│   │       ├── hooks.py               # Hook/event sistemi (async pub/sub, hata izolasyonu)
+│   │       ├── validator.py           # Plugin doğrulama (BaseAgent/BaseMonitor uyum kontrolü)
+│   │       ├── registry.py            # Plugin kayıt defteri (durum takibi, CRUD, filtreleme)
+│   │       ├── manifest.py            # Manifest yükleme (plugin.json parse, keşif)
+│   │       ├── loader.py              # Plugin yükleyici (importlib, sınıf çözümleme)
+│   │       └── manager.py             # Plugin yöneticisi (facade: yaşam döngüsü orkestrasyon)
 │   │
 │   ├── agents/
 │   │   ├── __init__.py
@@ -132,7 +141,8 @@ atlas/
 │   ├── api/
 │   │   ├── __init__.py
 │   │   ├── routes.py           # API endpoints (görev CRUD, agent, metrik, arama)
-│   │   └── webhooks.py         # Webhook'lar (Telegram, Google Ads, Gmail, Alert)
+│   │   ├── webhooks.py         # Webhook'lar (Telegram, Google Ads, Gmail, Alert)
+│   │   └── plugin_routes.py    # Plugin API (list, detail, enable, disable, reload)
 │   │
 │   └── models/
 │       ├── __init__.py
@@ -154,9 +164,18 @@ atlas/
 │       ├── probability.py      # Olasılıksal karar modeli
 │       ├── learning.py         # Öğrenme/RL modeli
 │       ├── planning.py         # Stratejik planlama modeli
-│       └── collaboration.py    # Multi-agent işbirliği modeli
+│       ├── collaboration.py    # Multi-agent işbirliği modeli
+│       └── plugin.py           # Plugin sistemi modeli
 │
-├── tests/                      # 53 test dosyası, 2359 test
+│
+│   ├── plugins/                # Plugin dizini (kullanıcı plugin'leri)
+│   │   ├── __init__.py
+│   │   └── _example/           # Örnek plugin (InventoryAgent)
+│   │       ├── plugin.json
+│   │       ├── agent.py
+│   │       └── hooks.py
+│
+├── tests/                      # 75 test dosyası, 3056 test
 │   └── ...
 │
 ├── scripts/
@@ -275,14 +294,14 @@ async def analyze_supplier(
 
 ## Proje İstatistikleri
 
-- **Python modülleri**: ~105 kaynak + ~67 test dosyası
-- **Toplam LOC**: ~64,000
-- **Test sayısı**: 2,839
+- **Python modülleri**: ~115 kaynak + ~75 test dosyası
+- **Toplam LOC**: ~69,000
+- **Test sayısı**: 3,056
 - **Agent sayısı**: 10 (1 base + 9 uzman)
-- **API endpoint**: 10
+- **API endpoint**: 15 (10 core + 5 plugin)
 - **Webhook endpoint**: 4
 
-## Geliştirme Durumu (21/21 Tamamlandı ✅)
+## Geliştirme Durumu (22/22 Tamamlandı ✅)
 
 1. ✅ Proje yapısı ve temel config
 2. ✅ Master Agent + Karar Matrisi (akıllı agent seçimi, eskalasyon, denetim izi, onay iş akışı)
@@ -305,3 +324,4 @@ async def analyze_supplier(
 19. ✅ Offline-first resilience sistemi (OfflineManager, LocalLLM, StatePersistence, CircuitBreaker, FailoverManager, AutonomousFallback)
 20. ✅ Strategic Planning sistemi (GoalTree, HTNPlanner, TemporalPlanner, ContingencyPlanner, ResourcePlanner, StrategyEngine)
 21. ✅ Multi-Agent Collaboration sistemi (MessageBus, NegotiationManager, Blackboard/SyncBarrier/MutexLock, TeamManager, ConsensusBuilder, WorkflowEngine)
+22. ✅ Plugin/Extension sistemi (PluginManager, PluginLoader, PluginRegistry, PluginValidator, HookManager, manifest keşif, API endpoints)

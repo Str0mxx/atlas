@@ -176,6 +176,20 @@ from app.models.planning import (
     TriggerCondition,
     TriggerType,
 )
+from app.models.plugin import (
+    AgentProvision,
+    HookEvent,
+    HookProvision,
+    MonitorProvision,
+    PluginConfigField,
+    PluginInfo,
+    PluginListResponse,
+    PluginManifest,
+    PluginProvides,
+    PluginState,
+    PluginType,
+    ToolProvision,
+)
 from app.models.collaboration import (
     AgentMessage,
     Bid,
@@ -374,6 +388,19 @@ __all__ = [
     "TemporalConstraint",
     "TriggerCondition",
     "TriggerType",
+    # Plugin modelleri
+    "AgentProvision",
+    "HookEvent",
+    "HookProvision",
+    "MonitorProvision",
+    "PluginConfigField",
+    "PluginInfo",
+    "PluginListResponse",
+    "PluginManifest",
+    "PluginProvides",
+    "PluginState",
+    "PluginType",
+    "ToolProvision",
     # Collaboration modelleri
     "AgentMessage",
     "Bid",

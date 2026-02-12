@@ -1,0 +1,29 @@
+{
+    "name": "inventory_tracker",
+    "version": "1.0.0",
+    "description": "FTRK Store envanter takip agent'i",
+    "author": "Fatih",
+    "type": "agent",
+    "provides": {
+        "agents": [
+            {
+                "class": "InventoryAgent",
+                "module": "agent",
+                "keywords": ["envanter", "stok", "inventory", "stock", "urun"]
+            }
+        ],
+        "hooks": [
+            {
+                "event": "task_completed",
+                "handler": "hooks.on_task_completed"
+            }
+        ]
+    },
+    "config": {
+        "inventory_api_url": {
+            "type": "str",
+            "default": "http://localhost:8080/api/inventory",
+            "description": "Envanter API baglanti URL'i"
+        }
+    }
+}

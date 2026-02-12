@@ -102,6 +102,11 @@ class Settings(BaseSettings):
     ads_monitor_interval: int = 3600
     opportunity_monitor_interval: int = 86400
 
+    # Plugin sistemi
+    plugins_enabled: bool = True
+    plugins_dir: str = "app/plugins"
+    plugins_auto_load: bool = True
+
     # Resilience / Offline
     resilience_enabled: bool = True
     offline_health_check_interval: int = 30
