@@ -261,7 +261,7 @@ async def analyze_supplier(
 
 ### Yapılacak (🔲)
 
-15. 🔲 docker-compose.yml (PostgreSQL, Redis, Qdrant, ATLAS app orkestrasyonu)
+15. ✅ docker-compose.yml (PostgreSQL, Redis, Qdrant, ATLAS app, Celery worker/beat)
 16. 🔲 Celery worker modülleri (arkaplan görev işleme, periyodik taramalar)
 17. 🔲 CI/CD pipeline (GitHub Actions)
 18. 🔲 Production deployment rehberi
