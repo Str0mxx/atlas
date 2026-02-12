@@ -6,6 +6,7 @@ from typing import AsyncGenerator
 
 from fastapi import FastAPI, Request
 
+from app.celery_app import celery_app  # noqa: F401 — Celery worker/beat icin
 from app.config import settings
 
 logger = logging.getLogger(__name__)
