@@ -60,13 +60,21 @@ atlas/
 │   │   │   ├── monte_carlo.py  # Monte Carlo simülasyonu
 │   │   │   └── uncertainty.py  # Belirsizlik yönetimi
 │   │   │
-│   │   └── learning/           # Pekiştirmeli öğrenme sistemi
+│   │   ├── learning/           # Pekiştirmeli öğrenme sistemi
+│   │   │   ├── __init__.py
+│   │   │   ├── q_learning.py   # Q-learning algoritması
+│   │   │   ├── policy.py       # Politika yönetimi
+│   │   │   ├── adaptation.py   # Adaptif öğrenme (drift tespiti)
+│   │   │   ├── experience_buffer.py  # Deneyim tekrar tamponu
+│   │   │   └── reward_system.py     # Ödül hesaplama
+│   │   │
+│   │   └── resilience/         # Offline-first dayanıklılık sistemi
 │   │       ├── __init__.py
-│   │       ├── q_learning.py   # Q-learning algoritması
-│   │       ├── policy.py       # Politika yönetimi
-│   │       ├── adaptation.py   # Adaptif öğrenme (drift tespiti)
-│   │       ├── experience_buffer.py  # Deneyim tekrar tamponu
-│   │       └── reward_system.py     # Ödül hesaplama
+│   │       ├── offline_mode.py        # Çevrimdışı yönetim (bağlantı izleme, sync kuyruğu)
+│   │       ├── local_inference.py     # Yerel AI çıkarım (Ollama/kural tabanlı/cache)
+│   │       ├── state_persistence.py   # Durum kalıcılığı (SQLite snapshot, kurtarma noktası)
+│   │       ├── failover.py            # Circuit breaker + failover yönetimi
+│   │       └── autonomous_fallback.py # Otonom fallback (acil durum protokolleri)
 │   │
 │   ├── agents/
 │   │   ├── __init__.py
@@ -128,7 +136,7 @@ atlas/
 │       ├── probability.py      # Olasılıksal karar modeli
 │       └── learning.py         # Öğrenme/RL modeli
 │
-├── tests/                      # 52 test dosyası, 2185 test
+├── tests/                      # 53 test dosyası, 2359 test
 │   └── ...
 │
 ├── scripts/
@@ -247,14 +255,14 @@ async def analyze_supplier(
 
 ## Proje İstatistikleri
 
-- **Python modülleri**: ~85 kaynak + ~52 test dosyası
-- **Toplam LOC**: ~54,000
-- **Test sayısı**: 2,185
+- **Python modülleri**: ~91 kaynak + ~53 test dosyası
+- **Toplam LOC**: ~56,000
+- **Test sayısı**: 2,359
 - **Agent sayısı**: 10 (1 base + 9 uzman)
 - **API endpoint**: 10
 - **Webhook endpoint**: 4
 
-## Geliştirme Durumu (18/18 Tamamlandı ✅)
+## Geliştirme Durumu (19/19 Tamamlandı ✅)
 
 1. ✅ Proje yapısı ve temel config
 2. ✅ Master Agent + Karar Matrisi (akıllı agent seçimi, eskalasyon, denetim izi, onay iş akışı)
@@ -270,8 +278,8 @@ async def analyze_supplier(
 12. ✅ Pekiştirmeli öğrenme (Q-learning, politika yönetimi, adaptif öğrenme, deneyim tamponu)
 13. ✅ Veritabanı migrasyonları (Alembic) ve seed verileri
 14. ✅ Docker (Dockerfile)
-
 15. ✅ docker-compose.yml (PostgreSQL, Redis, Qdrant, ATLAS app, Celery worker/beat)
 16. ✅ Celery worker modülleri (periyodik monitor görevleri, sonuç işleme, Telegram bildirimi)
 17. ✅ CI/CD pipeline (GitHub Actions: lint, type-check, test, docker-build, güvenlik taraması)
 18. ✅ Production deployment rehberi (docs/DEPLOYMENT.md)
+19. ✅ Offline-first resilience sistemi (OfflineManager, LocalLLM, StatePersistence, CircuitBreaker, FailoverManager, AutonomousFallback)
