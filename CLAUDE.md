@@ -34,6 +34,7 @@ atlas/
 │   ├── __init__.py
 │   ├── main.py                 # FastAPI entry point
 │   ├── config.py               # Ayarlar ve env variables
+│   ├── celery_app.py           # Celery uygulama ve beat zamanlama
 │   │
 │   ├── core/
 │   │   ├── __init__.py
@@ -98,6 +99,10 @@ atlas/
 │   │   ├── ads_monitor.py         # Reklam performans izleme
 │   │   └── opportunity_monitor.py # İş fırsatı taraması
 │   │
+│   ├── tasks/
+│   │   ├── __init__.py
+│   │   └── monitor_tasks.py    # Celery periyodik monitor görevleri (4 task)
+│   │
 │   ├── api/
 │   │   ├── __init__.py
 │   │   ├── routes.py           # API endpoints (görev CRUD, agent, metrik, arama)
@@ -123,7 +128,7 @@ atlas/
 │       ├── probability.py      # Olasılıksal karar modeli
 │       └── learning.py         # Öğrenme/RL modeli
 │
-├── tests/                      # 51 test dosyası, 2107 test
+├── tests/                      # 52 test dosyası, 2185 test
 │   └── ...
 │
 ├── scripts/
@@ -137,6 +142,15 @@ atlas/
 ├── docker/
 │   └── Dockerfile              # Multi-stage build
 │
+├── docs/
+│   └── DEPLOYMENT.md           # Production deployment rehberi
+│
+├── .github/
+│   └── workflows/
+│       ├── ci.yml              # CI pipeline (lint, type-check, test, docker-build)
+│       └── security.yml        # Güvenlik taraması (pip-audit, CodeQL)
+│
+├── docker-compose.yml          # 6 servis (postgres, redis, qdrant, app, celery)
 ├── .env.example
 ├── pyproject.toml
 └── README.md
@@ -233,16 +247,14 @@ async def analyze_supplier(
 
 ## Proje İstatistikleri
 
-- **Python modülleri**: ~80 kaynak + ~50 test dosyası
-- **Toplam LOC**: ~52,500
-- **Test sayısı**: 2,107
+- **Python modülleri**: ~85 kaynak + ~52 test dosyası
+- **Toplam LOC**: ~54,000
+- **Test sayısı**: 2,185
 - **Agent sayısı**: 10 (1 base + 9 uzman)
 - **API endpoint**: 10
 - **Webhook endpoint**: 4
 
-## Geliştirme Durumu
-
-### Tamamlanan (✅)
+## Geliştirme Durumu (18/18 Tamamlandı ✅)
 
 1. ✅ Proje yapısı ve temel config
 2. ✅ Master Agent + Karar Matrisi (akıllı agent seçimi, eskalasyon, denetim izi, onay iş akışı)
@@ -259,9 +271,7 @@ async def analyze_supplier(
 13. ✅ Veritabanı migrasyonları (Alembic) ve seed verileri
 14. ✅ Docker (Dockerfile)
 
-### Yapılacak (🔲)
-
 15. ✅ docker-compose.yml (PostgreSQL, Redis, Qdrant, ATLAS app, Celery worker/beat)
-16. 🔲 Celery worker modülleri (arkaplan görev işleme, periyodik taramalar)
-17. 🔲 CI/CD pipeline (GitHub Actions)
-18. 🔲 Production deployment rehberi
+16. ✅ Celery worker modülleri (periyodik monitor görevleri, sonuç işleme, Telegram bildirimi)
+17. ✅ CI/CD pipeline (GitHub Actions: lint, type-check, test, docker-build, güvenlik taraması)
+18. ✅ Production deployment rehberi (docs/DEPLOYMENT.md)
