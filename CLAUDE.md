@@ -68,13 +68,22 @@ atlas/
 │   │   │   ├── experience_buffer.py  # Deneyim tekrar tamponu
 │   │   │   └── reward_system.py     # Ödül hesaplama
 │   │   │
-│   │   └── resilience/         # Offline-first dayanıklılık sistemi
+│   │   ├── resilience/         # Offline-first dayanıklılık sistemi
+│   │   │   ├── __init__.py
+│   │   │   ├── offline_mode.py        # Çevrimdışı yönetim (bağlantı izleme, sync kuyruğu)
+│   │   │   ├── local_inference.py     # Yerel AI çıkarım (Ollama/kural tabanlı/cache)
+│   │   │   ├── state_persistence.py   # Durum kalıcılığı (SQLite snapshot, kurtarma noktası)
+│   │   │   ├── failover.py            # Circuit breaker + failover yönetimi
+│   │   │   └── autonomous_fallback.py # Otonom fallback (acil durum protokolleri)
+│   │   │
+│   │   └── planning/           # Stratejik planlama sistemi
 │   │       ├── __init__.py
-│   │       ├── offline_mode.py        # Çevrimdışı yönetim (bağlantı izleme, sync kuyruğu)
-│   │       ├── local_inference.py     # Yerel AI çıkarım (Ollama/kural tabanlı/cache)
-│   │       ├── state_persistence.py   # Durum kalıcılığı (SQLite snapshot, kurtarma noktası)
-│   │       ├── failover.py            # Circuit breaker + failover yönetimi
-│   │       └── autonomous_fallback.py # Otonom fallback (acil durum protokolleri)
+│   │       ├── goal_tree.py           # Hiyerarşik hedef ağacı (AND/OR decomposition)
+│   │       ├── htplanner.py           # HTN planlama (task decomposition, metot seçimi)
+│   │       ├── temporal.py            # Zamansal planlama (CPM, PERT, kritik yol)
+│   │       ├── contingency.py         # Olasılık planlaması (Plan B/C/D, otomatik geçiş)
+│   │       ├── resource.py            # Kaynak planlaması (tahsis, çatışma, optimizasyon)
+│   │       └── strategy.py            # Strateji motoru (senaryo, KPI, adaptif strateji)
 │   │
 │   ├── agents/
 │   │   ├── __init__.py
@@ -255,14 +264,14 @@ async def analyze_supplier(
 
 ## Proje İstatistikleri
 
-- **Python modülleri**: ~91 kaynak + ~53 test dosyası
-- **Toplam LOC**: ~56,000
-- **Test sayısı**: 2,359
+- **Python modülleri**: ~98 kaynak + ~60 test dosyası
+- **Toplam LOC**: ~60,000
+- **Test sayısı**: 2,608
 - **Agent sayısı**: 10 (1 base + 9 uzman)
 - **API endpoint**: 10
 - **Webhook endpoint**: 4
 
-## Geliştirme Durumu (19/19 Tamamlandı ✅)
+## Geliştirme Durumu (20/20 Tamamlandı ✅)
 
 1. ✅ Proje yapısı ve temel config
 2. ✅ Master Agent + Karar Matrisi (akıllı agent seçimi, eskalasyon, denetim izi, onay iş akışı)
@@ -283,3 +292,4 @@ async def analyze_supplier(
 17. ✅ CI/CD pipeline (GitHub Actions: lint, type-check, test, docker-build, güvenlik taraması)
 18. ✅ Production deployment rehberi (docs/DEPLOYMENT.md)
 19. ✅ Offline-first resilience sistemi (OfflineManager, LocalLLM, StatePersistence, CircuitBreaker, FailoverManager, AutonomousFallback)
+20. ✅ Strategic Planning sistemi (GoalTree, HTNPlanner, TemporalPlanner, ContingencyPlanner, ResourcePlanner, StrategyEngine)
