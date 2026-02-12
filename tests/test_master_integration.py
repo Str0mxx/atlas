@@ -500,6 +500,7 @@ class TestTelegramBotMasterAgent:
         bot.master_agent = mock_master
 
         mock_update = MagicMock()
+        mock_update.effective_chat.id = 12345
         mock_update.effective_message.reply_text = AsyncMock()
 
         await bot._cmd_status(mock_update, MagicMock())
@@ -516,6 +517,7 @@ class TestTelegramBotMasterAgent:
         bot = self._make_bot()
 
         mock_update = MagicMock()
+        mock_update.effective_chat.id = 12345
         mock_update.effective_message.reply_text = AsyncMock()
 
         await bot._cmd_status(mock_update, MagicMock())
