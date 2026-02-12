@@ -102,6 +102,19 @@ class Settings(BaseSettings):
     ads_monitor_interval: int = 3600
     opportunity_monitor_interval: int = 86400
 
+    # Resilience / Offline
+    resilience_enabled: bool = True
+    offline_health_check_interval: int = 30
+    offline_max_queue_size: int = 1000
+    offline_sync_batch_size: int = 50
+    circuit_breaker_failure_threshold: int = 5
+    circuit_breaker_recovery_timeout: int = 60
+    local_llm_provider: str = "rule_based"
+    local_llm_ollama_url: str = "http://localhost:11434"
+    local_llm_model: str = "llama3.2"
+    state_persistence_db_path: str = "data/atlas_state.db"
+    state_persistence_max_snapshots: int = 100
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""
