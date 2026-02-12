@@ -76,14 +76,23 @@ atlas/
 │   │   │   ├── failover.py            # Circuit breaker + failover yönetimi
 │   │   │   └── autonomous_fallback.py # Otonom fallback (acil durum protokolleri)
 │   │   │
-│   │   └── planning/           # Stratejik planlama sistemi
+│   │   ├── planning/           # Stratejik planlama sistemi
+│   │   │   ├── __init__.py
+│   │   │   ├── goal_tree.py           # Hiyerarşik hedef ağacı (AND/OR decomposition)
+│   │   │   ├── htplanner.py           # HTN planlama (task decomposition, metot seçimi)
+│   │   │   ├── temporal.py            # Zamansal planlama (CPM, PERT, kritik yol)
+│   │   │   ├── contingency.py         # Olasılık planlaması (Plan B/C/D, otomatik geçiş)
+│   │   │   ├── resource.py            # Kaynak planlaması (tahsis, çatışma, optimizasyon)
+│   │   │   └── strategy.py            # Strateji motoru (senaryo, KPI, adaptif strateji)
+│   │   │
+│   │   └── collaboration/      # Multi-agent işbirliği sistemi
 │   │       ├── __init__.py
-│   │       ├── goal_tree.py           # Hiyerarşik hedef ağacı (AND/OR decomposition)
-│   │       ├── htplanner.py           # HTN planlama (task decomposition, metot seçimi)
-│   │       ├── temporal.py            # Zamansal planlama (CPM, PERT, kritik yol)
-│   │       ├── contingency.py         # Olasılık planlaması (Plan B/C/D, otomatik geçiş)
-│   │       ├── resource.py            # Kaynak planlaması (tahsis, çatışma, optimizasyon)
-│   │       └── strategy.py            # Strateji motoru (senaryo, KPI, adaptif strateji)
+│   │       ├── protocol.py            # Mesaj geçişi (öncelik kuyruğu, pub/sub, istek-yanıt)
+│   │       ├── negotiation.py         # Contract Net Protocol (CFP, teklif, değerlendirme)
+│   │       ├── coordination.py        # Koordinasyon (Blackboard, SyncBarrier, MutexLock)
+│   │       ├── team.py               # Takım yönetimi (oluşturma, yetenek eşleme, iş yükü)
+│   │       ├── consensus.py           # Konsensüs (çoğunluk, oybirliği, ağırlıklı, quorum)
+│   │       └── workflow.py            # İş akışı orkestrasyon (seri, paralel, koşullu, merge)
 │   │
 │   ├── agents/
 │   │   ├── __init__.py
@@ -143,7 +152,9 @@ atlas/
 │       ├── voice.py            # Ses işleme modeli
 │       ├── autonomy.py         # BDI otonomi modeli
 │       ├── probability.py      # Olasılıksal karar modeli
-│       └── learning.py         # Öğrenme/RL modeli
+│       ├── learning.py         # Öğrenme/RL modeli
+│       ├── planning.py         # Stratejik planlama modeli
+│       └── collaboration.py    # Multi-agent işbirliği modeli
 │
 ├── tests/                      # 53 test dosyası, 2359 test
 │   └── ...
@@ -264,14 +275,14 @@ async def analyze_supplier(
 
 ## Proje İstatistikleri
 
-- **Python modülleri**: ~98 kaynak + ~60 test dosyası
-- **Toplam LOC**: ~60,000
-- **Test sayısı**: 2,608
+- **Python modülleri**: ~105 kaynak + ~67 test dosyası
+- **Toplam LOC**: ~64,000
+- **Test sayısı**: 2,839
 - **Agent sayısı**: 10 (1 base + 9 uzman)
 - **API endpoint**: 10
 - **Webhook endpoint**: 4
 
-## Geliştirme Durumu (20/20 Tamamlandı ✅)
+## Geliştirme Durumu (21/21 Tamamlandı ✅)
 
 1. ✅ Proje yapısı ve temel config
 2. ✅ Master Agent + Karar Matrisi (akıllı agent seçimi, eskalasyon, denetim izi, onay iş akışı)
@@ -293,3 +304,4 @@ async def analyze_supplier(
 18. ✅ Production deployment rehberi (docs/DEPLOYMENT.md)
 19. ✅ Offline-first resilience sistemi (OfflineManager, LocalLLM, StatePersistence, CircuitBreaker, FailoverManager, AutonomousFallback)
 20. ✅ Strategic Planning sistemi (GoalTree, HTNPlanner, TemporalPlanner, ContingencyPlanner, ResourcePlanner, StrategyEngine)
+21. ✅ Multi-Agent Collaboration sistemi (MessageBus, NegotiationManager, Blackboard/SyncBarrier/MutexLock, TeamManager, ConsensusBuilder, WorkflowEngine)
