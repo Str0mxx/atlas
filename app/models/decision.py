@@ -1,10 +1,13 @@
 """Karar kayit veri modelleri.
 
 Karar matrisi sonuclarinin kalici kaydi icin Pydantic ve SQLAlchemy modelleri.
+Denetim izi, onay is akisi, eskalasyon ve kural degisikligi modellerini icerir.
 """
 
 import uuid
 from datetime import datetime, timezone
+from enum import Enum
+from typing import Any
 
 from pydantic import BaseModel, Field
 from sqlalchemy import DateTime, Float, String, Text
@@ -96,3 +99,159 @@ class DecisionResponse(BaseModel):
     created_at: datetime
 
     model_config = {"from_attributes": True}
+
+
+# === Enum Tanimlari ===
+
+
+class ApprovalStatus(str, Enum):
+    """Onay durumu tanimlari.
+
+    Attributes:
+        PENDING: Onay bekliyor.
+        APPROVED: Onaylandi.
+        REJECTED: Reddedildi.
+        TIMEOUT: Zaman asimi.
+    """
+
+    PENDING = "pending"
+    APPROVED = "approved"
+    REJECTED = "rejected"
+    TIMEOUT = "timeout"
+
+
+class EscalationLevel(str, Enum):
+    """Eskalasyon seviyesi tanimlari.
+
+    Attributes:
+        NONE: Eskalasyon yok.
+        RETRY_SAME: Ayni agent ile tekrar dene.
+        ALTERNATE_AGENT: Farkli agent'a yonlendir.
+        NOTIFY_HUMAN: Insan mudahalesi gerekli.
+    """
+
+    NONE = "none"
+    RETRY_SAME = "retry_same"
+    ALTERNATE_AGENT = "alternate_agent"
+    NOTIFY_HUMAN = "notify_human"
+
+
+# === Denetim ve Is Akisi Modelleri ===
+
+
+class DecisionAuditEntry(BaseModel):
+    """Karar denetim izi kaydi.
+
+    Her karar icin olusturulan detayli denetim kaydi. Gorev bilgileri,
+    karar sonucu, agent secimi ve sonuc takibi icerir.
+
+    Attributes:
+        id: Benzersiz kayit kimlik numarasi.
+        task_description: Gorev aciklamasi.
+        risk: Risk seviyesi.
+        urgency: Aciliyet seviyesi.
+        action: Belirlenen aksiyon tipi.
+        confidence: Guven skoru (0.0 - 1.0).
+        reason: Karar aciklamasi.
+        agent_selected: Secilen agent adi.
+        agent_selection_method: Secim yontemi (explicit/keyword/fallback/none).
+        outcome_success: Gorev sonucu (None = henuz bitmedi).
+        escalated_from: Eskalasyon kaynagi aksiyon (opsiyonel).
+        timestamp: Karar zamani.
+    """
+
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    task_description: str = ""
+    risk: str = ""
+    urgency: str = ""
+    action: str = ""
+    confidence: float = Field(default=0.0, ge=0.0, le=1.0)
+    reason: str = ""
+    agent_selected: str | None = None
+    agent_selection_method: str = "explicit"
+    outcome_success: bool | None = None
+    escalated_from: str | None = None
+    timestamp: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+
+
+class ApprovalRequest(BaseModel):
+    """Onay istegi modeli.
+
+    Otonom aksiyon oncesi insan onayi gerektiren durumlar icin
+    kullanilir. Telegram uzerinden onay/red butonu gonderilir.
+
+    Attributes:
+        id: Benzersiz istek kimlik numarasi.
+        task: Onay bekleyen gorev verisi.
+        action: Onerilen aksiyon tipi.
+        decision: Iliskili karar bilgisi.
+        status: Mevcut onay durumu.
+        requested_at: Istek zamani.
+        responded_at: Yanit zamani.
+        timeout_seconds: Zaman asimi suresi (saniye).
+        auto_execute_on_timeout: Zaman asiminda otomatik calistir.
+    """
+
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    task: dict[str, Any] = Field(default_factory=dict)
+    action: str = ""
+    decision: DecisionCreate | None = None
+    status: ApprovalStatus = ApprovalStatus.PENDING
+    requested_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+    responded_at: datetime | None = None
+    timeout_seconds: int = Field(default=300, ge=0)
+    auto_execute_on_timeout: bool = False
+
+
+class EscalationRecord(BaseModel):
+    """Eskalasyon kaydi.
+
+    Basarisiz gorev sonrasi uygulanan eskalasyon adiminin kaydi.
+    Orijinal ve eskalasyon sonrasi aksiyon/agent bilgilerini icerir.
+
+    Attributes:
+        id: Benzersiz kayit kimlik numarasi.
+        original_action: Orijinal aksiyon tipi.
+        escalated_action: Eskalasyon sonrasi aksiyon.
+        original_agent: Basarisiz olan agent.
+        escalated_agent: Eskalasyon sonrasi atanan agent.
+        level: Eskalasyon seviyesi.
+        reason: Eskalasyon nedeni.
+        timestamp: Eskalasyon zamani.
+    """
+
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    original_action: str = ""
+    escalated_action: str = ""
+    original_agent: str | None = None
+    escalated_agent: str | None = None
+    level: EscalationLevel = EscalationLevel.NONE
+    reason: str = ""
+    timestamp: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+
+
+class RuleChangeRecord(BaseModel):
+    """Kural degisikligi kaydi.
+
+    Karar matrisi kurallarindaki degisikliklerin denetim kaydi.
+    Eski ve yeni degerleri, degisikligi yapani kaydeder.
+
+    Attributes:
+        risk: Degisen kuralin risk seviyesi.
+        urgency: Degisen kuralin aciliyet seviyesi.
+        old_action: Eski aksiyon tipi.
+        new_action: Yeni aksiyon tipi.
+        old_confidence: Eski guven skoru.
+        new_confidence: Yeni guven skoru.
+        changed_by: Degisikligi yapan (system/user/learning).
+        timestamp: Degisiklik zamani.
+    """
+
+    risk: str
+    urgency: str
+    old_action: str
+    new_action: str
+    old_confidence: float
+    new_confidence: float
+    changed_by: str = "system"
+    timestamp: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))

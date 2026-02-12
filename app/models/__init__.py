@@ -43,7 +43,17 @@ from app.models.coding import (
     SeverityLevel,
     VulnerabilityType,
 )
-from app.models.decision import DecisionCreate, DecisionRecord, DecisionResponse
+from app.models.decision import (
+    ApprovalRequest,
+    ApprovalStatus,
+    DecisionAuditEntry,
+    DecisionCreate,
+    DecisionRecord,
+    DecisionResponse,
+    EscalationLevel,
+    EscalationRecord,
+    RuleChangeRecord,
+)
 from app.models.marketing import (
     AdCheckType,
     AdDisapproval,
@@ -214,9 +224,15 @@ __all__ = [
     "TaskResponse",
     "TaskStatus",
     # Karar modelleri
+    "ApprovalRequest",
+    "ApprovalStatus",
+    "DecisionAuditEntry",
     "DecisionCreate",
     "DecisionRecord",
     "DecisionResponse",
+    "EscalationLevel",
+    "EscalationRecord",
+    "RuleChangeRecord",
     # Agent log modelleri
     "AgentLogCreate",
     "AgentLogRecord",

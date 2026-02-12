@@ -11,6 +11,8 @@ from typing import Any
 
 from pydantic import BaseModel, Field
 
+from app.models.decision import RuleChangeRecord
+
 logger = logging.getLogger(__name__)
 
 
@@ -93,7 +95,7 @@ class DecisionMatrix:
             confidence_threshold: Otonom aksiyon icin minimum guven esigi.
             risk_tolerance: Risk toleransi (0=kacinan, 1=arayan).
         """
-        self.rules = DECISION_RULES
+        self.rules = dict(DECISION_RULES)
         self.confidence_threshold = confidence_threshold
         self.risk_tolerance = risk_tolerance
 
@@ -104,6 +106,7 @@ class DecisionMatrix:
             risk_tolerance=risk_tolerance,
         )
         self._bayesian_net: Any = None
+        self._rule_history: list[RuleChangeRecord] = []
 
         logger.info(
             "Karar matrisi yuklendi (%d kural, guven_esigi=%.2f, "
@@ -274,6 +277,122 @@ class DecisionMatrix:
         self._uncertainty_mgr = UncertaintyManager(
             risk_tolerance=self.risk_tolerance,
         )
+
+    def update_rule(
+        self,
+        risk: RiskLevel,
+        urgency: UrgencyLevel,
+        new_action: ActionType,
+        new_confidence: float,
+        changed_by: str = "system",
+    ) -> RuleChangeRecord:
+        """Tek bir karar kuralini calisma zamaninda gunceller.
+
+        Args:
+            risk: Guncellenecek kuralin risk seviyesi.
+            urgency: Guncellenecek kuralin aciliyet seviyesi.
+            new_action: Yeni aksiyon tipi.
+            new_confidence: Yeni guven skoru (0-1).
+            changed_by: Degisikligi yapan (system/user/learning).
+
+        Returns:
+            Kural degisikligi kaydi.
+        """
+        key = (risk, urgency)
+        old_action, old_confidence = self.rules.get(
+            key, (ActionType.NOTIFY, 0.5),
+        )
+
+        clamped_confidence = max(0.0, min(1.0, new_confidence))
+        record = RuleChangeRecord(
+            risk=risk.value,
+            urgency=urgency.value,
+            old_action=old_action.value,
+            new_action=new_action.value,
+            old_confidence=old_confidence,
+            new_confidence=clamped_confidence,
+            changed_by=changed_by,
+        )
+
+        self.rules[key] = (new_action, clamped_confidence)
+        self._rule_history.append(record)
+
+        logger.info(
+            "Kural guncellendi: (%s, %s) %s->%s (guven: %.2f->%.2f, by=%s)",
+            risk.value, urgency.value,
+            old_action.value, new_action.value,
+            old_confidence, clamped_confidence,
+            changed_by,
+        )
+        return record
+
+    def get_rule_history(self) -> list[RuleChangeRecord]:
+        """Kural degisiklik gecmisini dondurur.
+
+        Returns:
+            Tum kural degisikligi kayitlari.
+        """
+        return list(self._rule_history)
+
+    def reset_rules(self) -> None:
+        """Kurallari orijinal varsayilan degerlere sifirlar.
+
+        Not: Degisiklik gecmisi silinmez, denetim izi olarak kalir.
+        """
+        self.rules = dict(DECISION_RULES)
+        logger.info("Karar kurallari varsayilanlara sifirlandi")
+
+    def explain_decision(
+        self,
+        risk: RiskLevel,
+        urgency: UrgencyLevel,
+        context: dict[str, Any] | None = None,
+        beliefs: dict[str, float] | None = None,
+    ) -> str:
+        """Karar surecini detayli aciklar.
+
+        Verilen risk/aciliyet icin uygulanacak kararin tam aciklamasini
+        insan tarafindan okunabilir formatta uretir.
+
+        Args:
+            risk: Risk seviyesi.
+            urgency: Aciliyet seviyesi.
+            context: Ek baglamsal bilgi.
+            beliefs: Belief key -> confidence eslesmesi.
+
+        Returns:
+            Detayli karar aciklamasi metni.
+        """
+        action, confidence = self.rules.get(
+            (risk, urgency), (ActionType.NOTIFY, 0.5),
+        )
+
+        parts = [
+            "Karar Aciklamasi:",
+            f"  Risk seviyesi: {risk.value}",
+            f"  Aciliyet seviyesi: {urgency.value}",
+            f"  Kural tablosundan aksiyon: {action.value} (guven: {confidence:.0%})",
+            f"  Guven esigi: {self.confidence_threshold:.0%}",
+            f"  Risk toleransi: {self.risk_tolerance:.0%}",
+        ]
+
+        if beliefs:
+            avg = self._uncertainty_mgr.aggregate_confidence(
+                list(beliefs.values()),
+            )
+            risk_float = self._risk_level_to_float(risk)
+            should = self._uncertainty_mgr.should_act(
+                avg, risk_float, self.confidence_threshold,
+            )
+            parts.append(f"  Belief ortalama guven: {avg:.0%}")
+            parts.append(f"  Aksiyona gecilmeli: {'evet' if should else 'hayir'}")
+            if not should and action in (ActionType.AUTO_FIX, ActionType.IMMEDIATE):
+                parts.append("  -> Aksiyon NOTIFY'a dusuruldu (yetersiz guven)")
+
+        if context and context.get("detail"):
+            parts.append(f"  Baglamsal detay: {context['detail']}")
+
+        return "\n".join(parts)
 
     def _build_reason(
         self,
