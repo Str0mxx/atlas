@@ -172,17 +172,29 @@ atlas/
 │   │   │   ├── model_manager.py         # Model yönetimi (eğitim, değerlendirme, seçim, versiyonlama)
 │   │   │   └── prediction_engine.py     # Orkestratör (multi-model ensemble, güven puanlama, açıklama)
 │   │   │
-│   │   └── knowledge/            # Knowledge Graph sistemi
+│   │   ├── knowledge/            # Knowledge Graph sistemi
+│   │   │   ├── __init__.py
+│   │   │   ├── entity_extractor.py      # Varlık çıkarma (NER, tiplendirme, bağlama, coreference)
+│   │   │   ├── relation_extractor.py    # İlişki çıkarma (kalıp eşleme, güç puanlama, zamansal/nedensel)
+│   │   │   ├── graph_builder.py         # Graf oluşturma (düğüm/kenar CRUD, birleştirme, tekrar tespiti)
+│   │   │   ├── graph_store.py           # Depolama (indeksleme, versiyonlama, JSON persistence)
+│   │   │   ├── query_engine.py          # Sorgulama (BFS yol bulma, alt graf, örüntü, doğal dil)
+│   │   │   ├── inference_engine.py      # Çıkarım (geçişken kapanma, miras, ters ilişki, kural tabanlı)
+│   │   │   ├── knowledge_fusion.py      # Bilgi birleştirme (çatışma çözümü, güven, kalite)
+│   │   │   ├── ontology_manager.py      # Ontoloji (hiyerarşi, kısıtlama, doğrulama, şema evrimi)
+│   │   │   └── knowledge_graph_manager.py # Orkestratör (pipeline, sorgu, analitik, import/export)
+│   │   │
+│   │   └── jit/                  # Just-in-Time Capability sistemi
 │   │       ├── __init__.py
-│   │       ├── entity_extractor.py      # Varlık çıkarma (NER, tiplendirme, bağlama, coreference)
-│   │       ├── relation_extractor.py    # İlişki çıkarma (kalıp eşleme, güç puanlama, zamansal/nedensel)
-│   │       ├── graph_builder.py         # Graf oluşturma (düğüm/kenar CRUD, birleştirme, tekrar tespiti)
-│   │       ├── graph_store.py           # Depolama (indeksleme, versiyonlama, JSON persistence)
-│   │       ├── query_engine.py          # Sorgulama (BFS yol bulma, alt graf, örüntü, doğal dil)
-│   │       ├── inference_engine.py      # Çıkarım (geçişken kapanma, miras, ters ilişki, kural tabanlı)
-│   │       ├── knowledge_fusion.py      # Bilgi birleştirme (çatışma çözümü, güven, kalite)
-│   │       ├── ontology_manager.py      # Ontoloji (hiyerarşi, kısıtlama, doğrulama, şema evrimi)
-│   │       └── knowledge_graph_manager.py # Orkestratör (pipeline, sorgu, analitik, import/export)
+│   │       ├── capability_checker.py    # Yetenek kontrolü (mevcut/benzer arama, efor tahmini, fizibilite)
+│   │       ├── requirement_analyzer.py  # İhtiyaç analizi (niyet tespiti, API çıkarma, güvenlik, kısıtlar)
+│   │       ├── api_discoverer.py        # API keşfi (katalog, endpoint arama, auth, rate limit, döküman)
+│   │       ├── rapid_builder.py         # Hızlı inşa (client/agent/model/test üretimi, bağlantı)
+│   │       ├── live_integrator.py       # Canlı entegrasyon (hot-load, kayıt, routing, rollback)
+│   │       ├── credential_manager.py    # Kimlik yönetimi (API key, OAuth, rotasyon, güvenli depolama)
+│   │       ├── sandbox_tester.py        # Sandbox test (izole çalıştırma, güvenlik tarama, performans)
+│   │       ├── user_communicator.py     # Kullanıcı iletişimi (ilerleme, onay, hata/başarı bildirimi)
+│   │       └── jit_orchestrator.py      # Orkestratör (pipeline, timeout, cache, öğrenme, rollback)
 │   │
 │   ├── agents/
 │   │   ├── __init__.py
@@ -254,7 +266,8 @@ atlas/
 │       ├── business.py        # Autonomous Business Runner modeli
 │       ├── nlp_engine.py      # NLP Engine modeli
 │       ├── predictive.py      # Predictive Intelligence modeli
-│       └── knowledge.py       # Knowledge Graph modeli
+│       ├── knowledge.py       # Knowledge Graph modeli
+│       └── jit.py             # JIT Capability modeli
 │
 │
 │   ├── plugins/                # Plugin dizini (kullanıcı plugin'leri)
@@ -264,7 +277,7 @@ atlas/
 │   │       ├── agent.py
 │   │       └── hooks.py
 │
-├── tests/                      # 102 test dosyası, 4176 test
+├── tests/                      # 106 test dosyası, 4753 test
 │   └── ...
 │
 ├── scripts/
@@ -383,14 +396,14 @@ async def analyze_supplier(
 
 ## Proje İstatistikleri
 
-- **Python modülleri**: ~190 kaynak + ~105 test dosyası
-- **Toplam LOC**: ~101,000
-- **Test sayısı**: 4,614+
+- **Python modülleri**: ~201 kaynak + ~106 test dosyası
+- **Toplam LOC**: ~105,000
+- **Test sayısı**: 4,753+
 - **Agent sayısı**: 11 (1 base + 9 uzman + 1 meta)
 - **API endpoint**: 15 (10 core + 5 plugin)
 - **Webhook endpoint**: 4
 
-## Geliştirme Durumu (29/29 Tamamlandı ✅)
+## Geliştirme Durumu (30/30 Tamamlandı ✅)
 
 1. ✅ Proje yapısı ve temel config
 2. ✅ Master Agent + Karar Matrisi (akıllı agent seçimi, eskalasyon, denetim izi, onay iş akışı)
@@ -421,3 +434,4 @@ async def analyze_supplier(
 27. ✅ NLP Engine sistemi (IntentParser, TaskDecomposer, RequirementExtractor, SpecGenerator, CodePlanner, ExecutionTranslator, FeedbackInterpreter, ConversationManager, NLPOrchestrator)
 28. ✅ Predictive Intelligence sistemi (PatternRecognizer, TrendAnalyzer, Forecaster, RiskPredictor, DemandPredictor, BehaviorPredictor, EventPredictor, ModelManager, PredictionEngine)
 29. ✅ Knowledge Graph sistemi (EntityExtractor, RelationExtractor, GraphBuilder, GraphStore, QueryEngine, InferenceEngine, KnowledgeFusion, OntologyManager, KnowledgeGraphManager)
+30. ✅ JIT Capability sistemi (CapabilityChecker, RequirementAnalyzer, APIDiscoverer, RapidBuilder, LiveIntegrator, CredentialManager, SandboxTester, UserCommunicator, JITOrchestrator)
