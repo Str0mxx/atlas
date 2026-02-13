@@ -208,17 +208,29 @@ atlas/
 │   │   │   ├── knowledge_learner.py     # Bilgi öğrenici (kalıp, best practice, agent paylaşımı)
 │   │   │   └── evolution_controller.py  # Orkestratör (Observe→Analyze→Plan→Implement→Test→Deploy)
 │   │   │
-│   │   └── emotional/            # Emotional Intelligence sistemi
+│   │   ├── emotional/            # Emotional Intelligence sistemi
+│   │   │   ├── __init__.py
+│   │   │   ├── sentiment_analyzer.py    # Duygu analizi (polarite, sınıflandırma, yoğunluk, alaycılık)
+│   │   │   ├── empathy_engine.py        # Empati motoru (durum takibi, frustrasyon, kutlama, destek)
+│   │   │   ├── mood_tracker.py          # Ruh hali takibi (kayıt, kalıp, tahmin, proaktif destek)
+│   │   │   ├── communication_styler.py  # İletişim stili (ton adaptasyonu, resmiyet, mizah, aciliyet)
+│   │   │   ├── conflict_resolver.py     # Çatışma çözümü (değerlendirme, de-eskalasyon, insan eskalasyonu)
+│   │   │   ├── motivation_engine.py     # Motivasyon motoru (teşvik, kutlama, ilerleme, hedef)
+│   │   │   ├── personality_adapter.py   # Kişilik adaptörü (tercih öğrenme, sabır, detay, mizah stili)
+│   │   │   ├── emotional_memory.py      # Duygusal hafıza (ilişki kalitesi, önemli olay, tercih evrimi)
+│   │   │   └── eq_orchestrator.py       # Orkestratör (pipeline: Analiz→Empati→Mood→Stil→Çatışma→Motivasyon)
+│   │   │
+│   │   └── simulation/            # Simulation & Scenario Testing sistemi
 │   │       ├── __init__.py
-│   │       ├── sentiment_analyzer.py    # Duygu analizi (polarite, sınıflandırma, yoğunluk, alaycılık)
-│   │       ├── empathy_engine.py        # Empati motoru (durum takibi, frustrasyon, kutlama, destek)
-│   │       ├── mood_tracker.py          # Ruh hali takibi (kayıt, kalıp, tahmin, proaktif destek)
-│   │       ├── communication_styler.py  # İletişim stili (ton adaptasyonu, resmiyet, mizah, aciliyet)
-│   │       ├── conflict_resolver.py     # Çatışma çözümü (değerlendirme, de-eskalasyon, insan eskalasyonu)
-│   │       ├── motivation_engine.py     # Motivasyon motoru (teşvik, kutlama, ilerleme, hedef)
-│   │       ├── personality_adapter.py   # Kişilik adaptörü (tercih öğrenme, sabır, detay, mizah stili)
-│   │       ├── emotional_memory.py      # Duygusal hafıza (ilişki kalitesi, önemli olay, tercih evrimi)
-│   │       └── eq_orchestrator.py       # Orkestratör (pipeline: Analiz→Empati→Mood→Stil→Çatışma→Motivasyon)
+│   │       ├── world_modeler.py         # Dünya modelleyici (snapshot, varlık, kaynak, kısıtlama, varsayım)
+│   │       ├── action_simulator.py      # Aksiyon simülatörü (sonuç, yan etki, kaynak, süre, zincir)
+│   │       ├── scenario_generator.py    # Senaryo üretici (best/worst/likely/edge case, random)
+│   │       ├── outcome_predictor.py     # Sonuç tahmincisi (başarı olasılığı, başarısızlık modları, zincirleme)
+│   │       ├── risk_simulator.py        # Risk simülatörü (enjeksiyon, yayılım, kurtarma, stres testi)
+│   │       ├── rollback_planner.py      # Geri alma planlayıcı (checkpoint, adımlar, veri kurtarma, doğrulama)
+│   │       ├── what_if_engine.py        # Ne olur analizi (hassasiyet, eşik, devrilme noktası, optimizasyon)
+│   │       ├── dry_run_executor.py      # Kuru çalıştırma (yan etkisiz, ön koşul, izin, kaynak kontrolü)
+│   │       └── simulation_engine.py     # Orkestratör (pipeline, karşılaştırma, öneri, güven, rapor)
 │   │
 │   ├── agents/
 │   │   ├── __init__.py
@@ -293,7 +305,8 @@ atlas/
 │       ├── knowledge.py       # Knowledge Graph modeli
 │       ├── jit.py             # JIT Capability modeli
 │       ├── evolution.py       # Self-Evolution modeli
-│       └── emotional.py       # Emotional Intelligence modeli
+│       ├── emotional.py       # Emotional Intelligence modeli
+│       └── simulation.py     # Simulation & Scenario Testing modeli
 │
 │
 │   ├── plugins/                # Plugin dizini (kullanıcı plugin'leri)
@@ -303,7 +316,7 @@ atlas/
 │   │       ├── agent.py
 │   │       └── hooks.py
 │
-├── tests/                      # 108 test dosyası, 5058 test
+├── tests/                      # 109 test dosyası, 5214 test
 │   └── ...
 │
 ├── scripts/
@@ -422,14 +435,14 @@ async def analyze_supplier(
 
 ## Proje İstatistikleri
 
-- **Python modülleri**: ~222 kaynak + ~108 test dosyası
-- **Toplam LOC**: ~112,500
-- **Test sayısı**: 5,058+
+- **Python modülleri**: ~233 kaynak + ~109 test dosyası
+- **Toplam LOC**: ~117,200
+- **Test sayısı**: 5,214+
 - **Agent sayısı**: 11 (1 base + 9 uzman + 1 meta)
 - **API endpoint**: 15 (10 core + 5 plugin)
 - **Webhook endpoint**: 4
 
-## Geliştirme Durumu (32/32 Tamamlandı ✅)
+## Geliştirme Durumu (33/33 Tamamlandı ✅)
 
 1. ✅ Proje yapısı ve temel config
 2. ✅ Master Agent + Karar Matrisi (akıllı agent seçimi, eskalasyon, denetim izi, onay iş akışı)
@@ -463,3 +476,4 @@ async def analyze_supplier(
 30. ✅ JIT Capability sistemi (CapabilityChecker, RequirementAnalyzer, APIDiscoverer, RapidBuilder, LiveIntegrator, CredentialManager, SandboxTester, UserCommunicator, JITOrchestrator)
 31. ✅ Self-Evolution sistemi (PerformanceMonitor, WeaknessDetector, ImprovementPlanner, CodeEvolver, SafetyGuardian, ExperimentRunner, ApprovalManager, KnowledgeLearner, EvolutionController)
 32. ✅ Emotional Intelligence sistemi (SentimentAnalyzer, EmpathyEngine, MoodTracker, CommunicationStyler, ConflictResolver, MotivationEngine, PersonalityAdapter, EmotionalMemoryManager, EQOrchestrator)
+33. ✅ Simulation & Scenario Testing sistemi (WorldModeler, ActionSimulator, ScenarioGenerator, OutcomePredictor, RiskSimulator, RollbackPlanner, WhatIfEngine, DryRunExecutor, SimulationEngine)
