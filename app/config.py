@@ -164,6 +164,13 @@ class Settings(BaseSettings):
     evolution_cycle_hours: int = 24
     evolution_telegram_notifications: bool = True
 
+    # Emotional Intelligence
+    eq_enabled: bool = True
+    eq_empathy_level: str = "medium"
+    eq_humor_enabled: bool = True
+    eq_formality_default: str = "neutral"
+    eq_track_mood_history: bool = True
+
     # Resilience / Offline
     resilience_enabled: bool = True
     offline_health_check_interval: int = 30
