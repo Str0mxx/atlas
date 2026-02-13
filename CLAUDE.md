@@ -103,20 +103,32 @@ atlas/
 │   │   │   ├── loader.py              # Plugin yükleyici (importlib, sınıf çözümleme)
 │   │   │   └── manager.py             # Plugin yöneticisi (facade: yaşam döngüsü orkestrasyon)
 │   │   │
-│   │   └── bootstrap/          # Self-bootstrapping ve auto-provisioning
+│   │   ├── bootstrap/          # Self-bootstrapping ve auto-provisioning
+│   │   │   ├── __init__.py
+│   │   │   ├── environment_detector.py  # OS/yazılım/kaynak/ağ tespiti
+│   │   │   ├── package_manager.py       # Birleşik paket yönetimi (pip/npm/apt/brew/choco/docker)
+│   │   │   ├── service_provisioner.py   # Servis kontrolü (DB/SSL/port/health)
+│   │   │   ├── dependency_resolver.py   # Bağımlılık grafı (topolojik sort, döngü tespiti)
+│   │   │   ├── task_analyzer.py         # Görev analizi (araç tespiti, skill gap)
+│   │   │   ├── auto_installer.py        # Orkestratör (plan/execute/rollback/verify)
+│   │   │   ├── self_upgrade.py          # Sürüm kontrolü (migrasyon, hot-reload)
+│   │   │   └── capability_builder.py    # Yetenek oluşturucu (agent/tool/plugin scaffold)
+│   │   │
+│   │   └── selfcode/            # Self-coding agent sistemi
 │   │       ├── __init__.py
-│   │       ├── environment_detector.py  # OS/yazılım/kaynak/ağ tespiti
-│   │       ├── package_manager.py       # Birleşik paket yönetimi (pip/npm/apt/brew/choco/docker)
-│   │       ├── service_provisioner.py   # Servis kontrolü (DB/SSL/port/health)
-│   │       ├── dependency_resolver.py   # Bağımlılık grafı (topolojik sort, döngü tespiti)
-│   │       ├── task_analyzer.py         # Görev analizi (araç tespiti, skill gap)
-│   │       ├── auto_installer.py        # Orkestratör (plan/execute/rollback/verify)
-│   │       ├── self_upgrade.py          # Sürüm kontrolü (migrasyon, hot-reload)
-│   │       └── capability_builder.py    # Yetenek oluşturucu (agent/tool/plugin scaffold)
+│   │       ├── code_analyzer.py         # AST analiz (bağımlılık, karmaşıklık, güvenlik)
+│   │       ├── code_generator.py        # Kod üretimi (şablon, LLM, stil zorlama)
+│   │       ├── test_generator.py        # Test üretimi (birim test, edge case, mock)
+│   │       ├── debugger.py              # Otomatik hata ayıklama (parse, analiz, fix)
+│   │       ├── refactorer.py            # Yeniden düzenleme (dead code, simplify, extract)
+│   │       ├── code_executor.py         # Güvenli çalıştırma (sandbox, kaynak limiti)
+│   │       ├── agent_factory.py         # Agent fabrikası (şablon, scaffold, kayıt)
+│   │       └── api_integrator.py        # API entegrasyonu (OpenAPI parse, istemci üretimi)
 │   │
 │   ├── agents/
 │   │   ├── __init__.py
 │   │   ├── base_agent.py            # Temel agent sınıfı (execute/analyze/report)
+│   │   ├── coding_meta_agent.py     # Self-coding pipeline orkestratörü
 │   │   ├── server_monitor_agent.py  # Sunucu sağlık izleme
 │   │   ├── security_agent.py        # Güvenlik taraması (auth log, fail2ban, SSL, port)
 │   │   ├── research_agent.py        # Araştırma (web arama, tedarikçi, şirket)
@@ -177,7 +189,8 @@ atlas/
 │       ├── planning.py         # Stratejik planlama modeli
 │       ├── collaboration.py    # Multi-agent işbirliği modeli
 │       ├── plugin.py           # Plugin sistemi modeli
-│       └── bootstrap.py       # Self-bootstrapping modeli
+│       ├── bootstrap.py       # Self-bootstrapping modeli
+│       └── selfcode.py        # Self-coding agent modeli
 │
 │
 │   ├── plugins/                # Plugin dizini (kullanıcı plugin'leri)
@@ -306,14 +319,14 @@ async def analyze_supplier(
 
 ## Proje İstatistikleri
 
-- **Python modülleri**: ~125 kaynak + ~83 test dosyası
-- **Toplam LOC**: ~73,500
-- **Test sayısı**: 3,352
-- **Agent sayısı**: 10 (1 base + 9 uzman)
+- **Python modülleri**: ~136 kaynak + ~92 test dosyası
+- **Toplam LOC**: ~79,000
+- **Test sayısı**: 3,715+
+- **Agent sayısı**: 11 (1 base + 9 uzman + 1 meta)
 - **API endpoint**: 15 (10 core + 5 plugin)
 - **Webhook endpoint**: 4
 
-## Geliştirme Durumu (23/23 Tamamlandı ✅)
+## Geliştirme Durumu (24/24 Tamamlandı ✅)
 
 1. ✅ Proje yapısı ve temel config
 2. ✅ Master Agent + Karar Matrisi (akıllı agent seçimi, eskalasyon, denetim izi, onay iş akışı)
@@ -338,3 +351,4 @@ async def analyze_supplier(
 21. ✅ Multi-Agent Collaboration sistemi (MessageBus, NegotiationManager, Blackboard/SyncBarrier/MutexLock, TeamManager, ConsensusBuilder, WorkflowEngine)
 22. ✅ Plugin/Extension sistemi (PluginManager, PluginLoader, PluginRegistry, PluginValidator, HookManager, manifest keşif, API endpoints)
 23. ✅ Self-Bootstrapping sistemi (EnvironmentDetector, PackageManager, ServiceProvisioner, DependencyResolver, TaskAnalyzer, AutoInstaller, SelfUpgrade, CapabilityBuilder)
+24. ✅ Self-Coding Agent sistemi (CodeAnalyzer, CodeGenerator, TestGenerator, AutoDebugger, CodeRefactorer, SafeExecutor, AgentFactory, APIIntegrator, CodingMetaAgent)

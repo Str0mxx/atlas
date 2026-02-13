@@ -113,6 +113,13 @@ class Settings(BaseSettings):
     bootstrap_sandbox_mode: bool = True
     bootstrap_require_approval: bool = True
 
+    # Self-Coding
+    selfcode_enabled: bool = False
+    selfcode_max_generation_attempts: int = 3
+    selfcode_sandbox_timeout: int = 30
+    selfcode_auto_commit: bool = False
+    selfcode_require_tests: bool = True
+
     # Resilience / Offline
     resilience_enabled: bool = True
     offline_health_check_interval: int = 30
