@@ -184,17 +184,29 @@ atlas/
 │   │   │   ├── ontology_manager.py      # Ontoloji (hiyerarşi, kısıtlama, doğrulama, şema evrimi)
 │   │   │   └── knowledge_graph_manager.py # Orkestratör (pipeline, sorgu, analitik, import/export)
 │   │   │
-│   │   └── jit/                  # Just-in-Time Capability sistemi
+│   │   ├── jit/                  # Just-in-Time Capability sistemi
+│   │   │   ├── __init__.py
+│   │   │   ├── capability_checker.py    # Yetenek kontrolü (mevcut/benzer arama, efor tahmini, fizibilite)
+│   │   │   ├── requirement_analyzer.py  # İhtiyaç analizi (niyet tespiti, API çıkarma, güvenlik, kısıtlar)
+│   │   │   ├── api_discoverer.py        # API keşfi (katalog, endpoint arama, auth, rate limit, döküman)
+│   │   │   ├── rapid_builder.py         # Hızlı inşa (client/agent/model/test üretimi, bağlantı)
+│   │   │   ├── live_integrator.py       # Canlı entegrasyon (hot-load, kayıt, routing, rollback)
+│   │   │   ├── credential_manager.py    # Kimlik yönetimi (API key, OAuth, rotasyon, güvenli depolama)
+│   │   │   ├── sandbox_tester.py        # Sandbox test (izole çalıştırma, güvenlik tarama, performans)
+│   │   │   ├── user_communicator.py     # Kullanıcı iletişimi (ilerleme, onay, hata/başarı bildirimi)
+│   │   │   └── jit_orchestrator.py      # Orkestratör (pipeline, timeout, cache, öğrenme, rollback)
+│   │   │
+│   │   └── evolution/            # Self-Evolution sistemi
 │   │       ├── __init__.py
-│   │       ├── capability_checker.py    # Yetenek kontrolü (mevcut/benzer arama, efor tahmini, fizibilite)
-│   │       ├── requirement_analyzer.py  # İhtiyaç analizi (niyet tespiti, API çıkarma, güvenlik, kısıtlar)
-│   │       ├── api_discoverer.py        # API keşfi (katalog, endpoint arama, auth, rate limit, döküman)
-│   │       ├── rapid_builder.py         # Hızlı inşa (client/agent/model/test üretimi, bağlantı)
-│   │       ├── live_integrator.py       # Canlı entegrasyon (hot-load, kayıt, routing, rollback)
-│   │       ├── credential_manager.py    # Kimlik yönetimi (API key, OAuth, rotasyon, güvenli depolama)
-│   │       ├── sandbox_tester.py        # Sandbox test (izole çalıştırma, güvenlik tarama, performans)
-│   │       ├── user_communicator.py     # Kullanıcı iletişimi (ilerleme, onay, hata/başarı bildirimi)
-│   │       └── jit_orchestrator.py      # Orkestratör (pipeline, timeout, cache, öğrenme, rollback)
+│   │       ├── performance_monitor.py   # Performans izleme (başarı oranı, yanıt süresi, hata kalıbı, trend)
+│   │       ├── weakness_detector.py     # Zayıflık tespiti (başarısızlık, eksik yetenek, yavaş işlem, şikâyet)
+│   │       ├── improvement_planner.py   # İyileştirme planlama (önceliklendirme, efor, risk, bağımlılık)
+│   │       ├── code_evolver.py          # Kod evrimi (değişiklik üretimi, versiyon, diff, rollback)
+│   │       ├── safety_guardian.py       # Güvenlik koruyucu (sınıflandırma, zararlı kod, kaynak limit)
+│   │       ├── experiment_runner.py     # Deney yönetimi (sandbox, A/B test, benchmark, istatistik)
+│   │       ├── approval_manager.py      # Onay yönetimi (kuyruk, Telegram, timeout, toplu onay, denetim)
+│   │       ├── knowledge_learner.py     # Bilgi öğrenici (kalıp, best practice, agent paylaşımı)
+│   │       └── evolution_controller.py  # Orkestratör (Observe→Analyze→Plan→Implement→Test→Deploy)
 │   │
 │   ├── agents/
 │   │   ├── __init__.py
@@ -267,7 +279,8 @@ atlas/
 │       ├── nlp_engine.py      # NLP Engine modeli
 │       ├── predictive.py      # Predictive Intelligence modeli
 │       ├── knowledge.py       # Knowledge Graph modeli
-│       └── jit.py             # JIT Capability modeli
+│       ├── jit.py             # JIT Capability modeli
+│       └── evolution.py       # Self-Evolution modeli
 │
 │
 │   ├── plugins/                # Plugin dizini (kullanıcı plugin'leri)
@@ -277,7 +290,7 @@ atlas/
 │   │       ├── agent.py
 │   │       └── hooks.py
 │
-├── tests/                      # 106 test dosyası, 4753 test
+├── tests/                      # 107 test dosyası, 4923 test
 │   └── ...
 │
 ├── scripts/
@@ -396,14 +409,14 @@ async def analyze_supplier(
 
 ## Proje İstatistikleri
 
-- **Python modülleri**: ~201 kaynak + ~106 test dosyası
-- **Toplam LOC**: ~105,000
-- **Test sayısı**: 4,753+
+- **Python modülleri**: ~212 kaynak + ~107 test dosyası
+- **Toplam LOC**: ~109,000
+- **Test sayısı**: 4,923+
 - **Agent sayısı**: 11 (1 base + 9 uzman + 1 meta)
 - **API endpoint**: 15 (10 core + 5 plugin)
 - **Webhook endpoint**: 4
 
-## Geliştirme Durumu (30/30 Tamamlandı ✅)
+## Geliştirme Durumu (31/31 Tamamlandı ✅)
 
 1. ✅ Proje yapısı ve temel config
 2. ✅ Master Agent + Karar Matrisi (akıllı agent seçimi, eskalasyon, denetim izi, onay iş akışı)
@@ -435,3 +448,4 @@ async def analyze_supplier(
 28. ✅ Predictive Intelligence sistemi (PatternRecognizer, TrendAnalyzer, Forecaster, RiskPredictor, DemandPredictor, BehaviorPredictor, EventPredictor, ModelManager, PredictionEngine)
 29. ✅ Knowledge Graph sistemi (EntityExtractor, RelationExtractor, GraphBuilder, GraphStore, QueryEngine, InferenceEngine, KnowledgeFusion, OntologyManager, KnowledgeGraphManager)
 30. ✅ JIT Capability sistemi (CapabilityChecker, RequirementAnalyzer, APIDiscoverer, RapidBuilder, LiveIntegrator, CredentialManager, SandboxTester, UserCommunicator, JITOrchestrator)
+31. ✅ Self-Evolution sistemi (PerformanceMonitor, WeaknessDetector, ImprovementPlanner, CodeEvolver, SafetyGuardian, ExperimentRunner, ApprovalManager, KnowledgeLearner, EvolutionController)
