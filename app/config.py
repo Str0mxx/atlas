@@ -150,6 +150,12 @@ class Settings(BaseSettings):
     knowledge_fusion_strategy: str = "trust_based"
     knowledge_persistence_path: str = ""
 
+    # JIT Capability
+    jit_enabled: bool = True
+    jit_timeout_seconds: int = 120
+    jit_sandbox_enabled: bool = True
+    jit_auto_deploy: bool = False
+
     # Resilience / Offline
     resilience_enabled: bool = True
     offline_health_check_interval: int = 30
