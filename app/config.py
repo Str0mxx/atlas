@@ -138,6 +138,12 @@ class Settings(BaseSettings):
     nlp_execution_confirmation: bool = True
     nlp_verbosity_level: str = "normal"
 
+    # Predictive Intelligence
+    predictive_forecast_horizon: int = 7
+    predictive_confidence_threshold: float = 0.6
+    predictive_model_update_frequency: str = "daily"
+    predictive_ensemble_strategy: str = "weighted"
+
     # Resilience / Offline
     resilience_enabled: bool = True
     offline_health_check_interval: int = 30
