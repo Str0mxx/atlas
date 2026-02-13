@@ -144,6 +144,12 @@ class Settings(BaseSettings):
     predictive_model_update_frequency: str = "daily"
     predictive_ensemble_strategy: str = "weighted"
 
+    # Knowledge Graph
+    knowledge_max_nodes: int = 10000
+    knowledge_inference_depth: int = 5
+    knowledge_fusion_strategy: str = "trust_based"
+    knowledge_persistence_path: str = ""
+
     # Resilience / Offline
     resilience_enabled: bool = True
     offline_health_check_interval: int = 30
