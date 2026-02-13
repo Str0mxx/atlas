@@ -125,6 +125,18 @@ atlas/
 │   │       ├── agent_factory.py         # Agent fabrikası (şablon, scaffold, kayıt)
 │   │       └── api_integrator.py        # API entegrasyonu (OpenAPI parse, istemci üretimi)
 │   │
+│   │   └── memory_palace/       # Memory Palace insansı hafıza sistemi
+│   │       ├── __init__.py
+│   │       ├── episodic_memory.py       # Olay hafızası (ne, nerede, ne zaman, kim)
+│   │       ├── procedural_memory.py     # İşlem hafızası (beceri, alışkanlık, otomatiklik)
+│   │       ├── emotional_memory.py      # Duygusal hafıza (etiketleme, tercih, kaçınma)
+│   │       ├── forgetting_curve.py      # Ebbinghaus unutma eğrisi (R=e^(-t/S))
+│   │       ├── associative_network.py   # Çağrışım ağı (kavram, yayılan aktivasyon)
+│   │       ├── working_memory.py        # Çalışma belleği (7±2 kapasite, gruplama)
+│   │       ├── memory_consolidator.py   # Hafıza pekiştirme (uyku-benzeri konsolidasyon)
+│   │       ├── autobiographical.py      # Özyaşam hafızası (bölümler, kimlik, anlatı)
+│   │       └── memory_palace_manager.py # Orkestratör (kodlama, yönlendirme, arama)
+│   │
 │   ├── agents/
 │   │   ├── __init__.py
 │   │   ├── base_agent.py            # Temel agent sınıfı (execute/analyze/report)
@@ -190,7 +202,8 @@ atlas/
 │       ├── collaboration.py    # Multi-agent işbirliği modeli
 │       ├── plugin.py           # Plugin sistemi modeli
 │       ├── bootstrap.py       # Self-bootstrapping modeli
-│       └── selfcode.py        # Self-coding agent modeli
+│       ├── selfcode.py        # Self-coding agent modeli
+│       └── memory_palace.py   # Memory Palace hafıza modeli
 │
 │
 │   ├── plugins/                # Plugin dizini (kullanıcı plugin'leri)
@@ -319,14 +332,14 @@ async def analyze_supplier(
 
 ## Proje İstatistikleri
 
-- **Python modülleri**: ~136 kaynak + ~92 test dosyası
-- **Toplam LOC**: ~79,000
-- **Test sayısı**: 3,715+
+- **Python modülleri**: ~147 kaynak + ~101 test dosyası
+- **Toplam LOC**: ~84,500
+- **Test sayısı**: 4,007+
 - **Agent sayısı**: 11 (1 base + 9 uzman + 1 meta)
 - **API endpoint**: 15 (10 core + 5 plugin)
 - **Webhook endpoint**: 4
 
-## Geliştirme Durumu (24/24 Tamamlandı ✅)
+## Geliştirme Durumu (25/25 Tamamlandı ✅)
 
 1. ✅ Proje yapısı ve temel config
 2. ✅ Master Agent + Karar Matrisi (akıllı agent seçimi, eskalasyon, denetim izi, onay iş akışı)
@@ -352,3 +365,4 @@ async def analyze_supplier(
 22. ✅ Plugin/Extension sistemi (PluginManager, PluginLoader, PluginRegistry, PluginValidator, HookManager, manifest keşif, API endpoints)
 23. ✅ Self-Bootstrapping sistemi (EnvironmentDetector, PackageManager, ServiceProvisioner, DependencyResolver, TaskAnalyzer, AutoInstaller, SelfUpgrade, CapabilityBuilder)
 24. ✅ Self-Coding Agent sistemi (CodeAnalyzer, CodeGenerator, TestGenerator, AutoDebugger, CodeRefactorer, SafeExecutor, AgentFactory, APIIntegrator, CodingMetaAgent)
+25. ✅ Memory Palace sistemi (EpisodicMemory, ProceduralMemory, EmotionalMemory, ForgettingCurve, AssociativeNetwork, WorkingMemory, MemoryConsolidator, AutobiographicalMemory, MemoryPalaceManager)

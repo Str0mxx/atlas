@@ -120,6 +120,12 @@ class Settings(BaseSettings):
     selfcode_auto_commit: bool = False
     selfcode_require_tests: bool = True
 
+    # Memory Palace
+    memory_palace_forgetting_rate: float = 0.1
+    memory_palace_consolidation_interval: int = 3600
+    memory_palace_emotional_weight: float = 0.3
+    memory_palace_max_working_memory: int = 7
+
     # Resilience / Offline
     resilience_enabled: bool = True
     offline_health_check_interval: int = 30
