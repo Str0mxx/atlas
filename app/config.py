@@ -132,6 +132,12 @@ class Settings(BaseSettings):
     business_risk_tolerance: float = 0.5
     business_human_approval_threshold: float = 0.8
 
+    # NLP Engine
+    nlp_clarification_threshold: float = 0.4
+    nlp_max_context_turns: int = 50
+    nlp_execution_confirmation: bool = True
+    nlp_verbosity_level: str = "normal"
+
     # Resilience / Offline
     resilience_enabled: bool = True
     offline_health_check_interval: int = 30
