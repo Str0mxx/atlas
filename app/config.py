@@ -126,6 +126,12 @@ class Settings(BaseSettings):
     memory_palace_emotional_weight: float = 0.3
     memory_palace_max_working_memory: int = 7
 
+    # Business Runner
+    business_cycle_interval: int = 60
+    business_max_parallel_initiatives: int = 3
+    business_risk_tolerance: float = 0.5
+    business_human_approval_threshold: float = 0.8
+
     # Resilience / Offline
     resilience_enabled: bool = True
     offline_health_check_interval: int = 30
