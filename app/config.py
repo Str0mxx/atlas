@@ -171,6 +171,13 @@ class Settings(BaseSettings):
     eq_formality_default: str = "neutral"
     eq_track_mood_history: bool = True
 
+    # Simulation & Scenario Testing
+    simulation_enabled: bool = True
+    auto_simulate_risky: bool = True
+    simulation_depth: int = 3
+    require_simulation_approval: bool = False
+    dry_run_default: bool = False
+
     # Resilience / Offline
     resilience_enabled: bool = True
     offline_health_check_interval: int = 30
