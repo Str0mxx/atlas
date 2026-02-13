@@ -156,6 +156,14 @@ class Settings(BaseSettings):
     jit_sandbox_enabled: bool = True
     jit_auto_deploy: bool = False
 
+    # Self-Evolution
+    evolution_enabled: bool = True
+    evolution_auto_approve_minor: bool = True
+    evolution_require_approval_major: bool = True
+    evolution_max_daily_auto_changes: int = 10
+    evolution_cycle_hours: int = 24
+    evolution_telegram_notifications: bool = True
+
     # Resilience / Offline
     resilience_enabled: bool = True
     offline_health_check_interval: int = 30
