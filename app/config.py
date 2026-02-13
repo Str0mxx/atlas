@@ -107,6 +107,12 @@ class Settings(BaseSettings):
     plugins_dir: str = "app/plugins"
     plugins_auto_load: bool = True
 
+    # Bootstrap / Auto-Provisioning
+    bootstrap_auto_install: bool = False
+    bootstrap_allowed_installers: str = "pip,npm"
+    bootstrap_sandbox_mode: bool = True
+    bootstrap_require_approval: bool = True
+
     # Resilience / Offline
     resilience_enabled: bool = True
     offline_health_check_interval: int = 30

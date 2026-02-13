@@ -94,14 +94,25 @@ atlas/
 │   │   │   ├── consensus.py           # Konsensüs (çoğunluk, oybirliği, ağırlıklı, quorum)
 │   │   │   └── workflow.py            # İş akışı orkestrasyon (seri, paralel, koşullu, merge)
 │   │   │
-│   │   └── plugins/            # Plugin/Extension sistemi
+│   │   ├── plugins/            # Plugin/Extension sistemi
+│   │   │   ├── __init__.py
+│   │   │   ├── hooks.py               # Hook/event sistemi (async pub/sub, hata izolasyonu)
+│   │   │   ├── validator.py           # Plugin doğrulama (BaseAgent/BaseMonitor uyum kontrolü)
+│   │   │   ├── registry.py            # Plugin kayıt defteri (durum takibi, CRUD, filtreleme)
+│   │   │   ├── manifest.py            # Manifest yükleme (plugin.json parse, keşif)
+│   │   │   ├── loader.py              # Plugin yükleyici (importlib, sınıf çözümleme)
+│   │   │   └── manager.py             # Plugin yöneticisi (facade: yaşam döngüsü orkestrasyon)
+│   │   │
+│   │   └── bootstrap/          # Self-bootstrapping ve auto-provisioning
 │   │       ├── __init__.py
-│   │       ├── hooks.py               # Hook/event sistemi (async pub/sub, hata izolasyonu)
-│   │       ├── validator.py           # Plugin doğrulama (BaseAgent/BaseMonitor uyum kontrolü)
-│   │       ├── registry.py            # Plugin kayıt defteri (durum takibi, CRUD, filtreleme)
-│   │       ├── manifest.py            # Manifest yükleme (plugin.json parse, keşif)
-│   │       ├── loader.py              # Plugin yükleyici (importlib, sınıf çözümleme)
-│   │       └── manager.py             # Plugin yöneticisi (facade: yaşam döngüsü orkestrasyon)
+│   │       ├── environment_detector.py  # OS/yazılım/kaynak/ağ tespiti
+│   │       ├── package_manager.py       # Birleşik paket yönetimi (pip/npm/apt/brew/choco/docker)
+│   │       ├── service_provisioner.py   # Servis kontrolü (DB/SSL/port/health)
+│   │       ├── dependency_resolver.py   # Bağımlılık grafı (topolojik sort, döngü tespiti)
+│   │       ├── task_analyzer.py         # Görev analizi (araç tespiti, skill gap)
+│   │       ├── auto_installer.py        # Orkestratör (plan/execute/rollback/verify)
+│   │       ├── self_upgrade.py          # Sürüm kontrolü (migrasyon, hot-reload)
+│   │       └── capability_builder.py    # Yetenek oluşturucu (agent/tool/plugin scaffold)
 │   │
 │   ├── agents/
 │   │   ├── __init__.py
@@ -165,7 +176,8 @@ atlas/
 │       ├── learning.py         # Öğrenme/RL modeli
 │       ├── planning.py         # Stratejik planlama modeli
 │       ├── collaboration.py    # Multi-agent işbirliği modeli
-│       └── plugin.py           # Plugin sistemi modeli
+│       ├── plugin.py           # Plugin sistemi modeli
+│       └── bootstrap.py       # Self-bootstrapping modeli
 │
 │
 │   ├── plugins/                # Plugin dizini (kullanıcı plugin'leri)
@@ -294,14 +306,14 @@ async def analyze_supplier(
 
 ## Proje İstatistikleri
 
-- **Python modülleri**: ~115 kaynak + ~75 test dosyası
-- **Toplam LOC**: ~69,000
-- **Test sayısı**: 3,056
+- **Python modülleri**: ~125 kaynak + ~83 test dosyası
+- **Toplam LOC**: ~73,500
+- **Test sayısı**: 3,352
 - **Agent sayısı**: 10 (1 base + 9 uzman)
 - **API endpoint**: 15 (10 core + 5 plugin)
 - **Webhook endpoint**: 4
 
-## Geliştirme Durumu (22/22 Tamamlandı ✅)
+## Geliştirme Durumu (23/23 Tamamlandı ✅)
 
 1. ✅ Proje yapısı ve temel config
 2. ✅ Master Agent + Karar Matrisi (akıllı agent seçimi, eskalasyon, denetim izi, onay iş akışı)
@@ -325,3 +337,4 @@ async def analyze_supplier(
 20. ✅ Strategic Planning sistemi (GoalTree, HTNPlanner, TemporalPlanner, ContingencyPlanner, ResourcePlanner, StrategyEngine)
 21. ✅ Multi-Agent Collaboration sistemi (MessageBus, NegotiationManager, Blackboard/SyncBarrier/MutexLock, TeamManager, ConsensusBuilder, WorkflowEngine)
 22. ✅ Plugin/Extension sistemi (PluginManager, PluginLoader, PluginRegistry, PluginValidator, HookManager, manifest keşif, API endpoints)
+23. ✅ Self-Bootstrapping sistemi (EnvironmentDetector, PackageManager, ServiceProvisioner, DependencyResolver, TaskAnalyzer, AutoInstaller, SelfUpgrade, CapabilityBuilder)
