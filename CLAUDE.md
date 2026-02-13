@@ -137,16 +137,28 @@ atlas/
 │   │   │   ├── autobiographical.py      # Özyaşam hafızası (bölümler, kimlik, anlatı)
 │   │   │   └── memory_palace_manager.py # Orkestratör (kodlama, yönlendirme, arama)
 │   │   │
-│   │   └── business/            # Autonomous Business Runner sistemi
+│   │   ├── business/            # Autonomous Business Runner sistemi
+│   │   │   ├── __init__.py
+│   │   │   ├── opportunity_detector.py  # Fırsat tespiti (pazar tarama, trend, rakip, boşluk, lead scoring)
+│   │   │   ├── strategy_generator.py    # Strateji üretici (hedef ayrıştırma, aksiyon planı, ROI)
+│   │   │   ├── execution_engine.py      # Uygulama motoru (zamanlama, delegasyon, checkpoint, rollback)
+│   │   │   ├── performance_analyzer.py  # Performans analizi (KPI, trend, anomali, rapor)
+│   │   │   ├── optimizer.py             # İş optimizasyonu (A/B test, parametre, maliyet azaltma)
+│   │   │   ├── feedback_loop.py         # Geri bildirim döngüsü (öğrenme, strateji düzeltme)
+│   │   │   ├── autonomous_cycle.py      # 7/24 döngü (Detect→Plan→Execute→Measure→Optimize)
+│   │   │   └── business_memory.py       # İş hafızası (başarı, başarısızlık, pazar, müşteri, rakip)
+│   │   │
+│   │   └── nlp_engine/          # Natural Language Programming Engine
 │   │       ├── __init__.py
-│   │       ├── opportunity_detector.py  # Fırsat tespiti (pazar tarama, trend, rakip, boşluk, lead scoring)
-│   │       ├── strategy_generator.py    # Strateji üretici (hedef ayrıştırma, aksiyon planı, ROI)
-│   │       ├── execution_engine.py      # Uygulama motoru (zamanlama, delegasyon, checkpoint, rollback)
-│   │       ├── performance_analyzer.py  # Performans analizi (KPI, trend, anomali, rapor)
-│   │       ├── optimizer.py             # İş optimizasyonu (A/B test, parametre, maliyet azaltma)
-│   │       ├── feedback_loop.py         # Geri bildirim döngüsü (öğrenme, strateji düzeltme)
-│   │       ├── autonomous_cycle.py      # 7/24 döngü (Detect→Plan→Execute→Measure→Optimize)
-│   │       └── business_memory.py       # İş hafızası (başarı, başarısızlık, pazar, müşteri, rakip)
+│   │       ├── intent_parser.py         # Niyet analizi (komut sınıflandırma, varlık çıkarma, belirsizlik)
+│   │       ├── task_decomposer.py       # Görev ayrıştırma (alt görev, karmaşıklık, bağımlılık, doğrulama)
+│   │       ├── requirement_extractor.py # Gereksinim çıkarma (fonksiyonel, NFR, kısıt, varsayım, MoSCoW)
+│   │       ├── spec_generator.py        # Spesifikasyon üretici (API tasarımı, veri modeli, mimari, dokümantasyon)
+│   │       ├── code_planner.py          # Kod planlayıcı (dosya yapısı, bağımlılık, arayüz, test stratejisi)
+│   │       ├── execution_translator.py  # Komut çevirici (agent/DB/shell/API, güvenlik doğrulama)
+│   │       ├── feedback_interpreter.py  # Geri bildirim (hata açıklama, başarı onay, ilerleme, öneri)
+│   │       ├── conversation_manager.py  # Diyalog yönetimi (bağlam, referans çözümleme, konu takibi)
+│   │       └── nlp_orchestrator.py      # Orkestratör (pipeline: Parse→Decompose→Spec→Plan→Translate→Feedback)
 │   │
 │   ├── agents/
 │   │   ├── __init__.py
@@ -215,7 +227,8 @@ atlas/
 │       ├── bootstrap.py       # Self-bootstrapping modeli
 │       ├── selfcode.py        # Self-coding agent modeli
 │       ├── memory_palace.py   # Memory Palace hafıza modeli
-│       └── business.py        # Autonomous Business Runner modeli
+│       ├── business.py        # Autonomous Business Runner modeli
+│       └── nlp_engine.py      # NLP Engine modeli
 │
 │
 │   ├── plugins/                # Plugin dizini (kullanıcı plugin'leri)
@@ -344,14 +357,14 @@ async def analyze_supplier(
 
 ## Proje İstatistikleri
 
-- **Python modülleri**: ~157 kaynak + ~102 test dosyası
-- **Toplam LOC**: ~88,000
-- **Test sayısı**: 4,176+
+- **Python modülleri**: ~168 kaynak + ~103 test dosyası
+- **Toplam LOC**: ~92,500
+- **Test sayısı**: 4,313+
 - **Agent sayısı**: 11 (1 base + 9 uzman + 1 meta)
 - **API endpoint**: 15 (10 core + 5 plugin)
 - **Webhook endpoint**: 4
 
-## Geliştirme Durumu (26/26 Tamamlandı ✅)
+## Geliştirme Durumu (27/27 Tamamlandı ✅)
 
 1. ✅ Proje yapısı ve temel config
 2. ✅ Master Agent + Karar Matrisi (akıllı agent seçimi, eskalasyon, denetim izi, onay iş akışı)
@@ -379,3 +392,4 @@ async def analyze_supplier(
 24. ✅ Self-Coding Agent sistemi (CodeAnalyzer, CodeGenerator, TestGenerator, AutoDebugger, CodeRefactorer, SafeExecutor, AgentFactory, APIIntegrator, CodingMetaAgent)
 25. ✅ Memory Palace sistemi (EpisodicMemory, ProceduralMemory, EmotionalMemory, ForgettingCurve, AssociativeNetwork, WorkingMemory, MemoryConsolidator, AutobiographicalMemory, MemoryPalaceManager)
 26. ✅ Autonomous Business Runner sistemi (OpportunityDetector, StrategyGenerator, ExecutionEngine, PerformanceAnalyzer, BusinessOptimizer, FeedbackLoop, AutonomousCycle, BusinessMemory)
+27. ✅ NLP Engine sistemi (IntentParser, TaskDecomposer, RequirementExtractor, SpecGenerator, CodePlanner, ExecutionTranslator, FeedbackInterpreter, ConversationManager, NLPOrchestrator)
