@@ -114,28 +114,39 @@ atlas/
 │   │   │   ├── self_upgrade.py          # Sürüm kontrolü (migrasyon, hot-reload)
 │   │   │   └── capability_builder.py    # Yetenek oluşturucu (agent/tool/plugin scaffold)
 │   │   │
-│   │   └── selfcode/            # Self-coding agent sistemi
+│   │   ├── selfcode/            # Self-coding agent sistemi
+│   │   │   ├── __init__.py
+│   │   │   ├── code_analyzer.py         # AST analiz (bağımlılık, karmaşıklık, güvenlik)
+│   │   │   ├── code_generator.py        # Kod üretimi (şablon, LLM, stil zorlama)
+│   │   │   ├── test_generator.py        # Test üretimi (birim test, edge case, mock)
+│   │   │   ├── debugger.py              # Otomatik hata ayıklama (parse, analiz, fix)
+│   │   │   ├── refactorer.py            # Yeniden düzenleme (dead code, simplify, extract)
+│   │   │   ├── code_executor.py         # Güvenli çalıştırma (sandbox, kaynak limiti)
+│   │   │   ├── agent_factory.py         # Agent fabrikası (şablon, scaffold, kayıt)
+│   │   │   └── api_integrator.py        # API entegrasyonu (OpenAPI parse, istemci üretimi)
+│   │   │
+│   │   ├── memory_palace/       # Memory Palace insansı hafıza sistemi
+│   │   │   ├── __init__.py
+│   │   │   ├── episodic_memory.py       # Olay hafızası (ne, nerede, ne zaman, kim)
+│   │   │   ├── procedural_memory.py     # İşlem hafızası (beceri, alışkanlık, otomatiklik)
+│   │   │   ├── emotional_memory.py      # Duygusal hafıza (etiketleme, tercih, kaçınma)
+│   │   │   ├── forgetting_curve.py      # Ebbinghaus unutma eğrisi (R=e^(-t/S))
+│   │   │   ├── associative_network.py   # Çağrışım ağı (kavram, yayılan aktivasyon)
+│   │   │   ├── working_memory.py        # Çalışma belleği (7±2 kapasite, gruplama)
+│   │   │   ├── memory_consolidator.py   # Hafıza pekiştirme (uyku-benzeri konsolidasyon)
+│   │   │   ├── autobiographical.py      # Özyaşam hafızası (bölümler, kimlik, anlatı)
+│   │   │   └── memory_palace_manager.py # Orkestratör (kodlama, yönlendirme, arama)
+│   │   │
+│   │   └── business/            # Autonomous Business Runner sistemi
 │   │       ├── __init__.py
-│   │       ├── code_analyzer.py         # AST analiz (bağımlılık, karmaşıklık, güvenlik)
-│   │       ├── code_generator.py        # Kod üretimi (şablon, LLM, stil zorlama)
-│   │       ├── test_generator.py        # Test üretimi (birim test, edge case, mock)
-│   │       ├── debugger.py              # Otomatik hata ayıklama (parse, analiz, fix)
-│   │       ├── refactorer.py            # Yeniden düzenleme (dead code, simplify, extract)
-│   │       ├── code_executor.py         # Güvenli çalıştırma (sandbox, kaynak limiti)
-│   │       ├── agent_factory.py         # Agent fabrikası (şablon, scaffold, kayıt)
-│   │       └── api_integrator.py        # API entegrasyonu (OpenAPI parse, istemci üretimi)
-│   │
-│   │   └── memory_palace/       # Memory Palace insansı hafıza sistemi
-│   │       ├── __init__.py
-│   │       ├── episodic_memory.py       # Olay hafızası (ne, nerede, ne zaman, kim)
-│   │       ├── procedural_memory.py     # İşlem hafızası (beceri, alışkanlık, otomatiklik)
-│   │       ├── emotional_memory.py      # Duygusal hafıza (etiketleme, tercih, kaçınma)
-│   │       ├── forgetting_curve.py      # Ebbinghaus unutma eğrisi (R=e^(-t/S))
-│   │       ├── associative_network.py   # Çağrışım ağı (kavram, yayılan aktivasyon)
-│   │       ├── working_memory.py        # Çalışma belleği (7±2 kapasite, gruplama)
-│   │       ├── memory_consolidator.py   # Hafıza pekiştirme (uyku-benzeri konsolidasyon)
-│   │       ├── autobiographical.py      # Özyaşam hafızası (bölümler, kimlik, anlatı)
-│   │       └── memory_palace_manager.py # Orkestratör (kodlama, yönlendirme, arama)
+│   │       ├── opportunity_detector.py  # Fırsat tespiti (pazar tarama, trend, rakip, boşluk, lead scoring)
+│   │       ├── strategy_generator.py    # Strateji üretici (hedef ayrıştırma, aksiyon planı, ROI)
+│   │       ├── execution_engine.py      # Uygulama motoru (zamanlama, delegasyon, checkpoint, rollback)
+│   │       ├── performance_analyzer.py  # Performans analizi (KPI, trend, anomali, rapor)
+│   │       ├── optimizer.py             # İş optimizasyonu (A/B test, parametre, maliyet azaltma)
+│   │       ├── feedback_loop.py         # Geri bildirim döngüsü (öğrenme, strateji düzeltme)
+│   │       ├── autonomous_cycle.py      # 7/24 döngü (Detect→Plan→Execute→Measure→Optimize)
+│   │       └── business_memory.py       # İş hafızası (başarı, başarısızlık, pazar, müşteri, rakip)
 │   │
 │   ├── agents/
 │   │   ├── __init__.py
@@ -203,7 +214,8 @@ atlas/
 │       ├── plugin.py           # Plugin sistemi modeli
 │       ├── bootstrap.py       # Self-bootstrapping modeli
 │       ├── selfcode.py        # Self-coding agent modeli
-│       └── memory_palace.py   # Memory Palace hafıza modeli
+│       ├── memory_palace.py   # Memory Palace hafıza modeli
+│       └── business.py        # Autonomous Business Runner modeli
 │
 │
 │   ├── plugins/                # Plugin dizini (kullanıcı plugin'leri)
@@ -213,7 +225,7 @@ atlas/
 │   │       ├── agent.py
 │   │       └── hooks.py
 │
-├── tests/                      # 75 test dosyası, 3056 test
+├── tests/                      # 102 test dosyası, 4176 test
 │   └── ...
 │
 ├── scripts/
@@ -332,14 +344,14 @@ async def analyze_supplier(
 
 ## Proje İstatistikleri
 
-- **Python modülleri**: ~147 kaynak + ~101 test dosyası
-- **Toplam LOC**: ~84,500
-- **Test sayısı**: 4,007+
+- **Python modülleri**: ~157 kaynak + ~102 test dosyası
+- **Toplam LOC**: ~88,000
+- **Test sayısı**: 4,176+
 - **Agent sayısı**: 11 (1 base + 9 uzman + 1 meta)
 - **API endpoint**: 15 (10 core + 5 plugin)
 - **Webhook endpoint**: 4
 
-## Geliştirme Durumu (25/25 Tamamlandı ✅)
+## Geliştirme Durumu (26/26 Tamamlandı ✅)
 
 1. ✅ Proje yapısı ve temel config
 2. ✅ Master Agent + Karar Matrisi (akıllı agent seçimi, eskalasyon, denetim izi, onay iş akışı)
@@ -366,3 +378,4 @@ async def analyze_supplier(
 23. ✅ Self-Bootstrapping sistemi (EnvironmentDetector, PackageManager, ServiceProvisioner, DependencyResolver, TaskAnalyzer, AutoInstaller, SelfUpgrade, CapabilityBuilder)
 24. ✅ Self-Coding Agent sistemi (CodeAnalyzer, CodeGenerator, TestGenerator, AutoDebugger, CodeRefactorer, SafeExecutor, AgentFactory, APIIntegrator, CodingMetaAgent)
 25. ✅ Memory Palace sistemi (EpisodicMemory, ProceduralMemory, EmotionalMemory, ForgettingCurve, AssociativeNetwork, WorkingMemory, MemoryConsolidator, AutobiographicalMemory, MemoryPalaceManager)
+26. ✅ Autonomous Business Runner sistemi (OpportunityDetector, StrategyGenerator, ExecutionEngine, PerformanceAnalyzer, BusinessOptimizer, FeedbackLoop, AutonomousCycle, BusinessMemory)
