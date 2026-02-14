@@ -312,6 +312,13 @@ class Settings(BaseSettings):
     max_loop_iterations: int = 1000
     execution_history_days: int = 30
 
+    # Version Control & Rollback
+    versioning_enabled: bool = True
+    max_snapshots: int = 100
+    auto_snapshot_interval: int = 3600
+    retention_days: int = 90
+    compression_enabled: bool = True
+
     # Resilience / Offline
     resilience_enabled: bool = True
     offline_health_check_interval: int = 30
