@@ -367,6 +367,13 @@ class Settings(BaseSettings):
     projection_rebuild_batch: int = 100
     saga_timeout_minutes: int = 60
 
+    # Distributed System Coordination
+    distributed_enabled: bool = True
+    cluster_size: int = 3
+    replication_factor: int = 3
+    consensus_timeout: int = 30
+    heartbeat_interval: int = 5
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""
