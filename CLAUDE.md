@@ -244,7 +244,7 @@ atlas/
 │   │   │   ├── security_scanner.py      # Güvenlik tarayıcı (kalıp, malware, ağ/dosya erişim, sandbox)
 │   │   │   └── github_orchestrator.py   # Orkestratör (Search→Analyze→Check→Clone→Install→Wrap→Register)
 │   │   │
-│   │   └── hierarchy/             # Hierarchical Agent Controller sistemi
+│   │   ├── hierarchy/             # Hierarchical Agent Controller sistemi
 │   │       ├── __init__.py
 │   │       ├── agent_hierarchy.py       # Agent hiyerarşisi (parent-child, yetki, delegasyon kuralları)
 │   │       ├── cluster_manager.py       # Küme yönetimi (oluşturma, atama, sağlık, yük dengeleme)
@@ -255,6 +255,18 @@ atlas/
 │   │       ├── autonomy_controller.py   # Otonomi kontrolü (seviye, bağımsız hareket, dinamik ayarlama)
 │   │       ├── conflict_arbiter.py      # Çatışma hakemi (kaynak, öncelik, kilitlenme, çözüm stratejisi)
 │   │       └── hierarchy_orchestrator.py # Orkestratör (tam hiyerarşi, yeniden yapılandırma, optimizasyon)
+│   │   │
+│   │   └── spawner/               # Agent Spawner sistemi
+│   │       ├── __init__.py
+│   │       ├── agent_template.py        # Agent şablonları (predefined tipler, preset, kaynak profili)
+│   │       ├── spawn_engine.py          # Oluşturma motoru (template, scratch, clone, hybrid, batch)
+│   │       ├── lifecycle_manager.py     # Yaşam döngüsü (durum geçişleri, sağlık, auto-restart)
+│   │       ├── resource_allocator.py    # Kaynak tahsisi (memory, CPU, API kota, dinamik yeniden dağıtım)
+│   │       ├── capability_injector.py   # Yetenek enjeksiyonu (add, remove, upgrade, hot-swap, bağımlılık)
+│   │       ├── agent_pool.py            # Agent havuzu (fixed/elastic/on-demand, hızlı atama)
+│   │       ├── termination_handler.py   # Sonlandırma (graceful, force, timeout, idle, durum koruma)
+│   │       ├── agent_registry.py        # Agent kaydı (yetenek indeksi, etiket, arama, istatistik)
+│   │       └── spawner_orchestrator.py  # Orkestratör (tam yaşam döngüsü, auto-scale, havuz yönetimi)
 │   │
 │   ├── agents/
 │   │   ├── __init__.py
@@ -332,7 +344,8 @@ atlas/
 │       ├── emotional.py       # Emotional Intelligence modeli
 │       ├── simulation.py     # Simulation & Scenario Testing modeli
 │       ├── github_integrator.py # GitHub Project Integrator modeli
-│       └── hierarchy.py    # Hierarchical Agent Controller modeli
+│       ├── hierarchy.py    # Hierarchical Agent Controller modeli
+│       └── spawner.py     # Agent Spawner modeli
 │
 │
 │   ├── plugins/                # Plugin dizini (kullanıcı plugin'leri)
@@ -342,7 +355,7 @@ atlas/
 │   │       ├── agent.py
 │   │       └── hooks.py
 │
-├── tests/                      # 111 test dosyası, 5528 test
+├── tests/                      # 112 test dosyası, 5688 test
 │   └── ...
 │
 ├── scripts/
@@ -461,14 +474,14 @@ async def analyze_supplier(
 
 ## Proje İstatistikleri
 
-- **Python modülleri**: ~255 kaynak + ~111 test dosyası
-- **Toplam LOC**: ~126,100
-- **Test sayısı**: 5,528+
+- **Python modülleri**: ~266 kaynak + ~112 test dosyası
+- **Toplam LOC**: ~130,500
+- **Test sayısı**: 5,688+
 - **Agent sayısı**: 11 (1 base + 9 uzman + 1 meta)
 - **API endpoint**: 15 (10 core + 5 plugin)
 - **Webhook endpoint**: 4
 
-## Geliştirme Durumu (35/35 Tamamlandı ✅)
+## Geliştirme Durumu (36/36 Tamamlandı ✅)
 
 1. ✅ Proje yapısı ve temel config
 2. ✅ Master Agent + Karar Matrisi (akıllı agent seçimi, eskalasyon, denetim izi, onay iş akışı)
@@ -505,3 +518,4 @@ async def analyze_supplier(
 33. ✅ Simulation & Scenario Testing sistemi (WorldModeler, ActionSimulator, ScenarioGenerator, OutcomePredictor, RiskSimulator, RollbackPlanner, WhatIfEngine, DryRunExecutor, SimulationEngine)
 34. ✅ GitHub Project Integrator sistemi (RepoDiscoverer, RepoAnalyzer, CompatibilityChecker, RepoCloner, AutoInstaller, AgentWrapper, ToolAdapter, SecurityScanner, GitHubOrchestrator)
 35. ✅ Hierarchical Agent Controller sistemi (AgentHierarchy, ClusterManager, DelegationEngine, SupervisionController, ReportingSystem, CommandChain, AutonomyController, ConflictArbiter, HierarchyOrchestrator)
+36. ✅ Agent Spawner sistemi (AgentTemplateManager, SpawnEngine, LifecycleManager, ResourceAllocator, CapabilityInjector, AgentPool, TerminationHandler, AgentRegistry, SpawnerOrchestrator)
