@@ -178,6 +178,14 @@ class Settings(BaseSettings):
     require_simulation_approval: bool = False
     dry_run_default: bool = False
 
+    # GitHub Project Integrator
+    github_token: SecretStr = Field(default=SecretStr(""))
+    github_auto_install_trusted: bool = False
+    github_require_approval: bool = True
+    github_min_stars: int = 10
+    github_allowed_licenses: str = "mit,apache-2.0,bsd-2-clause,bsd-3-clause,isc,unlicense"
+    github_sandbox_untrusted: bool = True
+
     # Resilience / Offline
     resilience_enabled: bool = True
     offline_health_check_interval: int = 30
