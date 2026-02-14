@@ -360,6 +360,13 @@ class Settings(BaseSettings):
     state_persistence_db_path: str = "data/atlas_state.db"
     state_persistence_max_snapshots: int = 100
 
+    # Event Sourcing & CQRS
+    eventsourcing_enabled: bool = True
+    snapshot_frequency: int = 100
+    event_retention_days: int = 90
+    projection_rebuild_batch: int = 100
+    saga_timeout_minutes: int = 60
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""
