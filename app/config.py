@@ -333,6 +333,13 @@ class Settings(BaseSettings):
     enable_documentation: bool = True
     analytics_retention_days: int = 30
 
+    # Logging & Audit Trail
+    logging_enabled: bool = True
+    log_level: str = "info"
+    log_retention_days: int = 90
+    audit_enabled: bool = True
+    export_format: str = "json"
+
     # Testing & Quality Assurance
     qa_enabled: bool = True
     min_coverage: float = 80.0
