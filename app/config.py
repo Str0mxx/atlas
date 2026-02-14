@@ -242,6 +242,13 @@ class Settings(BaseSettings):
     multi_channel: bool = True
     context_window: int = 50
 
+    # Self-Diagnostic & Auto-Repair
+    diagnostic_enabled: bool = True
+    auto_repair: bool = False
+    scan_interval: int = 300
+    preventive_maintenance: bool = True
+    alert_threshold: float = 0.5
+
     # Resilience / Offline
     resilience_enabled: bool = True
     offline_health_check_interval: int = 30
