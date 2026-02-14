@@ -376,6 +376,18 @@ atlas/
 │   │   │   ├── audit_logger.py         # Denetim günlüğü (olay loglama, uyumluluk, adli analiz)
 │   │   │   └── security_orchestrator.py # Orkestratör (pipeline, tehdit yanıt, olay yönetimi)
 │   │   │
+│   │   ├── resource/             # Resource Management sistemi
+│   │   │   ├── __init__.py
+│   │   │   ├── cpu_manager.py           # CPU yönetimi (kullanım izleme, süreç, çekirdek tahsis, throttle)
+│   │   │   ├── memory_manager.py        # Bellek yönetimi (tahsis/serbest, GC, sızıntı tespiti, cache)
+│   │   │   ├── storage_manager.py       # Depolama yönetimi (birim, dosya, temizlik, arşiv, kota)
+│   │   │   ├── network_manager.py       # Ağ yönetimi (bant genişliği, bağlantı havuzu, trafik kuralları)
+│   │   │   ├── api_quota_manager.py     # API kota yönetimi (kota, çağrı kayıt, tahmin, maliyet)
+│   │   │   ├── cost_tracker.py          # Maliyet takibi (kategori, bütçe, dağılım, uyarı, optimizasyon)
+│   │   │   ├── capacity_planner.py      # Kapasite planlama (tahmin, ölçekleme, rezervasyon, darboğaz)
+│   │   │   ├── resource_optimizer.py    # Kaynak optimizasyonu (ölçekleme, dengeleme, israf, verimlilik)
+│   │   │   └── resource_orchestrator.py # Orkestratör (metrik kayıt, uyarı, politika, rapor)
+│   │   │
 │   │   └── integration/          # External Integration Hub sistemi
 │   │       ├── __init__.py
 │   │       ├── api_connector.py       # API bağlayıcı (REST, GraphQL, SOAP, WebSocket, gRPC)
@@ -473,7 +485,10 @@ atlas/
 │       ├── unified.py     # Unified Intelligence Core modeli
 │       ├── assistant.py   # Context-Aware Assistant modeli
 │       ├── diagnostic.py  # Self-Diagnostic & Auto-Repair modeli
-│       └── integration.py # External Integration Hub modeli
+│       ├── integration.py # External Integration Hub modeli
+│       ├── security_hardening.py # Security Hardening modeli
+│       ├── adaptive.py   # Adaptive Learning Engine modeli
+│       └── resource.py   # Resource Management modeli
 │
 │
 │   ├── plugins/                # Plugin dizini (kullanıcı plugin'leri)
@@ -483,7 +498,7 @@ atlas/
 │   │       ├── agent.py
 │   │       └── hooks.py
 │
-├── tests/                      # 121 test dosyası, 6983 test
+├── tests/                      # 123 test dosyası, 7268 test
 │   └── ...
 │
 ├── scripts/
@@ -602,14 +617,14 @@ async def analyze_supplier(
 
 ## Proje İstatistikleri
 
-- **Python modülleri**: ~376 kaynak + ~122 test dosyası
-- **Toplam LOC**: ~168,500
-- **Test sayısı**: 7,124+
+- **Python modülleri**: ~386 kaynak + ~123 test dosyası
+- **Toplam LOC**: ~171,500
+- **Test sayısı**: 7,268+
 - **Agent sayısı**: 11 (1 base + 9 uzman + 1 meta)
 - **API endpoint**: 15 (10 core + 5 plugin)
 - **Webhook endpoint**: 4
 
-## Geliştirme Durumu (46/46 Tamamlandı ✅)
+## Geliştirme Durumu (47/47 Tamamlandı ✅)
 
 1. ✅ Proje yapısı ve temel config
 2. ✅ Master Agent + Karar Matrisi (akıllı agent seçimi, eskalasyon, denetim izi, onay iş akışı)
@@ -657,3 +672,4 @@ async def analyze_supplier(
 44. ✅ External Integration Hub sistemi (APIConnector, AuthHandler, WebhookManager, DataSync, ExternalServiceRegistry, RateLimiter, ResponseCache, IntegrationErrorHandler, IntegrationHub)
 45. ✅ Security Hardening sistemi (ThreatDetector, AccessController, EncryptionManager, InputValidator, SecretManager, SessionGuardian, Firewall, AuditLogger, SecurityOrchestrator)
 46. ✅ Adaptive Learning Engine sistemi (ExperienceCollector, PatternMiner, StrategyEvolver, KnowledgeDistiller, SkillOptimizer, FeedbackProcessor, TransferLearner, CurriculumManager, AdaptiveEngine)
+47. ✅ Resource Management sistemi (CPUManager, MemoryManager, StorageManager, NetworkManager, APIQuotaManager, CostTracker, CapacityPlanner, ResourceOptimizer, ResourceOrchestrator)

@@ -256,6 +256,13 @@ class Settings(BaseSettings):
     cache_enabled: bool = True
     rate_limit_default: int = 100
 
+    # Resource Management
+    resource_monitoring: bool = True
+    cpu_threshold: float = 0.8
+    memory_threshold: float = 0.8
+    storage_threshold: float = 0.8
+    cost_budget: float = 1000.0
+
     # Adaptive Learning Engine
     adaptive_enabled: bool = True
     learning_rate: float = 0.1
