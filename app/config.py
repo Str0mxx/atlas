@@ -193,6 +193,13 @@ class Settings(BaseSettings):
     hierarchy_escalation_timeout: int = 300
     hierarchy_cluster_auto_balance: bool = True
 
+    # Agent Spawner
+    spawner_max_agents: int = 50
+    spawner_pool_size: int = 5
+    spawner_auto_scale: bool = True
+    spawner_idle_timeout: int = 300
+    spawner_spawn_timeout: int = 30
+
     # Resilience / Offline
     resilience_enabled: bool = True
     offline_health_check_interval: int = 30
