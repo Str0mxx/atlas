@@ -304,17 +304,29 @@ atlas/
 │   │       ├── config_sync.py         # Konfig senkronizasyonu (paylaşım, yayılım, snapshot, geri alma)
 │   │       └── bridge_orchestrator.py # Orkestratör (kayıt, aktivasyon, mesaj, API, iş akışı, sorun giderme)
 │   │   │
-│   │   └── goal_pursuit/          # Autonomous Goal Pursuit sistemi
+│   │   ├── goal_pursuit/          # Autonomous Goal Pursuit sistemi
+│   │   │   ├── __init__.py
+│   │   │   ├── goal_generator.py      # Hedef üretici (fırsat tespit, aday, önceliklendirme, fizibilite, hizalama)
+│   │   │   ├── value_estimator.py     # Değer tahmincisi (fayda, maliyet, ROI, risk ayarlı, zaman değeri)
+│   │   │   ├── goal_selector.py       # Hedef seçici (çoklu kriter, kaynak, çatışma, tercih, stratejik uyum)
+│   │   │   ├── initiative_launcher.py # Girişim başlatıcı (görev dönüşümü, kaynak, zaman, metrik, izleme)
+│   │   │   ├── progress_evaluator.py  # İlerleme değerlendirici (takip, kilometre taşı, rota, terk, başarı)
+│   │   │   ├── learning_extractor.py  # Öğrenme çıkarıcı (başarı kalıbı, başarısızlık, strateji, best practice)
+│   │   │   ├── proactive_scanner.py   # Proaktif tarayıcı (çevre izleme, fırsat, tehdit, trend, öneri)
+│   │   │   ├── user_aligner.py        # Kullanıcı hizalayıcı (tercih, öneri, onay, sınır, geri bildirim)
+│   │   │   └── goal_pursuit_engine.py # Orkestratör (otonom yaşam döngüsü, çoklu hedef, eskalasyon, 7/24)
+│   │   │
+│   │   └── unified/              # Unified Intelligence Core sistemi
 │   │       ├── __init__.py
-│   │       ├── goal_generator.py      # Hedef üretici (fırsat tespit, aday, önceliklendirme, fizibilite, hizalama)
-│   │       ├── value_estimator.py     # Değer tahmincisi (fayda, maliyet, ROI, risk ayarlı, zaman değeri)
-│   │       ├── goal_selector.py       # Hedef seçici (çoklu kriter, kaynak, çatışma, tercih, stratejik uyum)
-│   │       ├── initiative_launcher.py # Girişim başlatıcı (görev dönüşümü, kaynak, zaman, metrik, izleme)
-│   │       ├── progress_evaluator.py  # İlerleme değerlendirici (takip, kilometre taşı, rota, terk, başarı)
-│   │       ├── learning_extractor.py  # Öğrenme çıkarıcı (başarı kalıbı, başarısızlık, strateji, best practice)
-│   │       ├── proactive_scanner.py   # Proaktif tarayıcı (çevre izleme, fırsat, tehdit, trend, öneri)
-│   │       ├── user_aligner.py        # Kullanıcı hizalayıcı (tercih, öneri, onay, sınır, geri bildirim)
-│   │       └── goal_pursuit_engine.py # Orkestratör (otonom yaşam döngüsü, çoklu hedef, eskalasyon, 7/24)
+│   │       ├── consciousness.py       # Bilinç katmanı (öz-farkındalık, durum, hedef, yetenek, kısıtlama)
+│   │       ├── reasoning_engine.py    # Akıl yürütme (mantıksal, analojik, nedensel, abduktif, meta)
+│   │       ├── attention_manager.py   # Dikkat yönetimi (odak, kapasite, arka plan, kesme, bağlam geçişi)
+│   │       ├── world_model.py         # Dünya modeli (varlık, ilişki, durum tahmini, karşı-olgusal, simülasyon)
+│   │       ├── decision_integrator.py # Karar entegrasyonu (BDI+Olasılık+RL+Duygusal+Kural+Konsensüs sentezi)
+│   │       ├── action_coordinator.py  # Aksiyon koordinasyonu (oluşturma, yürütme, plan, kaynak, geri bildirim)
+│   │       ├── reflection_module.py   # Yansıma modülü (öz-değerlendirme, performans, önyargı, iyileştirme)
+│   │       ├── persona_manager.py     # Kişilik yöneticisi (özellik, değer, stil, tutarlılık, adaptasyon)
+│   │       └── atlas_core.py          # Orkestratör (algıla→düşün→karar→eylem→yansı döngüsü, birleşik API)
 │   │
 │   ├── agents/
 │   │   ├── __init__.py
@@ -397,7 +409,8 @@ atlas/
 │       ├── swarm.py       # Swarm Intelligence modeli
 │       ├── mission.py     # Mission Control modeli
 │       ├── bridge.py      # Inter-System Bridge modeli
-│       └── goal_pursuit.py # Autonomous Goal Pursuit modeli
+│       ├── goal_pursuit.py # Autonomous Goal Pursuit modeli
+│       └── unified.py     # Unified Intelligence Core modeli
 │
 │
 │   ├── plugins/                # Plugin dizini (kullanıcı plugin'leri)
@@ -407,7 +420,7 @@ atlas/
 │   │       ├── agent.py
 │   │       └── hooks.py
 │
-├── tests/                      # 116 test dosyası, 6215 test
+├── tests/                      # 117 test dosyası, 6356 test
 │   └── ...
 │
 ├── scripts/
@@ -526,14 +539,14 @@ async def analyze_supplier(
 
 ## Proje İstatistikleri
 
-- **Python modülleri**: ~310 kaynak + ~116 test dosyası
-- **Toplam LOC**: ~146,500
-- **Test sayısı**: 6,215+
+- **Python modülleri**: ~321 kaynak + ~117 test dosyası
+- **Toplam LOC**: ~150,500
+- **Test sayısı**: 6,356+
 - **Agent sayısı**: 11 (1 base + 9 uzman + 1 meta)
 - **API endpoint**: 15 (10 core + 5 plugin)
 - **Webhook endpoint**: 4
 
-## Geliştirme Durumu (40/40 Tamamlandı ✅)
+## Geliştirme Durumu (41/41 Tamamlandı ✅)
 
 1. ✅ Proje yapısı ve temel config
 2. ✅ Master Agent + Karar Matrisi (akıllı agent seçimi, eskalasyon, denetim izi, onay iş akışı)
@@ -575,3 +588,4 @@ async def analyze_supplier(
 38. ✅ Mission Control sistemi (MissionDefiner, MissionPlanner, PhaseController, ResourceCommander, ProgressTracker, SituationRoom, ContingencyManager, MissionReporter, MissionControl)
 39. ✅ Inter-System Bridge sistemi (SystemRegistry, MessageBus, EventRouter, APIGateway, DataTransformer, WorkflowConnector, HealthAggregator, ConfigSync, BridgeOrchestrator)
 40. ✅ Autonomous Goal Pursuit sistemi (GoalGenerator, ValueEstimator, GoalSelector, InitiativeLauncher, ProgressEvaluator, LearningExtractor, ProactiveScanner, UserAligner, GoalPursuitEngine)
+41. ✅ Unified Intelligence Core sistemi (Consciousness, ReasoningEngine, AttentionManager, WorldModel, DecisionIntegrator, ActionCoordinator, ReflectionModule, PersonaManager, ATLASCore)

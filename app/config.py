@@ -228,6 +228,13 @@ class Settings(BaseSettings):
     proactive_scanning: bool = True
     value_threshold: float = 0.3
 
+    # Unified Intelligence Core
+    unified_enabled: bool = True
+    consciousness_level: str = "medium"
+    reasoning_depth: int = 10
+    reflection_interval: int = 3600
+    persona_consistency: float = 0.8
+
     # Resilience / Offline
     resilience_enabled: bool = True
     offline_health_check_interval: int = 30
