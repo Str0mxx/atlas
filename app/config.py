@@ -235,6 +235,13 @@ class Settings(BaseSettings):
     reflection_interval: int = 3600
     persona_consistency: float = 0.8
 
+    # Context-Aware Assistant
+    assistant_enabled: bool = True
+    proactive_mode: bool = True
+    learning_enabled: bool = True
+    multi_channel: bool = True
+    context_window: int = 50
+
     # Resilience / Offline
     resilience_enabled: bool = True
     offline_health_check_interval: int = 30
