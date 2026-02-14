@@ -284,6 +284,13 @@ class Settings(BaseSettings):
     workday_start: str = "09:00"
     workday_end: str = "18:00"
 
+    # Multi-Language & Localization
+    localization_enabled: bool = True
+    default_language: str = "en"
+    supported_languages: str = "en,tr,de,fr,es,ar"
+    auto_detect: bool = True
+    translation_cache: bool = True
+
     # Resilience / Offline
     resilience_enabled: bool = True
     offline_health_check_interval: int = 30
