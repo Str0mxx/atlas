@@ -333,6 +333,13 @@ class Settings(BaseSettings):
     enable_documentation: bool = True
     analytics_retention_days: int = 30
 
+    # Testing & Quality Assurance
+    qa_enabled: bool = True
+    min_coverage: float = 80.0
+    mutation_threshold: float = 0.8
+    load_test_users: int = 100
+    quality_gate_enabled: bool = True
+
     # Resilience / Offline
     resilience_enabled: bool = True
     offline_health_check_interval: int = 30
