@@ -232,17 +232,29 @@ atlas/
 │   │   │   ├── dry_run_executor.py      # Kuru çalıştırma (yan etkisiz, ön koşul, izin, kaynak kontrolü)
 │   │   │   └── simulation_engine.py     # Orkestratör (pipeline, karşılaştırma, öneri, güven, rapor)
 │   │   │
-│   │   └── github_integrator/     # GitHub Project Integrator sistemi
+│   │   ├── github_integrator/     # GitHub Project Integrator sistemi
+│   │   │   ├── __init__.py
+│   │   │   ├── repo_discoverer.py       # Repo keşfi (arama, değerlendirme, filtreleme, sıralama, trending)
+│   │   │   ├── repo_analyzer.py         # Repo analizi (tech stack, bağımlılık, kalite, API tespit)
+│   │   │   ├── compatibility_checker.py # Uyumluluk kontrolü (Python, OS, lisans, bağımlılık çatışması)
+│   │   │   ├── repo_cloner.py           # Repo klonlama (branch, sparse checkout, submodule, versiyon sabitleme)
+│   │   │   ├── auto_installer.py        # Otomatik kurulum (yöntem tespit, onay, komut, rollback)
+│   │   │   ├── agent_wrapper.py         # Agent sarmalama (agent/tool wrap, kayıt, kod üretimi)
+│   │   │   ├── tool_adapter.py          # Araç adaptörü (CLI/library/API sarmalama, fonksiyon çıkarma)
+│   │   │   ├── security_scanner.py      # Güvenlik tarayıcı (kalıp, malware, ağ/dosya erişim, sandbox)
+│   │   │   └── github_orchestrator.py   # Orkestratör (Search→Analyze→Check→Clone→Install→Wrap→Register)
+│   │   │
+│   │   └── hierarchy/             # Hierarchical Agent Controller sistemi
 │   │       ├── __init__.py
-│   │       ├── repo_discoverer.py       # Repo keşfi (arama, değerlendirme, filtreleme, sıralama, trending)
-│   │       ├── repo_analyzer.py         # Repo analizi (tech stack, bağımlılık, kalite, API tespit)
-│   │       ├── compatibility_checker.py # Uyumluluk kontrolü (Python, OS, lisans, bağımlılık çatışması)
-│   │       ├── repo_cloner.py           # Repo klonlama (branch, sparse checkout, submodule, versiyon sabitleme)
-│   │       ├── auto_installer.py        # Otomatik kurulum (yöntem tespit, onay, komut, rollback)
-│   │       ├── agent_wrapper.py         # Agent sarmalama (agent/tool wrap, kayıt, kod üretimi)
-│   │       ├── tool_adapter.py          # Araç adaptörü (CLI/library/API sarmalama, fonksiyon çıkarma)
-│   │       ├── security_scanner.py      # Güvenlik tarayıcı (kalıp, malware, ağ/dosya erişim, sandbox)
-│   │       └── github_orchestrator.py   # Orkestratör (Search→Analyze→Check→Clone→Install→Wrap→Register)
+│   │       ├── agent_hierarchy.py       # Agent hiyerarşisi (parent-child, yetki, delegasyon kuralları)
+│   │       ├── cluster_manager.py       # Küme yönetimi (oluşturma, atama, sağlık, yük dengeleme)
+│   │       ├── delegation_engine.py     # Yetki devri (görev ayrıştırma, yetenek eşleme, iş yükü dağıtımı)
+│   │       ├── supervision_controller.py # Denetim kontrolü (izleme, ilerleme, müdahale, eskalasyon)
+│   │       ├── reporting_system.py      # Raporlama (durum toplama, ilerleme, günlük/haftalık özet)
+│   │       ├── command_chain.py         # Komut zinciri (direktif, yayın, hedefli, acil, geri bildirim)
+│   │       ├── autonomy_controller.py   # Otonomi kontrolü (seviye, bağımsız hareket, dinamik ayarlama)
+│   │       ├── conflict_arbiter.py      # Çatışma hakemi (kaynak, öncelik, kilitlenme, çözüm stratejisi)
+│   │       └── hierarchy_orchestrator.py # Orkestratör (tam hiyerarşi, yeniden yapılandırma, optimizasyon)
 │   │
 │   ├── agents/
 │   │   ├── __init__.py
@@ -319,7 +331,8 @@ atlas/
 │       ├── evolution.py       # Self-Evolution modeli
 │       ├── emotional.py       # Emotional Intelligence modeli
 │       ├── simulation.py     # Simulation & Scenario Testing modeli
-│       └── github_integrator.py # GitHub Project Integrator modeli
+│       ├── github_integrator.py # GitHub Project Integrator modeli
+│       └── hierarchy.py    # Hierarchical Agent Controller modeli
 │
 │
 │   ├── plugins/                # Plugin dizini (kullanıcı plugin'leri)
@@ -329,7 +342,7 @@ atlas/
 │   │       ├── agent.py
 │   │       └── hooks.py
 │
-├── tests/                      # 110 test dosyası, 5372 test
+├── tests/                      # 111 test dosyası, 5528 test
 │   └── ...
 │
 ├── scripts/
@@ -448,14 +461,14 @@ async def analyze_supplier(
 
 ## Proje İstatistikleri
 
-- **Python modülleri**: ~244 kaynak + ~110 test dosyası
-- **Toplam LOC**: ~121,500
-- **Test sayısı**: 5,372+
+- **Python modülleri**: ~255 kaynak + ~111 test dosyası
+- **Toplam LOC**: ~126,100
+- **Test sayısı**: 5,528+
 - **Agent sayısı**: 11 (1 base + 9 uzman + 1 meta)
 - **API endpoint**: 15 (10 core + 5 plugin)
 - **Webhook endpoint**: 4
 
-## Geliştirme Durumu (34/34 Tamamlandı ✅)
+## Geliştirme Durumu (35/35 Tamamlandı ✅)
 
 1. ✅ Proje yapısı ve temel config
 2. ✅ Master Agent + Karar Matrisi (akıllı agent seçimi, eskalasyon, denetim izi, onay iş akışı)
@@ -491,3 +504,4 @@ async def analyze_supplier(
 32. ✅ Emotional Intelligence sistemi (SentimentAnalyzer, EmpathyEngine, MoodTracker, CommunicationStyler, ConflictResolver, MotivationEngine, PersonalityAdapter, EmotionalMemoryManager, EQOrchestrator)
 33. ✅ Simulation & Scenario Testing sistemi (WorldModeler, ActionSimulator, ScenarioGenerator, OutcomePredictor, RiskSimulator, RollbackPlanner, WhatIfEngine, DryRunExecutor, SimulationEngine)
 34. ✅ GitHub Project Integrator sistemi (RepoDiscoverer, RepoAnalyzer, CompatibilityChecker, RepoCloner, AutoInstaller, AgentWrapper, ToolAdapter, SecurityScanner, GitHubOrchestrator)
+35. ✅ Hierarchical Agent Controller sistemi (AgentHierarchy, ClusterManager, DelegationEngine, SupervisionController, ReportingSystem, CommandChain, AutonomyController, ConflictArbiter, HierarchyOrchestrator)
