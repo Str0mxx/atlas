@@ -292,7 +292,7 @@ atlas/
 │   │       ├── mission_reporter.py      # Görev raporlayıcı (durum, yönetici özeti, detaylı, görev-sonrası)
 │   │       └── mission_control.py       # Orkestratör (tam yaşam döngüsü, çoklu görev, eskalasyon)
 │   │   │
-│   │   └── bridge/                # Inter-System Bridge sistemi
+│   │   ├── bridge/                # Inter-System Bridge sistemi
 │   │       ├── __init__.py
 │   │       ├── system_registry.py     # Sistem kaydı (yetenek indeksleme, bağımlılık grafı, durum takibi)
 │   │       ├── message_bus.py         # Mesaj yolu (pub/sub, doğrudan, broadcast, istek-yanıt, dead letter)
@@ -303,6 +303,18 @@ atlas/
 │   │       ├── health_aggregator.py   # Sağlık birleştirici (kontrol, rapor, uyarı, otomatik iyileştirme)
 │   │       ├── config_sync.py         # Konfig senkronizasyonu (paylaşım, yayılım, snapshot, geri alma)
 │   │       └── bridge_orchestrator.py # Orkestratör (kayıt, aktivasyon, mesaj, API, iş akışı, sorun giderme)
+│   │   │
+│   │   └── goal_pursuit/          # Autonomous Goal Pursuit sistemi
+│   │       ├── __init__.py
+│   │       ├── goal_generator.py      # Hedef üretici (fırsat tespit, aday, önceliklendirme, fizibilite, hizalama)
+│   │       ├── value_estimator.py     # Değer tahmincisi (fayda, maliyet, ROI, risk ayarlı, zaman değeri)
+│   │       ├── goal_selector.py       # Hedef seçici (çoklu kriter, kaynak, çatışma, tercih, stratejik uyum)
+│   │       ├── initiative_launcher.py # Girişim başlatıcı (görev dönüşümü, kaynak, zaman, metrik, izleme)
+│   │       ├── progress_evaluator.py  # İlerleme değerlendirici (takip, kilometre taşı, rota, terk, başarı)
+│   │       ├── learning_extractor.py  # Öğrenme çıkarıcı (başarı kalıbı, başarısızlık, strateji, best practice)
+│   │       ├── proactive_scanner.py   # Proaktif tarayıcı (çevre izleme, fırsat, tehdit, trend, öneri)
+│   │       ├── user_aligner.py        # Kullanıcı hizalayıcı (tercih, öneri, onay, sınır, geri bildirim)
+│   │       └── goal_pursuit_engine.py # Orkestratör (otonom yaşam döngüsü, çoklu hedef, eskalasyon, 7/24)
 │   │
 │   ├── agents/
 │   │   ├── __init__.py
@@ -384,7 +396,8 @@ atlas/
 │       ├── spawner.py     # Agent Spawner modeli
 │       ├── swarm.py       # Swarm Intelligence modeli
 │       ├── mission.py     # Mission Control modeli
-│       └── bridge.py      # Inter-System Bridge modeli
+│       ├── bridge.py      # Inter-System Bridge modeli
+│       └── goal_pursuit.py # Autonomous Goal Pursuit modeli
 │
 │
 │   ├── plugins/                # Plugin dizini (kullanıcı plugin'leri)
@@ -394,7 +407,7 @@ atlas/
 │   │       ├── agent.py
 │   │       └── hooks.py
 │
-├── tests/                      # 115 test dosyası, 6071 test
+├── tests/                      # 116 test dosyası, 6215 test
 │   └── ...
 │
 ├── scripts/
@@ -513,14 +526,14 @@ async def analyze_supplier(
 
 ## Proje İstatistikleri
 
-- **Python modülleri**: ~299 kaynak + ~115 test dosyası
-- **Toplam LOC**: ~142,500
-- **Test sayısı**: 6,071+
+- **Python modülleri**: ~310 kaynak + ~116 test dosyası
+- **Toplam LOC**: ~146,500
+- **Test sayısı**: 6,215+
 - **Agent sayısı**: 11 (1 base + 9 uzman + 1 meta)
 - **API endpoint**: 15 (10 core + 5 plugin)
 - **Webhook endpoint**: 4
 
-## Geliştirme Durumu (39/39 Tamamlandı ✅)
+## Geliştirme Durumu (40/40 Tamamlandı ✅)
 
 1. ✅ Proje yapısı ve temel config
 2. ✅ Master Agent + Karar Matrisi (akıllı agent seçimi, eskalasyon, denetim izi, onay iş akışı)
@@ -561,3 +574,4 @@ async def analyze_supplier(
 37. ✅ Swarm Intelligence sistemi (SwarmCoordinator, PheromoneSystem, CollectiveMemory, VotingSystem, TaskAuction, EmergentBehavior, SwarmLoadBalancer, SwarmFaultTolerance, SwarmOrchestrator)
 38. ✅ Mission Control sistemi (MissionDefiner, MissionPlanner, PhaseController, ResourceCommander, ProgressTracker, SituationRoom, ContingencyManager, MissionReporter, MissionControl)
 39. ✅ Inter-System Bridge sistemi (SystemRegistry, MessageBus, EventRouter, APIGateway, DataTransformer, WorkflowConnector, HealthAggregator, ConfigSync, BridgeOrchestrator)
+40. ✅ Autonomous Goal Pursuit sistemi (GoalGenerator, ValueEstimator, GoalSelector, InitiativeLauncher, ProgressEvaluator, LearningExtractor, ProactiveScanner, UserAligner, GoalPursuitEngine)

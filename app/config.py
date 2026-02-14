@@ -221,6 +221,13 @@ class Settings(BaseSettings):
     health_check_interval: int = 60
     auto_discovery: bool = True
 
+    # Autonomous Goal Pursuit
+    goal_pursuit_enabled: bool = True
+    max_autonomous_goals: int = 5
+    require_user_approval: bool = True
+    proactive_scanning: bool = True
+    value_threshold: float = 0.3
+
     # Resilience / Offline
     resilience_enabled: bool = True
     offline_health_check_interval: int = 30
