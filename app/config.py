@@ -214,6 +214,13 @@ class Settings(BaseSettings):
     report_interval: int = 3600
     require_phase_approval: bool = False
 
+    # Inter-System Bridge
+    bridge_enabled: bool = True
+    message_queue_size: int = 1000
+    event_retention: int = 1000
+    health_check_interval: int = 60
+    auto_discovery: bool = True
+
     # Resilience / Offline
     resilience_enabled: bool = True
     offline_health_check_interval: int = 30
