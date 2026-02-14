@@ -249,6 +249,13 @@ class Settings(BaseSettings):
     preventive_maintenance: bool = True
     alert_threshold: float = 0.5
 
+    # External Integration Hub
+    integration_enabled: bool = True
+    default_timeout: int = 30
+    max_retries: int = 3
+    cache_enabled: bool = True
+    rate_limit_default: int = 100
+
     # Resilience / Offline
     resilience_enabled: bool = True
     offline_health_check_interval: int = 30
