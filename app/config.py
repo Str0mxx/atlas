@@ -312,6 +312,13 @@ class Settings(BaseSettings):
     max_loop_iterations: int = 1000
     execution_history_days: int = 30
 
+    # Caching & Performance Optimization
+    caching_enabled: bool = True
+    default_ttl: int = 300
+    max_cache_size: int = 10000
+    compression_threshold: int = 1024
+    profiling_enabled: bool = True
+
     # Version Control & Rollback
     versioning_enabled: bool = True
     max_snapshots: int = 100
