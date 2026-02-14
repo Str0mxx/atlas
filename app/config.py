@@ -256,6 +256,13 @@ class Settings(BaseSettings):
     cache_enabled: bool = True
     rate_limit_default: int = 100
 
+    # Adaptive Learning Engine
+    adaptive_enabled: bool = True
+    learning_rate: float = 0.1
+    exploration_rate: float = 0.2
+    knowledge_retention: int = 90
+    feedback_weight: float = 0.5
+
     # Security Hardening
     security_enabled: bool = True
     encryption_algorithm: str = "aes-256"
