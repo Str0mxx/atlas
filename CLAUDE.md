@@ -376,6 +376,18 @@ atlas/
 │   │   │   ├── audit_logger.py         # Denetim günlüğü (olay loglama, uyumluluk, adli analiz)
 │   │   │   └── security_orchestrator.py # Orkestratör (pipeline, tehdit yanıt, olay yönetimi)
 │   │   │
+│   │   ├── scheduler/            # Time & Schedule Management sistemi
+│   │   │   ├── __init__.py
+│   │   │   ├── task_scheduler.py        # Görev zamanlayıcı (cron, one-time, recurring, öncelik)
+│   │   │   ├── calendar_manager.py      # Takvim yönetimi (etkinlik, çatışma, müsaitlik, tatil)
+│   │   │   ├── reminder_system.py       # Hatırlatma sistemi (çok kanal, erteleme, eskalasyon)
+│   │   │   ├── deadline_tracker.py      # Son tarih takibi (izleme, uyarı, uzatma, öncelik)
+│   │   │   ├── time_estimator.py        # Süre tahmini (geçmiş analiz, güven aralığı, tampon)
+│   │   │   ├── workload_balancer.py     # İş yükü dengeleme (kapasite, dağılım, tükenmişlik önleme)
+│   │   │   ├── time_tracker.py          # Zaman takibi (loglama, üretkenlik, faturalama)
+│   │   │   ├── schedule_optimizer.py    # Program optimizasyonu (boşluk, toplu, kaynak, what-if)
+│   │   │   └── scheduler_orchestrator.py # Orkestratör (pipeline, analitik, bildirim, tercihler)
+│   │   │
 │   │   ├── resource/             # Resource Management sistemi
 │   │   │   ├── __init__.py
 │   │   │   ├── cpu_manager.py           # CPU yönetimi (kullanım izleme, süreç, çekirdek tahsis, throttle)
@@ -488,7 +500,8 @@ atlas/
 │       ├── integration.py # External Integration Hub modeli
 │       ├── security_hardening.py # Security Hardening modeli
 │       ├── adaptive.py   # Adaptive Learning Engine modeli
-│       └── resource.py   # Resource Management modeli
+│       ├── resource.py   # Resource Management modeli
+│       └── scheduler.py  # Time & Schedule Management modeli
 │
 │
 │   ├── plugins/                # Plugin dizini (kullanıcı plugin'leri)
@@ -498,7 +511,7 @@ atlas/
 │   │       ├── agent.py
 │   │       └── hooks.py
 │
-├── tests/                      # 123 test dosyası, 7268 test
+├── tests/                      # 124 test dosyası, 7408 test
 │   └── ...
 │
 ├── scripts/
@@ -617,14 +630,14 @@ async def analyze_supplier(
 
 ## Proje İstatistikleri
 
-- **Python modülleri**: ~386 kaynak + ~123 test dosyası
-- **Toplam LOC**: ~171,500
-- **Test sayısı**: 7,268+
+- **Python modülleri**: ~396 kaynak + ~124 test dosyası
+- **Toplam LOC**: ~174,500
+- **Test sayısı**: 7,408+
 - **Agent sayısı**: 11 (1 base + 9 uzman + 1 meta)
 - **API endpoint**: 15 (10 core + 5 plugin)
 - **Webhook endpoint**: 4
 
-## Geliştirme Durumu (47/47 Tamamlandı ✅)
+## Geliştirme Durumu (48/48 Tamamlandı ✅)
 
 1. ✅ Proje yapısı ve temel config
 2. ✅ Master Agent + Karar Matrisi (akıllı agent seçimi, eskalasyon, denetim izi, onay iş akışı)
@@ -673,3 +686,4 @@ async def analyze_supplier(
 45. ✅ Security Hardening sistemi (ThreatDetector, AccessController, EncryptionManager, InputValidator, SecretManager, SessionGuardian, Firewall, AuditLogger, SecurityOrchestrator)
 46. ✅ Adaptive Learning Engine sistemi (ExperienceCollector, PatternMiner, StrategyEvolver, KnowledgeDistiller, SkillOptimizer, FeedbackProcessor, TransferLearner, CurriculumManager, AdaptiveEngine)
 47. ✅ Resource Management sistemi (CPUManager, MemoryManager, StorageManager, NetworkManager, APIQuotaManager, CostTracker, CapacityPlanner, ResourceOptimizer, ResourceOrchestrator)
+48. ✅ Time & Schedule Management sistemi (TaskScheduler, CalendarManager, ReminderSystem, DeadlineTracker, TimeEstimator, WorkloadBalancer, TimeTracker, ScheduleOptimizer, SchedulerOrchestrator)

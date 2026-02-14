@@ -277,6 +277,13 @@ class Settings(BaseSettings):
     max_login_attempts: int = 5
     audit_retention_days: int = 90
 
+    # Time & Schedule Management
+    scheduler_enabled: bool = True
+    default_reminder_minutes: int = 15
+    deadline_warning_hours: int = 24
+    workday_start: str = "09:00"
+    workday_end: str = "18:00"
+
     # Resilience / Offline
     resilience_enabled: bool = True
     offline_health_check_interval: int = 30
