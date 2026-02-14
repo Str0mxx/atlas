@@ -186,6 +186,13 @@ class Settings(BaseSettings):
     github_allowed_licenses: str = "mit,apache-2.0,bsd-2-clause,bsd-3-clause,isc,unlicense"
     github_sandbox_untrusted: bool = True
 
+    # Hierarchical Agent Controller
+    hierarchy_max_depth: int = 5
+    hierarchy_default_autonomy: str = "medium"
+    hierarchy_reporting_interval: int = 3600
+    hierarchy_escalation_timeout: int = 300
+    hierarchy_cluster_auto_balance: bool = True
+
     # Resilience / Offline
     resilience_enabled: bool = True
     offline_health_check_interval: int = 30
