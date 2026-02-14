@@ -220,17 +220,29 @@ atlas/
 │   │   │   ├── emotional_memory.py      # Duygusal hafıza (ilişki kalitesi, önemli olay, tercih evrimi)
 │   │   │   └── eq_orchestrator.py       # Orkestratör (pipeline: Analiz→Empati→Mood→Stil→Çatışma→Motivasyon)
 │   │   │
-│   │   └── simulation/            # Simulation & Scenario Testing sistemi
+│   │   ├── simulation/            # Simulation & Scenario Testing sistemi
+│   │   │   ├── __init__.py
+│   │   │   ├── world_modeler.py         # Dünya modelleyici (snapshot, varlık, kaynak, kısıtlama, varsayım)
+│   │   │   ├── action_simulator.py      # Aksiyon simülatörü (sonuç, yan etki, kaynak, süre, zincir)
+│   │   │   ├── scenario_generator.py    # Senaryo üretici (best/worst/likely/edge case, random)
+│   │   │   ├── outcome_predictor.py     # Sonuç tahmincisi (başarı olasılığı, başarısızlık modları, zincirleme)
+│   │   │   ├── risk_simulator.py        # Risk simülatörü (enjeksiyon, yayılım, kurtarma, stres testi)
+│   │   │   ├── rollback_planner.py      # Geri alma planlayıcı (checkpoint, adımlar, veri kurtarma, doğrulama)
+│   │   │   ├── what_if_engine.py        # Ne olur analizi (hassasiyet, eşik, devrilme noktası, optimizasyon)
+│   │   │   ├── dry_run_executor.py      # Kuru çalıştırma (yan etkisiz, ön koşul, izin, kaynak kontrolü)
+│   │   │   └── simulation_engine.py     # Orkestratör (pipeline, karşılaştırma, öneri, güven, rapor)
+│   │   │
+│   │   └── github_integrator/     # GitHub Project Integrator sistemi
 │   │       ├── __init__.py
-│   │       ├── world_modeler.py         # Dünya modelleyici (snapshot, varlık, kaynak, kısıtlama, varsayım)
-│   │       ├── action_simulator.py      # Aksiyon simülatörü (sonuç, yan etki, kaynak, süre, zincir)
-│   │       ├── scenario_generator.py    # Senaryo üretici (best/worst/likely/edge case, random)
-│   │       ├── outcome_predictor.py     # Sonuç tahmincisi (başarı olasılığı, başarısızlık modları, zincirleme)
-│   │       ├── risk_simulator.py        # Risk simülatörü (enjeksiyon, yayılım, kurtarma, stres testi)
-│   │       ├── rollback_planner.py      # Geri alma planlayıcı (checkpoint, adımlar, veri kurtarma, doğrulama)
-│   │       ├── what_if_engine.py        # Ne olur analizi (hassasiyet, eşik, devrilme noktası, optimizasyon)
-│   │       ├── dry_run_executor.py      # Kuru çalıştırma (yan etkisiz, ön koşul, izin, kaynak kontrolü)
-│   │       └── simulation_engine.py     # Orkestratör (pipeline, karşılaştırma, öneri, güven, rapor)
+│   │       ├── repo_discoverer.py       # Repo keşfi (arama, değerlendirme, filtreleme, sıralama, trending)
+│   │       ├── repo_analyzer.py         # Repo analizi (tech stack, bağımlılık, kalite, API tespit)
+│   │       ├── compatibility_checker.py # Uyumluluk kontrolü (Python, OS, lisans, bağımlılık çatışması)
+│   │       ├── repo_cloner.py           # Repo klonlama (branch, sparse checkout, submodule, versiyon sabitleme)
+│   │       ├── auto_installer.py        # Otomatik kurulum (yöntem tespit, onay, komut, rollback)
+│   │       ├── agent_wrapper.py         # Agent sarmalama (agent/tool wrap, kayıt, kod üretimi)
+│   │       ├── tool_adapter.py          # Araç adaptörü (CLI/library/API sarmalama, fonksiyon çıkarma)
+│   │       ├── security_scanner.py      # Güvenlik tarayıcı (kalıp, malware, ağ/dosya erişim, sandbox)
+│   │       └── github_orchestrator.py   # Orkestratör (Search→Analyze→Check→Clone→Install→Wrap→Register)
 │   │
 │   ├── agents/
 │   │   ├── __init__.py
@@ -306,7 +318,8 @@ atlas/
 │       ├── jit.py             # JIT Capability modeli
 │       ├── evolution.py       # Self-Evolution modeli
 │       ├── emotional.py       # Emotional Intelligence modeli
-│       └── simulation.py     # Simulation & Scenario Testing modeli
+│       ├── simulation.py     # Simulation & Scenario Testing modeli
+│       └── github_integrator.py # GitHub Project Integrator modeli
 │
 │
 │   ├── plugins/                # Plugin dizini (kullanıcı plugin'leri)
@@ -316,7 +329,7 @@ atlas/
 │   │       ├── agent.py
 │   │       └── hooks.py
 │
-├── tests/                      # 109 test dosyası, 5214 test
+├── tests/                      # 110 test dosyası, 5372 test
 │   └── ...
 │
 ├── scripts/
@@ -435,14 +448,14 @@ async def analyze_supplier(
 
 ## Proje İstatistikleri
 
-- **Python modülleri**: ~233 kaynak + ~109 test dosyası
-- **Toplam LOC**: ~117,200
-- **Test sayısı**: 5,214+
+- **Python modülleri**: ~244 kaynak + ~110 test dosyası
+- **Toplam LOC**: ~121,500
+- **Test sayısı**: 5,372+
 - **Agent sayısı**: 11 (1 base + 9 uzman + 1 meta)
 - **API endpoint**: 15 (10 core + 5 plugin)
 - **Webhook endpoint**: 4
 
-## Geliştirme Durumu (33/33 Tamamlandı ✅)
+## Geliştirme Durumu (34/34 Tamamlandı ✅)
 
 1. ✅ Proje yapısı ve temel config
 2. ✅ Master Agent + Karar Matrisi (akıllı agent seçimi, eskalasyon, denetim izi, onay iş akışı)
@@ -477,3 +490,4 @@ async def analyze_supplier(
 31. ✅ Self-Evolution sistemi (PerformanceMonitor, WeaknessDetector, ImprovementPlanner, CodeEvolver, SafetyGuardian, ExperimentRunner, ApprovalManager, KnowledgeLearner, EvolutionController)
 32. ✅ Emotional Intelligence sistemi (SentimentAnalyzer, EmpathyEngine, MoodTracker, CommunicationStyler, ConflictResolver, MotivationEngine, PersonalityAdapter, EmotionalMemoryManager, EQOrchestrator)
 33. ✅ Simulation & Scenario Testing sistemi (WorldModeler, ActionSimulator, ScenarioGenerator, OutcomePredictor, RiskSimulator, RollbackPlanner, WhatIfEngine, DryRunExecutor, SimulationEngine)
+34. ✅ GitHub Project Integrator sistemi (RepoDiscoverer, RepoAnalyzer, CompatibilityChecker, RepoCloner, AutoInstaller, AgentWrapper, ToolAdapter, SecurityScanner, GitHubOrchestrator)
