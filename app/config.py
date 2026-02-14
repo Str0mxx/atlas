@@ -256,6 +256,13 @@ class Settings(BaseSettings):
     cache_enabled: bool = True
     rate_limit_default: int = 100
 
+    # Security Hardening
+    security_enabled: bool = True
+    encryption_algorithm: str = "aes-256"
+    session_timeout: int = 30
+    max_login_attempts: int = 5
+    audit_retention_days: int = 90
+
     # Resilience / Offline
     resilience_enabled: bool = True
     offline_health_check_interval: int = 30
