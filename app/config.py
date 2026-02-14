@@ -326,6 +326,13 @@ class Settings(BaseSettings):
     retention_days: int = 90
     compression_enabled: bool = True
 
+    # API Management & Gateway
+    api_gateway_enabled: bool = True
+    default_rate_limit: int = 100
+    request_timeout: int = 30
+    enable_documentation: bool = True
+    analytics_retention_days: int = 30
+
     # Resilience / Offline
     resilience_enabled: bool = True
     offline_health_check_interval: int = 30
