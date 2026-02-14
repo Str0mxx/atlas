@@ -305,6 +305,13 @@ class Settings(BaseSettings):
     retry_attempts: int = 3
     lineage_retention_days: int = 90
 
+    # Workflow & Automation Engine
+    workflow_enabled: bool = True
+    max_concurrent_workflows: int = 10
+    workflow_default_timeout: int = 3600
+    max_loop_iterations: int = 1000
+    execution_history_days: int = 30
+
     # Resilience / Offline
     resilience_enabled: bool = True
     offline_health_check_interval: int = 30
