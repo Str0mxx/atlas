@@ -200,6 +200,13 @@ class Settings(BaseSettings):
     spawner_idle_timeout: int = 300
     spawner_spawn_timeout: int = 30
 
+    # Swarm Intelligence
+    swarm_enabled: bool = True
+    swarm_min_size: int = 2
+    swarm_max_size: int = 20
+    swarm_voting_threshold: float = 0.5
+    swarm_pheromone_decay_rate: float = 0.1
+
     # Resilience / Offline
     resilience_enabled: bool = True
     offline_health_check_interval: int = 30
