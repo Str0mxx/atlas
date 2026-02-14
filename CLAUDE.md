@@ -256,17 +256,29 @@ atlas/
 │   │       ├── conflict_arbiter.py      # Çatışma hakemi (kaynak, öncelik, kilitlenme, çözüm stratejisi)
 │   │       └── hierarchy_orchestrator.py # Orkestratör (tam hiyerarşi, yeniden yapılandırma, optimizasyon)
 │   │   │
-│   │   └── spawner/               # Agent Spawner sistemi
+│   │   ├── spawner/               # Agent Spawner sistemi
+│   │   │   ├── __init__.py
+│   │   │   ├── agent_template.py        # Agent şablonları (predefined tipler, preset, kaynak profili)
+│   │   │   ├── spawn_engine.py          # Oluşturma motoru (template, scratch, clone, hybrid, batch)
+│   │   │   ├── lifecycle_manager.py     # Yaşam döngüsü (durum geçişleri, sağlık, auto-restart)
+│   │   │   ├── resource_allocator.py    # Kaynak tahsisi (memory, CPU, API kota, dinamik yeniden dağıtım)
+│   │   │   ├── capability_injector.py   # Yetenek enjeksiyonu (add, remove, upgrade, hot-swap, bağımlılık)
+│   │   │   ├── agent_pool.py            # Agent havuzu (fixed/elastic/on-demand, hızlı atama)
+│   │   │   ├── termination_handler.py   # Sonlandırma (graceful, force, timeout, idle, durum koruma)
+│   │   │   ├── agent_registry.py        # Agent kaydı (yetenek indeksi, etiket, arama, istatistik)
+│   │   │   └── spawner_orchestrator.py  # Orkestratör (tam yaşam döngüsü, auto-scale, havuz yönetimi)
+│   │   │
+│   │   └── swarm/                 # Swarm Intelligence sistemi
 │   │       ├── __init__.py
-│   │       ├── agent_template.py        # Agent şablonları (predefined tipler, preset, kaynak profili)
-│   │       ├── spawn_engine.py          # Oluşturma motoru (template, scratch, clone, hybrid, batch)
-│   │       ├── lifecycle_manager.py     # Yaşam döngüsü (durum geçişleri, sağlık, auto-restart)
-│   │       ├── resource_allocator.py    # Kaynak tahsisi (memory, CPU, API kota, dinamik yeniden dağıtım)
-│   │       ├── capability_injector.py   # Yetenek enjeksiyonu (add, remove, upgrade, hot-swap, bağımlılık)
-│   │       ├── agent_pool.py            # Agent havuzu (fixed/elastic/on-demand, hızlı atama)
-│   │       ├── termination_handler.py   # Sonlandırma (graceful, force, timeout, idle, durum koruma)
-│   │       ├── agent_registry.py        # Agent kaydı (yetenek indeksi, etiket, arama, istatistik)
-│   │       └── spawner_orchestrator.py  # Orkestratör (tam yaşam döngüsü, auto-scale, havuz yönetimi)
+│   │       ├── swarm_coordinator.py     # Sürü koordinatörü (oluşturma, katılım, lider seçimi, hedef dağıtımı)
+│   │       ├── pheromone_system.py      # Feromon sistemi (stigmerji, iz bırakma, bozunma, çekim puanı)
+│   │       ├── collective_memory.py     # Kolektif hafıza (güven puanlı bilgi, birleştirme, oylama)
+│   │       ├── voting_system.py         # Oylama sistemi (çoğunluk, oybirliği, ağırlıklı, veto, quorum)
+│   │       ├── task_auction.py          # Görev açık artırma (teklif, yetenek eşleme, adillik bonusu)
+│   │       ├── emergent_behavior.py     # Ortaya çıkan davranış (yakınsama, örüntü, sinerji tespiti)
+│   │       ├── load_balancer.py         # Yük dengeleyici (least-loaded, round-robin, iş çalma, Jain indeksi)
+│   │       ├── fault_tolerance.py       # Hata toleransı (yedekleme, yeniden atama, iyileştirme, eskalasyon)
+│   │       └── swarm_orchestrator.py    # Orkestratör (misyon, oylama, bilgi paylaşımı, optimizasyon)
 │   │
 │   ├── agents/
 │   │   ├── __init__.py
@@ -345,7 +357,8 @@ atlas/
 │       ├── simulation.py     # Simulation & Scenario Testing modeli
 │       ├── github_integrator.py # GitHub Project Integrator modeli
 │       ├── hierarchy.py    # Hierarchical Agent Controller modeli
-│       └── spawner.py     # Agent Spawner modeli
+│       ├── spawner.py     # Agent Spawner modeli
+│       └── swarm.py       # Swarm Intelligence modeli
 │
 │
 │   ├── plugins/                # Plugin dizini (kullanıcı plugin'leri)
@@ -355,7 +368,7 @@ atlas/
 │   │       ├── agent.py
 │   │       └── hooks.py
 │
-├── tests/                      # 112 test dosyası, 5688 test
+├── tests/                      # 113 test dosyası, 5814 test
 │   └── ...
 │
 ├── scripts/
@@ -474,14 +487,14 @@ async def analyze_supplier(
 
 ## Proje İstatistikleri
 
-- **Python modülleri**: ~266 kaynak + ~112 test dosyası
-- **Toplam LOC**: ~130,500
-- **Test sayısı**: 5,688+
+- **Python modülleri**: ~277 kaynak + ~113 test dosyası
+- **Toplam LOC**: ~134,300
+- **Test sayısı**: 5,814+
 - **Agent sayısı**: 11 (1 base + 9 uzman + 1 meta)
 - **API endpoint**: 15 (10 core + 5 plugin)
 - **Webhook endpoint**: 4
 
-## Geliştirme Durumu (36/36 Tamamlandı ✅)
+## Geliştirme Durumu (37/37 Tamamlandı ✅)
 
 1. ✅ Proje yapısı ve temel config
 2. ✅ Master Agent + Karar Matrisi (akıllı agent seçimi, eskalasyon, denetim izi, onay iş akışı)
@@ -519,3 +532,4 @@ async def analyze_supplier(
 34. ✅ GitHub Project Integrator sistemi (RepoDiscoverer, RepoAnalyzer, CompatibilityChecker, RepoCloner, AutoInstaller, AgentWrapper, ToolAdapter, SecurityScanner, GitHubOrchestrator)
 35. ✅ Hierarchical Agent Controller sistemi (AgentHierarchy, ClusterManager, DelegationEngine, SupervisionController, ReportingSystem, CommandChain, AutonomyController, ConflictArbiter, HierarchyOrchestrator)
 36. ✅ Agent Spawner sistemi (AgentTemplateManager, SpawnEngine, LifecycleManager, ResourceAllocator, CapabilityInjector, AgentPool, TerminationHandler, AgentRegistry, SpawnerOrchestrator)
+37. ✅ Swarm Intelligence sistemi (SwarmCoordinator, PheromoneSystem, CollectiveMemory, VotingSystem, TaskAuction, EmergentBehavior, SwarmLoadBalancer, SwarmFaultTolerance, SwarmOrchestrator)
