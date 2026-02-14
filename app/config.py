@@ -291,6 +291,13 @@ class Settings(BaseSettings):
     auto_detect: bool = True
     translation_cache: bool = True
 
+    # Notification & Alert System
+    notification_enabled: bool = True
+    default_channel: str = "log"
+    quiet_hours_start: str = "22:00"
+    quiet_hours_end: str = "08:00"
+    max_daily_notifications: int = 100
+
     # Resilience / Offline
     resilience_enabled: bool = True
     offline_health_check_interval: int = 30
