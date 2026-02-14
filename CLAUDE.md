@@ -424,6 +424,18 @@ atlas/
 │   │   │   ├── escalation_manager.py      # Eskalasyon yöneticisi (çok seviyeli, zaman aşımı, nöbetçi rotasyon)
 │   │   │   └── notification_orchestrator.py # Orkestratör (tam pipeline, limit, tercih, şablon, teslimat)
 │   │   │
+│   │   ├── pipeline/              # Data Pipeline & ETL System
+│   │   │   ├── __init__.py
+│   │   │   ├── data_extractor.py        # Veri çıkarıcı (database, API, file, web, stream, artımsal)
+│   │   │   ├── data_transformer.py      # Veri dönüştürücü (şema eşleme, temizleme, tür, gruplama, zenginleştirme)
+│   │   │   ├── data_loader.py           # Veri yükleyici (database, dosya, API, toplu, artımsal)
+│   │   │   ├── pipeline_builder.py      # Pipeline oluşturucu (DAG, zincirleme, dallanma, birleştirme, koşullu)
+│   │   │   ├── data_validator.py        # Veri doğrulayıcı (şema, null, aralık, benzersizlik, kalite)
+│   │   │   ├── stream_processor.py      # Akış işleyici (gerçek zamanlı, pencere, gruplama, geç veri)
+│   │   │   ├── job_scheduler.py         # İş zamanlayıcı (cron, bağımlılık, yeniden deneme, izleme)
+│   │   │   ├── lineage_tracker.py       # Soy takipçisi (veri soyu, etki analizi, denetim izi)
+│   │   │   └── pipeline_orchestrator.py # Orkestratör (tam ETL, izleme, hata, performans, analitik)
+│   │   │
 │   │   └── integration/          # External Integration Hub sistemi
 │   │       ├── __init__.py
 │   │       ├── api_connector.py       # API bağlayıcı (REST, GraphQL, SOAP, WebSocket, gRPC)
@@ -527,7 +539,8 @@ atlas/
 │       ├── resource.py   # Resource Management modeli
 │       ├── scheduler.py  # Time & Schedule Management modeli
 │       ├── localization.py # Multi-Language & Localization modeli
-│       └── notification_system.py # Notification & Alert System modeli
+│       ├── notification_system.py # Notification & Alert System modeli
+│       └── pipeline.py   # Data Pipeline & ETL System modeli
 │
 │
 │   ├── plugins/                # Plugin dizini (kullanıcı plugin'leri)
@@ -537,7 +550,7 @@ atlas/
 │   │       ├── agent.py
 │   │       └── hooks.py
 │
-├── tests/                      # 126 test dosyası, 7681 test
+├── tests/                      # 127 test dosyası, 7818 test
 │   └── ...
 │
 ├── scripts/
@@ -656,14 +669,14 @@ async def analyze_supplier(
 
 ## Proje İstatistikleri
 
-- **Python modülleri**: ~417 kaynak + ~126 test dosyası
-- **Toplam LOC**: ~180,000
-- **Test sayısı**: 7,681+
+- **Python modülleri**: ~428 kaynak + ~127 test dosyası
+- **Toplam LOC**: ~183,000
+- **Test sayısı**: 7,818+
 - **Agent sayısı**: 11 (1 base + 9 uzman + 1 meta)
 - **API endpoint**: 15 (10 core + 5 plugin)
 - **Webhook endpoint**: 4
 
-## Geliştirme Durumu (50/50 Tamamlandı ✅)
+## Geliştirme Durumu (51/51 Tamamlandı ✅)
 
 1. ✅ Proje yapısı ve temel config
 2. ✅ Master Agent + Karar Matrisi (akıllı agent seçimi, eskalasyon, denetim izi, onay iş akışı)
@@ -715,3 +728,4 @@ async def analyze_supplier(
 48. ✅ Time & Schedule Management sistemi (TaskScheduler, CalendarManager, ReminderSystem, DeadlineTracker, TimeEstimator, WorkloadBalancer, TimeTracker, ScheduleOptimizer, SchedulerOrchestrator)
 49. ✅ Multi-Language & Localization sistemi (LanguageDetector, Translator, LocaleManager, MessageCatalog, CulturalAdapter, ContentLocalizer, TerminologyManager, LocalizationQualityChecker, LocalizationOrchestrator)
 50. ✅ Notification & Alert System (NotificationManager, ChannelDispatcher, AlertEngine, NotificationPreferenceManager, NotificationTemplateEngine, DeliveryTracker, DigestBuilder, EscalationManager, NotificationOrchestrator)
+51. ✅ Data Pipeline & ETL System (DataExtractor, DataTransformer, DataLoader, PipelineBuilder, DataValidator, StreamProcessor, PipelineJobScheduler, LineageTracker, PipelineOrchestrator)

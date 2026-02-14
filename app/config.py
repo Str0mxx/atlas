@@ -298,6 +298,13 @@ class Settings(BaseSettings):
     quiet_hours_end: str = "08:00"
     max_daily_notifications: int = 100
 
+    # Data Pipeline & ETL
+    pipeline_enabled: bool = True
+    max_parallel_jobs: int = 5
+    default_batch_size: int = 100
+    retry_attempts: int = 3
+    lineage_retention_days: int = 90
+
     # Resilience / Offline
     resilience_enabled: bool = True
     offline_health_check_interval: int = 30
