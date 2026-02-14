@@ -207,6 +207,13 @@ class Settings(BaseSettings):
     swarm_voting_threshold: float = 0.5
     swarm_pheromone_decay_rate: float = 0.1
 
+    # Mission Control
+    mission_enabled: bool = True
+    max_concurrent_missions: int = 5
+    auto_abort_threshold: float = 0.3
+    report_interval: int = 3600
+    require_phase_approval: bool = False
+
     # Resilience / Offline
     resilience_enabled: bool = True
     offline_health_check_interval: int = 30
