@@ -528,6 +528,13 @@ class Settings(BaseSettings):
     proactive_quiet_hours_end: int = 7
     auto_action_threshold: float = 0.8
 
+    # Voice Call Interface
+    voicecall_enabled: bool = True
+    default_voice: str = "atlas_default"
+    max_call_duration: int = 1800
+    recording_enabled: bool = True
+    emergency_override: bool = True
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""
