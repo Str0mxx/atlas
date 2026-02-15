@@ -592,17 +592,29 @@ atlas/
 │   │   │   ├── knowledge_network.py      # Bilgi ağı (graf, ilişki, yayılım, etki, görselleştirme)
 │   │   │   └── learntransfer_orchestrator.py # Orkestratör (Extract→Adapt→Validate→Inject→Track pipeline)
 │   │   │
-│   │   └── entitymem/           # Unified Entity Memory sistemi
+│   │   ├── entitymem/           # Unified Entity Memory sistemi
+│   │   │   ├── __init__.py
+│   │   │   ├── entity_registry.py        # Varlık kaydı (oluşturma, tip, benzersiz ID, alias, yaşam döngüsü)
+│   │   │   ├── profile_builder.py        # Profil oluşturucu (toplama, birleştirme, çatışma, tamlık, güncelleme)
+│   │   │   ├── interaction_logger.py     # Etkileşim kaydedici (loglama, kanal, zaman, bağlam, duygu)
+│   │   │   ├── relationship_mapper.py    # İlişki haritacısı (ilişki, tip, güç, çift yönlü, hiyerarşi)
+│   │   │   ├── timeline_builder.py       # Zaman çizelgesi (kronolojik, kilometre taşı, dönem, kalıp, projeksiyon)
+│   │   │   ├── preference_learner.py     # Tercih öğrenici (iletişim, zamanlama, ilgi, davranış)
+│   │   │   ├── context_provider.py       # Bağlam sağlayıcı (bağlam, etkileşim, bekleyen, ilişki, özet)
+│   │   │   ├── privacy_manager.py        # Gizlilik yöneticisi (saklama, erişim, anonimleştirme, onay, GDPR)
+│   │   │   └── entitymem_orchestrator.py # Orkestratör (tam yönetim, çapraz kanal, sorgu, analitik, export)
+│   │   │
+│   │   └── regulatory/          # Regulatory & Constraint Engine sistemi
 │   │       ├── __init__.py
-│   │       ├── entity_registry.py        # Varlık kaydı (oluşturma, tip, benzersiz ID, alias, yaşam döngüsü)
-│   │       ├── profile_builder.py        # Profil oluşturucu (toplama, birleştirme, çatışma, tamlık, güncelleme)
-│   │       ├── interaction_logger.py     # Etkileşim kaydedici (loglama, kanal, zaman, bağlam, duygu)
-│   │       ├── relationship_mapper.py    # İlişki haritacısı (ilişki, tip, güç, çift yönlü, hiyerarşi)
-│   │       ├── timeline_builder.py       # Zaman çizelgesi (kronolojik, kilometre taşı, dönem, kalıp, projeksiyon)
-│   │       ├── preference_learner.py     # Tercih öğrenici (iletişim, zamanlama, ilgi, davranış)
-│   │       ├── context_provider.py       # Bağlam sağlayıcı (bağlam, etkileşim, bekleyen, ilişki, özet)
-│   │       ├── privacy_manager.py        # Gizlilik yöneticisi (saklama, erişim, anonimleştirme, onay, GDPR)
-│   │       └── entitymem_orchestrator.py # Orkestratör (tam yönetim, çapraz kanal, sorgu, analitik, export)
+│   │       ├── rule_repository.py        # Kural deposu (saklama, kategori, yetki alanı, versiyon, aktivasyon)
+│   │       ├── constraint_definer.py     # Kısıt tanımlayıcı (sert, yumuşak, zamansal, koşullu, öncelik)
+│   │       ├── compliance_checker.py     # Uyumluluk kontrolcüsü (ön-kontrol, değerlendirme, ihlal, şiddet, öneri)
+│   │       ├── jurisdiction_manager.py   # Yetki alanı yöneticisi (coğrafi, sektör, platform, zamanlı, çakışma)
+│   │       ├── rate_limit_enforcer.py    # Hız limiti uygulayıcı (API, platform, özel, kota, geri çekilme)
+│   │       ├── rule_updater.py           # Kural güncelleyici (izleme, oto-güncelleme, bildirim, etki, migrasyon)
+│   │       ├── exception_handler.py      # İstisna yöneticisi (talep, onay, geçersiz kılma, denetim, süre)
+│   │       ├── compliance_reporter.py    # Uyumluluk raporlayıcı (durum, ihlal, trend, denetim, export)
+│   │       └── regulatory_orchestrator.py # Orkestratör (tam pipeline, karar kontrolü, uygulama, analitik)
 │   │
 │   ├── agents/
 │   │   ├── __init__.py
@@ -710,7 +722,8 @@ atlas/
 │       ├── capgap_models.py   # Capability Gap Detection modeli
 │       ├── goaldecomp_models.py # Goal Decomposition modeli
 │       ├── learntransfer_models.py # Cross-System Learning Transfer modeli
-│       └── entitymem_models.py  # Unified Entity Memory modeli
+│       ├── entitymem_models.py  # Unified Entity Memory modeli
+│       └── regulatory_models.py # Regulatory & Constraint Engine modeli
 │
 │
 │   ├── plugins/                # Plugin dizini (kullanıcı plugin'leri)
@@ -839,14 +852,14 @@ async def analyze_supplier(
 
 ## Proje İstatistikleri
 
-- **Python modülleri**: ~653 kaynak + ~149 test dosyası
-- **Toplam LOC**: ~257,000
-- **Test sayısı**: 12,131+
+- **Python modülleri**: ~664 kaynak + ~150 test dosyası
+- **Toplam LOC**: ~261,000
+- **Test sayısı**: 12,240+
 - **Agent sayısı**: 11 (1 base + 9 uzman + 1 meta)
 - **API endpoint**: 15 (10 core + 5 plugin)
 - **Webhook endpoint**: 4
 
-## Geliştirme Durumu (79/79 Tamamlandı ✅)
+## Geliştirme Durumu (80/80 Tamamlandı ✅)
 
 1. ✅ Proje yapısı ve temel config
 2. ✅ Master Agent + Karar Matrisi (akıllı agent seçimi, eskalasyon, denetim izi, onay iş akışı)
@@ -927,3 +940,4 @@ async def analyze_supplier(
 77. ✅ Goal Decomposition & Self-Tasking (GoalParser, DecompositionEngine, TaskGenerator, PrerequisiteAnalyzer, SelfAssigner, ProgressSynthesizer, ReplanningEngine, GoalValidator, GoalDecompOrchestrator)
 78. ✅ Cross-System Learning Transfer (KnowledgeExtractor, SimilarityAnalyzer, KnowledgeAdapter, TransferValidator, KnowledgeInjector, TransferTracker, TransferFeedbackLoop, KnowledgeNetwork, LearnTransferOrchestrator)
 79. ✅ Unified Entity Memory (EntityRegistry, ProfileBuilder, InteractionLogger, RelationshipMapper, TimelineBuilder, EntityPreferenceLearner, EntityContextProvider, EntityPrivacyManager, EntityMemOrchestrator)
+80. ✅ Regulatory & Constraint Engine (RuleRepository, ConstraintDefiner, RegulatoryComplianceChecker, JurisdictionManager, RateLimitEnforcer, RuleUpdater, RegulatoryExceptionHandler, RegulatoryComplianceReporter, RegulatoryOrchestrator)

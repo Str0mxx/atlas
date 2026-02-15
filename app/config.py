@@ -514,6 +514,13 @@ class Settings(BaseSettings):
     privacy_mode: str = "standard"
     max_interactions_stored: int = 10000
 
+    # Regulatory
+    regulatory_enabled: bool = True
+    strict_mode: bool = False
+    auto_update_rules: bool = False
+    violation_alert: bool = True
+    exception_approval_required: bool = True
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""
