@@ -451,6 +451,13 @@ class Settings(BaseSettings):
     ratelimit_quota_reset_hour: int = 0
     ratelimit_violation_penalty_minutes: int = 15
 
+    # Closed-Loop Execution Tracking
+    closedloop_enabled: bool = True
+    outcome_detection_timeout: int = 300
+    min_confidence_for_learning: float = 0.5
+    experiment_duration_hours: int = 24
+    auto_apply_learnings: bool = False
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""
