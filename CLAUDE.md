@@ -520,6 +520,18 @@ atlas/
 │   │       ├── calibration_engine.py      # Kalibrasyon motoru (Brier, güvenilirlik, oto-düzeltme)
 │   │       └── confidence_orchestrator.py # Orkestratör (tam pipeline, karar, güven, raporlama)
 │   │
+│   │   └── benchmark/            # Self-Benchmarking Framework sistemi
+│   │       ├── __init__.py
+│   │       ├── kpi_definer.py            # KPI tanımlayıcı (sistem, agent, özel, hedef, eşik)
+│   │       ├── metric_collector.py       # Metrik toplayıcı (gerçek zamanlı, tarihsel, toplulama)
+│   │       ├── performance_scorer.py     # Performans puanlayıcı (puan, ağırlıklı, normalize, sıralama)
+│   │       ├── trend_analyzer.py         # Trend analizcisi (iyileşme, bozulma, anomali, tahmin)
+│   │       ├── ab_tester.py              # A/B test motoru (deney, gözlem, anlamlılık, kazanan)
+│   │       ├── comparison_engine.py      # Karşılaştırma motoru (baseline, dönem, standart, boşluk)
+│   │       ├── report_generator.py       # Rapor üretici (performans, trend, yönetici özeti, detay)
+│   │       ├── alert_manager.py          # Uyarı yöneticisi (eşik, bozulma, iyileşme, anomali)
+│   │       └── benchmark_orchestrator.py # Orkestratör (tam pipeline, değerlendirme, analitik)
+│   │
 │   ├── agents/
 │   │   ├── __init__.py
 │   │   ├── base_agent.py            # Temel agent sınıfı (execute/analyze/report)
@@ -619,7 +631,8 @@ atlas/
 │       ├── iam_models.py # Identity & Access Management modeli
 │       ├── ratelimit_models.py # Rate Limiting & Throttling modeli
 │       ├── closedloop_models.py # Closed-Loop Execution Tracking modeli
-│       └── confidence_models.py # Confidence-Based Autonomy modeli
+│       ├── confidence_models.py # Confidence-Based Autonomy modeli
+│       └── benchmark_models.py # Self-Benchmarking Framework modeli
 │
 │
 │   ├── plugins/                # Plugin dizini (kullanıcı plugin'leri)
@@ -629,7 +642,7 @@ atlas/
 │   │       ├── agent.py
 │   │       └── hooks.py
 │
-├── tests/                      # 127 test dosyası, 7818 test
+├── tests/                      # 128 test dosyası, 8003 test
 │   └── ...
 │
 ├── scripts/
@@ -748,14 +761,14 @@ async def analyze_supplier(
 
 ## Proje İstatistikleri
 
-- **Python modülleri**: ~578 kaynak + ~142 test dosyası
-- **Toplam LOC**: ~230,000
-- **Test sayısı**: 11,136+
+- **Python modülleri**: ~589 kaynak + ~143 test dosyası
+- **Toplam LOC**: ~233,000
+- **Test sayısı**: 11,321+
 - **Agent sayısı**: 11 (1 base + 9 uzman + 1 meta)
 - **API endpoint**: 15 (10 core + 5 plugin)
 - **Webhook endpoint**: 4
 
-## Geliştirme Durumu (72/72 Tamamlandı ✅)
+## Geliştirme Durumu (73/73 Tamamlandı ✅)
 
 1. ✅ Proje yapısı ve temel config
 2. ✅ Master Agent + Karar Matrisi (akıllı agent seçimi, eskalasyon, denetim izi, onay iş akışı)
@@ -829,3 +842,4 @@ async def analyze_supplier(
 70. ✅ Rate Limiting & Throttling (TokenBucket, SlidingWindow, LeakyBucket, QuotaManager, ThrottleController, RatePolicy, ViolationHandler, RateAnalytics, RateLimitOrchestrator)
 71. ✅ Closed-Loop Execution Tracking (ActionTracker, OutcomeDetector, FeedbackCollector, CausalityAnalyzer, LearningIntegrator, LoopMonitor, ClosedLoopExperimentTracker, ImprovementEngine, ClosedLoopOrchestrator)
 72. ✅ Confidence-Based Autonomy (ConfidenceCalculator, ThresholdManager, ConfidenceAutonomyController, AccuracyTracker, TrustEvolver, ConfidenceEscalationRouter, HumanFeedbackHandler, CalibrationEngine, ConfidenceOrchestrator)
+73. ✅ Self-Benchmarking Framework (KPIDefiner, BenchmarkMetricCollector, PerformanceScorer, BenchmarkTrendAnalyzer, ABTester, ComparisonEngine, BenchmarkReportGenerator, BenchmarkAlertManager, BenchmarkOrchestrator)

@@ -465,6 +465,13 @@ class Settings(BaseSettings):
     trust_decay_rate: float = 0.01
     calibration_interval_hours: int = 24
 
+    # Self-Benchmarking Framework
+    benchmark_enabled: bool = True
+    evaluation_interval_hours: int = 6
+    ab_test_min_samples: int = 30
+    alert_on_degradation: bool = True
+    report_frequency: str = "daily"
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""
