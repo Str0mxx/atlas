@@ -556,6 +556,13 @@ class Settings(BaseSettings):
     emergency_override: bool = True
     digest_enabled: bool = True
 
+    # --- Deep Research Engine ---
+    research_enabled: bool = True
+    max_sources: int = 10
+    min_credibility_score: float = 0.3
+    continuous_tracking: bool = True
+    report_format: str = "markdown"
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""

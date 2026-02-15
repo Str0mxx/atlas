@@ -149,6 +149,18 @@ atlas/
 │   │   │   ├── digest_compiler.py         # Özet derleme (derleme, aksiyon çıkarma, zamanlama)
 │   │   │   └── availability_orchestrator.py # Orkestratör (Learn→Detect→Buffer→Decide→Deliver)
 │   │   │
+│   │   ├── research/            # Deep Research Engine sistemi
+│   │   │   ├── __init__.py
+│   │   │   ├── multi_source_crawler.py    # Çoklu kaynak tarama (paralel, hız limiti, yeniden deneme)
+│   │   │   ├── query_expander.py          # Sorgu genişletme (eşanlamlı, soru üretme, varyant)
+│   │   │   ├── source_ranker.py           # Kaynak sıralama (güvenilirlik, otorite, önyargı)
+│   │   │   ├── information_extractor.py   # Bilgi çıkarma (gerçek, varlık, ilişki, alıntı)
+│   │   │   ├── cross_validator.py         # Çapraz doğrulama (doğrulama, çelişki, konsensüs)
+│   │   │   ├── research_synthesizer.py    # Sentez (füzyon, boşluk, çıkarım, anlatı)
+│   │   │   ├── continuous_tracker.py      # Sürekli takip (konu izleme, değişiklik, uyarı)
+│   │   │   ├── research_reporter.py       # Raporlama (çoklu format, atıf, dışa aktarma)
+│   │   │   └── research_orchestrator.py   # Orkestratör (Query→Crawl→Extract→Validate→Synthesize→Report)
+│   │   │
 │   │   ├── capfactory/         # Runtime Capability Factory sistemi
 │   │   │   ├── __init__.py
 │   │   │   ├── need_analyzer.py         # İhtiyaç analizi (anahtar kelime, karmaşıklık, fizibilite)
@@ -744,6 +756,7 @@ atlas/
 │       ├── selfcode.py        # Self-coding agent modeli
 │       ├── memory_palace.py   # Memory Palace hafıza modeli
 │       ├── availability_models.py # Contextual Availability & Priority modeli
+│       ├── research_engine_models.py # Deep Research Engine modeli
 │       ├── capfactory_models.py # Runtime Capability Factory modeli
 │       ├── business.py        # Autonomous Business Runner modeli
 │       ├── nlp_engine.py      # NLP Engine modeli
@@ -798,7 +811,7 @@ atlas/
 │   │       ├── agent.py
 │   │       └── hooks.py
 │
-├── tests/                      # 161 test dosyası, 12934 test
+├── tests/                      # 162 test dosyası, 13045 test
 │   └── ...
 │
 ├── scripts/
@@ -917,14 +930,14 @@ async def analyze_supplier(
 
 ## Proje İstatistikleri
 
-- **Python modülleri**: ~804 kaynak + ~161 test dosyası
-- **Toplam LOC**: ~278,000
-- **Test sayısı**: 12,934+
+- **Python modülleri**: ~815 kaynak + ~162 test dosyası
+- **Toplam LOC**: ~282,000
+- **Test sayısı**: 13,045+
 - **Agent sayısı**: 11 (1 base + 9 uzman + 1 meta)
 - **API endpoint**: 15 (10 core + 5 plugin)
 - **Webhook endpoint**: 4
 
-## Geliştirme Durumu (85/85 Tamamlandı ✅)
+## Geliştirme Durumu (86/86 Tamamlandı ✅)
 
 1. ✅ Proje yapısı ve temel config
 2. ✅ Master Agent + Karar Matrisi (akıllı agent seçimi, eskalasyon, denetim izi, onay iş akışı)
@@ -1011,3 +1024,4 @@ async def analyze_supplier(
 83. ✅ Multi-Channel Command Center (ChannelRouter, ContextCarrier, AvailabilityTracker, CommandInterpreter, ResponseFormatter, ChannelPreferenceEngine, EscalationPathManager, UnifiedInbox, MultiChannelOrchestrator)
 84. ✅ Runtime Capability Factory (NeedAnalyzer, SolutionArchitect, RapidPrototyper, SandboxEnvironment, CapabilityAutoTester, SafeDeployer, RuntimeCapabilityRegistry, RollbackOnFailure, CapFactoryOrchestrator)
 85. ✅ Contextual Availability & Priority (AvailabilityLearner, ContextualPriorityScorer, MessageBuffer, InterruptDecider, RoutineDetector, QuietHoursManager, UrgencyOverride, DigestCompiler, AvailabilityOrchestrator)
+86. ✅ Deep Research Engine (MultiSourceCrawler, QueryExpander, SourceRanker, InformationExtractor, CrossValidator, ResearchSynthesizer, ContinuousTracker, ResearchReporter, ResearchOrchestrator)
