@@ -161,6 +161,18 @@ atlas/
 │   │   │   ├── research_reporter.py       # Raporlama (çoklu format, atıf, dışa aktarma)
 │   │   │   └── research_orchestrator.py   # Orkestratör (Query→Crawl→Extract→Validate→Synthesize→Report)
 │   │   │
+│   │   ├── webnav/             # Intelligent Web Navigator sistemi
+│   │   │   ├── __init__.py
+│   │   │   ├── browser_automation.py    # Headless tarayıcı kontrolü (gezinti, tıklama, JS, SS)
+│   │   │   ├── form_filler.py           # Form doldurma (alan tespiti, profil, çok adımlı, dosya yükleme)
+│   │   │   ├── login_manager.py         # Giriş yönetimi (kimlik, oturum, çerez, MFA, yenileme)
+│   │   │   ├── pagination_handler.py    # Sayfalama (tespit, sonsuz kaydırma, load more, birleştirme)
+│   │   │   ├── captcha_solver.py        # Captcha çözme (tespit, servis, eskalasyon, hız sınırlama)
+│   │   │   ├── screenshot_capture.py    # Ekran görüntüsü (tam sayfa, eleman, viewport, açıklama, karşılaştırma)
+│   │   │   ├── structured_data_extractor.py # Yapısal veri çıkarma (tablo, liste, şema, JSON-LD, normalleştirme)
+│   │   │   ├── navigation_recorder.py   # Gezinti kaydı (aksiyon, tekrar oynatma, hata, denetim izi)
+│   │   │   └── webnav_orchestrator.py   # Orkestratör (Navigate→Interact→Extract→Record pipeline)
+│   │   │
 │   │   ├── capfactory/         # Runtime Capability Factory sistemi
 │   │   │   ├── __init__.py
 │   │   │   ├── need_analyzer.py         # İhtiyaç analizi (anahtar kelime, karmaşıklık, fizibilite)
@@ -757,6 +769,7 @@ atlas/
 │       ├── memory_palace.py   # Memory Palace hafıza modeli
 │       ├── availability_models.py # Contextual Availability & Priority modeli
 │       ├── research_engine_models.py # Deep Research Engine modeli
+│       ├── webnav_models.py     # Intelligent Web Navigator modeli
 │       ├── capfactory_models.py # Runtime Capability Factory modeli
 │       ├── business.py        # Autonomous Business Runner modeli
 │       ├── nlp_engine.py      # NLP Engine modeli
@@ -811,7 +824,7 @@ atlas/
 │   │       ├── agent.py
 │   │       └── hooks.py
 │
-├── tests/                      # 162 test dosyası, 13045 test
+├── tests/                      # 163 test dosyası, 13195 test
 │   └── ...
 │
 ├── scripts/
@@ -930,14 +943,14 @@ async def analyze_supplier(
 
 ## Proje İstatistikleri
 
-- **Python modülleri**: ~815 kaynak + ~162 test dosyası
-- **Toplam LOC**: ~282,000
-- **Test sayısı**: 13,045+
+- **Python modülleri**: ~826 kaynak + ~163 test dosyası
+- **Toplam LOC**: ~286,000
+- **Test sayısı**: 13,195+
 - **Agent sayısı**: 11 (1 base + 9 uzman + 1 meta)
 - **API endpoint**: 15 (10 core + 5 plugin)
 - **Webhook endpoint**: 4
 
-## Geliştirme Durumu (86/86 Tamamlandı ✅)
+## Geliştirme Durumu (87/87 Tamamlandı ✅)
 
 1. ✅ Proje yapısı ve temel config
 2. ✅ Master Agent + Karar Matrisi (akıllı agent seçimi, eskalasyon, denetim izi, onay iş akışı)
@@ -1025,3 +1038,4 @@ async def analyze_supplier(
 84. ✅ Runtime Capability Factory (NeedAnalyzer, SolutionArchitect, RapidPrototyper, SandboxEnvironment, CapabilityAutoTester, SafeDeployer, RuntimeCapabilityRegistry, RollbackOnFailure, CapFactoryOrchestrator)
 85. ✅ Contextual Availability & Priority (AvailabilityLearner, ContextualPriorityScorer, MessageBuffer, InterruptDecider, RoutineDetector, QuietHoursManager, UrgencyOverride, DigestCompiler, AvailabilityOrchestrator)
 86. ✅ Deep Research Engine (MultiSourceCrawler, QueryExpander, SourceRanker, InformationExtractor, CrossValidator, ResearchSynthesizer, ContinuousTracker, ResearchReporter, ResearchOrchestrator)
+87. ✅ Intelligent Web Navigator (BrowserAutomation, FormFiller, LoginManager, PaginationHandler, CaptchaSolver, ScreenshotCapture, StructuredDataExtractor, NavigationRecorder, WebNavOrchestrator)

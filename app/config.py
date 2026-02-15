@@ -563,6 +563,13 @@ class Settings(BaseSettings):
     continuous_tracking: bool = True
     report_format: str = "markdown"
 
+    # --- Intelligent Web Navigator ---
+    webnav_enabled: bool = True
+    headless_mode: bool = True
+    page_timeout: int = 30
+    screenshot_on_error: bool = True
+    webnav_max_retries: int = 3
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""
