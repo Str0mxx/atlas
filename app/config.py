@@ -409,6 +409,13 @@ class Settings(BaseSettings):
     max_lateness: int = 10
     parallelism: int = 4
 
+    # GraphQL & API Federation
+    graphql_enabled: bool = True
+    max_query_depth: int = 10
+    max_complexity: int = 1000
+    introspection_enabled: bool = True
+    playground_enabled: bool = True
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""
