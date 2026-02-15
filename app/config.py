@@ -437,6 +437,13 @@ class Settings(BaseSettings):
     backup_encryption_enabled: bool = False
     rpo_hours: int = 1
 
+    # Identity & Access Management
+    iam_enabled: bool = True
+    iam_session_timeout_minutes: int = 30
+    iam_max_failed_attempts: int = 5
+    iam_mfa_required: bool = False
+    iam_password_min_length: int = 8
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""

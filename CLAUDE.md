@@ -471,6 +471,18 @@ atlas/
 │   │       ├── failover_controller.py   # Yük devri (otomatik/manuel, sağlık, DNS, trafik)
 │   │       ├── recovery_tester.py       # Kurtarma test (tatbikat, doğrulama, performans, rapor)
 │   │       └── backup_orchestrator.py   # Orkestratör (pipeline, yedekleme/geri yükleme, DR, uyarı)
+│   │   │
+│   │   └── iam/                  # Identity & Access Management sistemi
+│   │       ├── __init__.py
+│   │       ├── identity_provider.py    # Kimlik sağlayıcı (kullanıcı CRUD, auth, parola hash, MFA, kilitleme)
+│   │       ├── role_manager.py         # Rol yöneticisi (hiyerarşi, miras, varsayılan roller)
+│   │       ├── permission_manager.py   # İzin yöneticisi (kaynak/aksiyon, wildcard, negasyon)
+│   │       ├── policy_engine.py        # Politika motoru (allow/deny, koşullar, önbellek)
+│   │       ├── group_manager.py        # Grup yöneticisi (üyelik, iç içe gruplar, senkronizasyon)
+│   │       ├── session_manager.py      # Oturum yöneticisi (token, süre, yenileme, eşanlı limit)
+│   │       ├── oauth_provider.py       # OAuth sağlayıcı (auth code, client credentials, scope)
+│   │       ├── audit_log.py            # Denetim günlüğü (erişim, değişiklik, giriş, uyumluluk)
+│   │       └── iam_orchestrator.py     # Orkestratör (pipeline, politika zorlama, izleme, analitik)
 │   │
 │   ├── agents/
 │   │   ├── __init__.py
@@ -567,7 +579,8 @@ atlas/
 │       ├── pipeline.py   # Data Pipeline & ETL System modeli
 │       ├── container_models.py # Container & Orchestration modeli
 │       ├── iac_models.py # Infrastructure as Code modeli
-│       └── backup_models.py # Backup & Disaster Recovery modeli
+│       ├── backup_models.py # Backup & Disaster Recovery modeli
+│       └── iam_models.py # Identity & Access Management modeli
 │
 │
 │   ├── plugins/                # Plugin dizini (kullanıcı plugin'leri)
@@ -698,12 +711,12 @@ async def analyze_supplier(
 
 - **Python modülleri**: ~578 kaynak + ~142 test dosyası
 - **Toplam LOC**: ~230,000
-- **Test sayısı**: 10,453+
+- **Test sayısı**: 10,656+
 - **Agent sayısı**: 11 (1 base + 9 uzman + 1 meta)
 - **API endpoint**: 15 (10 core + 5 plugin)
 - **Webhook endpoint**: 4
 
-## Geliştirme Durumu (68/68 Tamamlandı ✅)
+## Geliştirme Durumu (69/69 Tamamlandı ✅)
 
 1. ✅ Proje yapısı ve temel config
 2. ✅ Master Agent + Karar Matrisi (akıllı agent seçimi, eskalasyon, denetim izi, onay iş akışı)
@@ -773,3 +786,4 @@ async def analyze_supplier(
 66. ✅ Container & Orchestration Management (ContainerBuilder, ImageRegistry, ContainerRuntime, PodManager, DeploymentController, ServiceExposer, ResourceQuota, HelmManager, ContainerOrchestrator)
 67. ✅ Infrastructure as Code (ResourceDefiner, IaCTemplateEngine, IaCStateManager, PlanGenerator, ResourceProvisioner, IaCDriftDetector, ModuleManager, IaCComplianceChecker, IaCOrchestrator)
 68. ✅ Backup & Disaster Recovery (BackupScheduler, BackupExecutor, BackupStorageBackend, RestoreManager, BackupReplicationManager, DisasterPlanner, FailoverController, RecoveryTester, BackupOrchestrator)
+69. ✅ Identity & Access Management (IdentityProvider, RoleManager, PermissionManager, IAMPolicyEngine, GroupManager, IAMSessionManager, OAuthProvider, IAMAuditLog, IAMOrchestrator)
