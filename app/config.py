@@ -500,6 +500,13 @@ class Settings(BaseSettings):
     replan_on_failure: bool = True
     validate_before_execute: bool = True
 
+    # Cross-System Learning Transfer
+    learntransfer_enabled: bool = True
+    min_similarity_threshold: float = 0.3
+    auto_transfer: bool = False
+    require_transfer_validation: bool = True
+    max_transfer_age_days: int = 90
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""
