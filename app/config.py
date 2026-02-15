@@ -472,6 +472,13 @@ class Settings(BaseSettings):
     alert_on_degradation: bool = True
     report_frequency: str = "daily"
 
+    # Cost-Per-Decision Engine
+    costengine_enabled: bool = True
+    default_budget_daily: float = 100.0
+    pause_on_budget_exceed: bool = True
+    cost_alert_threshold: float = 0.8
+    require_approval_above: float = 50.0
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""

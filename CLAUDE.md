@@ -520,17 +520,29 @@ atlas/
 │   │       ├── calibration_engine.py      # Kalibrasyon motoru (Brier, güvenilirlik, oto-düzeltme)
 │   │       └── confidence_orchestrator.py # Orkestratör (tam pipeline, karar, güven, raporlama)
 │   │
-│   │   └── benchmark/            # Self-Benchmarking Framework sistemi
+│   │   ├── benchmark/            # Self-Benchmarking Framework sistemi
+│   │   │   ├── __init__.py
+│   │   │   ├── kpi_definer.py            # KPI tanımlayıcı (sistem, agent, özel, hedef, eşik)
+│   │   │   ├── metric_collector.py       # Metrik toplayıcı (gerçek zamanlı, tarihsel, toplulama)
+│   │   │   ├── performance_scorer.py     # Performans puanlayıcı (puan, ağırlıklı, normalize, sıralama)
+│   │   │   ├── trend_analyzer.py         # Trend analizcisi (iyileşme, bozulma, anomali, tahmin)
+│   │   │   ├── ab_tester.py              # A/B test motoru (deney, gözlem, anlamlılık, kazanan)
+│   │   │   ├── comparison_engine.py      # Karşılaştırma motoru (baseline, dönem, standart, boşluk)
+│   │   │   ├── report_generator.py       # Rapor üretici (performans, trend, yönetici özeti, detay)
+│   │   │   ├── alert_manager.py          # Uyarı yöneticisi (eşik, bozulma, iyileşme, anomali)
+│   │   │   └── benchmark_orchestrator.py # Orkestratör (tam pipeline, değerlendirme, analitik)
+│   │   │
+│   │   └── costengine/           # Cost-Per-Decision Engine sistemi
 │   │       ├── __init__.py
-│   │       ├── kpi_definer.py            # KPI tanımlayıcı (sistem, agent, özel, hedef, eşik)
-│   │       ├── metric_collector.py       # Metrik toplayıcı (gerçek zamanlı, tarihsel, toplulama)
-│   │       ├── performance_scorer.py     # Performans puanlayıcı (puan, ağırlıklı, normalize, sıralama)
-│   │       ├── trend_analyzer.py         # Trend analizcisi (iyileşme, bozulma, anomali, tahmin)
-│   │       ├── ab_tester.py              # A/B test motoru (deney, gözlem, anlamlılık, kazanan)
-│   │       ├── comparison_engine.py      # Karşılaştırma motoru (baseline, dönem, standart, boşluk)
-│   │       ├── report_generator.py       # Rapor üretici (performans, trend, yönetici özeti, detay)
-│   │       ├── alert_manager.py          # Uyarı yöneticisi (eşik, bozulma, iyileşme, anomali)
-│   │       └── benchmark_orchestrator.py # Orkestratör (tam pipeline, değerlendirme, analitik)
+│   │       ├── cost_calculator.py        # Maliyet hesaplayıcı (API, compute, storage, zaman, fırsat)
+│   │       ├── price_catalog.py          # Fiyat kataloğu (CRUD, kademeli, döviz, arama)
+│   │       ├── budget_manager.py         # Bütçe yöneticisi (oluşturma, tahsis, kontrol, uyarı)
+│   │       ├── cost_tracker.py           # Maliyet takipçisi (başlat, ekle, tamamla, trend)
+│   │       ├── alternative_analyzer.py   # Alternatif analizcisi (karşılaştır, fayda-maliyet, ROI)
+│   │       ├── spending_controller.py    # Harcama kontrolcüsü (limit, onay, acil durdurma, override)
+│   │       ├── optimization_advisor.py   # Optimizasyon danışmanı (analiz, cache, batch, israf)
+│   │       ├── billing_reporter.py       # Fatura raporlayıcı (maliyet, kullanım, sistem, görev, özet)
+│   │       └── costengine_orchestrator.py # Orkestratör (ön-maliyet, takip, analitik, rapor)
 │   │
 │   ├── agents/
 │   │   ├── __init__.py
@@ -632,7 +644,8 @@ atlas/
 │       ├── ratelimit_models.py # Rate Limiting & Throttling modeli
 │       ├── closedloop_models.py # Closed-Loop Execution Tracking modeli
 │       ├── confidence_models.py # Confidence-Based Autonomy modeli
-│       └── benchmark_models.py # Self-Benchmarking Framework modeli
+│       ├── benchmark_models.py # Self-Benchmarking Framework modeli
+│       └── costengine_models.py # Cost-Per-Decision Engine modeli
 │
 │
 │   ├── plugins/                # Plugin dizini (kullanıcı plugin'leri)
@@ -642,7 +655,7 @@ atlas/
 │   │       ├── agent.py
 │   │       └── hooks.py
 │
-├── tests/                      # 128 test dosyası, 8003 test
+├── tests/                      # 129 test dosyası, 8161 test
 │   └── ...
 │
 ├── scripts/
@@ -761,14 +774,14 @@ async def analyze_supplier(
 
 ## Proje İstatistikleri
 
-- **Python modülleri**: ~589 kaynak + ~143 test dosyası
-- **Toplam LOC**: ~233,000
-- **Test sayısı**: 11,321+
+- **Python modülleri**: ~599 kaynak + ~144 test dosyası
+- **Toplam LOC**: ~237,000
+- **Test sayısı**: 11,479+
 - **Agent sayısı**: 11 (1 base + 9 uzman + 1 meta)
 - **API endpoint**: 15 (10 core + 5 plugin)
 - **Webhook endpoint**: 4
 
-## Geliştirme Durumu (73/73 Tamamlandı ✅)
+## Geliştirme Durumu (74/74 Tamamlandı ✅)
 
 1. ✅ Proje yapısı ve temel config
 2. ✅ Master Agent + Karar Matrisi (akıllı agent seçimi, eskalasyon, denetim izi, onay iş akışı)
@@ -843,3 +856,4 @@ async def analyze_supplier(
 71. ✅ Closed-Loop Execution Tracking (ActionTracker, OutcomeDetector, FeedbackCollector, CausalityAnalyzer, LearningIntegrator, LoopMonitor, ClosedLoopExperimentTracker, ImprovementEngine, ClosedLoopOrchestrator)
 72. ✅ Confidence-Based Autonomy (ConfidenceCalculator, ThresholdManager, ConfidenceAutonomyController, AccuracyTracker, TrustEvolver, ConfidenceEscalationRouter, HumanFeedbackHandler, CalibrationEngine, ConfidenceOrchestrator)
 73. ✅ Self-Benchmarking Framework (KPIDefiner, BenchmarkMetricCollector, PerformanceScorer, BenchmarkTrendAnalyzer, ABTester, ComparisonEngine, BenchmarkReportGenerator, BenchmarkAlertManager, BenchmarkOrchestrator)
+74. ✅ Cost-Per-Decision Engine (CostCalculator, PriceCatalog, BudgetManager, DecisionCostTracker, AlternativeAnalyzer, SpendingController, CostOptimizationAdvisor, BillingReporter, CostEngineOrchestrator)
