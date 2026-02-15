@@ -549,6 +549,13 @@ class Settings(BaseSettings):
     min_test_coverage: float = 80.0
     capfactory_rollback_on_failure: bool = True
 
+    # --- Contextual Availability & Priority ---
+    availability_learning: bool = True
+    default_quiet_start: str = "22:00"
+    default_quiet_end: str = "08:00"
+    emergency_override: bool = True
+    digest_enabled: bool = True
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""

@@ -137,6 +137,18 @@ atlas/
 │   │   │   ├── autobiographical.py      # Özyaşam hafızası (bölümler, kimlik, anlatı)
 │   │   │   └── memory_palace_manager.py # Orkestratör (kodlama, yönlendirme, arama)
 │   │   │
+│   │   ├── availability/        # Contextual Availability & Priority sistemi
+│   │   │   ├── __init__.py
+│   │   │   ├── availability_learner.py    # Müsaitlik öğrenme (kalıp, zamanlama, anomali, tahmin)
+│   │   │   ├── priority_scorer.py         # Öncelik puanlama (çok faktör, bağlam, aciliyet, etki)
+│   │   │   ├── message_buffer.py          # Mesaj tamponu (kuyruk, öncelik sıralama, tekilleştirme)
+│   │   │   ├── interrupt_decider.py       # Kesme kararı (eşik, fayda-maliyet, override)
+│   │   │   ├── routine_detector.py        # Rutin tespiti (günlük, haftalık, alışkanlık, tahmin)
+│   │   │   ├── quiet_hours_manager.py     # Sessiz saat (dönem, otomatik tespit, kademeli uyanma)
+│   │   │   ├── urgency_override.py        # Aciliyet geçersiz kılma (acil tespit, eskalasyon, denetim)
+│   │   │   ├── digest_compiler.py         # Özet derleme (derleme, aksiyon çıkarma, zamanlama)
+│   │   │   └── availability_orchestrator.py # Orkestratör (Learn→Detect→Buffer→Decide→Deliver)
+│   │   │
 │   │   ├── capfactory/         # Runtime Capability Factory sistemi
 │   │   │   ├── __init__.py
 │   │   │   ├── need_analyzer.py         # İhtiyaç analizi (anahtar kelime, karmaşıklık, fizibilite)
@@ -731,6 +743,7 @@ atlas/
 │       ├── bootstrap.py       # Self-bootstrapping modeli
 │       ├── selfcode.py        # Self-coding agent modeli
 │       ├── memory_palace.py   # Memory Palace hafıza modeli
+│       ├── availability_models.py # Contextual Availability & Priority modeli
 │       ├── capfactory_models.py # Runtime Capability Factory modeli
 │       ├── business.py        # Autonomous Business Runner modeli
 │       ├── nlp_engine.py      # NLP Engine modeli
@@ -785,7 +798,7 @@ atlas/
 │   │       ├── agent.py
 │   │       └── hooks.py
 │
-├── tests/                      # 160 test dosyası, 12800 test
+├── tests/                      # 161 test dosyası, 12934 test
 │   └── ...
 │
 ├── scripts/
@@ -904,14 +917,14 @@ async def analyze_supplier(
 
 ## Proje İstatistikleri
 
-- **Python modülleri**: ~793 kaynak + ~160 test dosyası
-- **Toplam LOC**: ~274,000
-- **Test sayısı**: 12,800+
+- **Python modülleri**: ~804 kaynak + ~161 test dosyası
+- **Toplam LOC**: ~278,000
+- **Test sayısı**: 12,934+
 - **Agent sayısı**: 11 (1 base + 9 uzman + 1 meta)
 - **API endpoint**: 15 (10 core + 5 plugin)
 - **Webhook endpoint**: 4
 
-## Geliştirme Durumu (84/84 Tamamlandı ✅)
+## Geliştirme Durumu (85/85 Tamamlandı ✅)
 
 1. ✅ Proje yapısı ve temel config
 2. ✅ Master Agent + Karar Matrisi (akıllı agent seçimi, eskalasyon, denetim izi, onay iş akışı)
@@ -997,3 +1010,4 @@ async def analyze_supplier(
 82. ✅ Voice Call Interface (CallInitiator, SpeechToText, TextToSpeech, VoiceConversationManager, UrgencyClassifier, CallScheduler, VoiceAuthenticator, CallRecorder, VoiceCallOrchestrator)
 83. ✅ Multi-Channel Command Center (ChannelRouter, ContextCarrier, AvailabilityTracker, CommandInterpreter, ResponseFormatter, ChannelPreferenceEngine, EscalationPathManager, UnifiedInbox, MultiChannelOrchestrator)
 84. ✅ Runtime Capability Factory (NeedAnalyzer, SolutionArchitect, RapidPrototyper, SandboxEnvironment, CapabilityAutoTester, SafeDeployer, RuntimeCapabilityRegistry, RollbackOnFailure, CapFactoryOrchestrator)
+85. ✅ Contextual Availability & Priority (AvailabilityLearner, ContextualPriorityScorer, MessageBuffer, InterruptDecider, RoutineDetector, QuietHoursManager, UrgencyOverride, DigestCompiler, AvailabilityOrchestrator)
