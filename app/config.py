@@ -395,6 +395,13 @@ class Settings(BaseSettings):
     retry_max_attempts: int = 3
     load_balancer_algorithm: str = "round_robin"
 
+    # Machine Learning Pipeline
+    mlpipeline_enabled: bool = True
+    model_cache_size: int = 1000
+    experiment_retention_days: int = 90
+    drift_check_interval: int = 3600
+    auto_retrain: bool = False
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""
