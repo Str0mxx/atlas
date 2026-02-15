@@ -532,17 +532,29 @@ atlas/
 │   │   │   ├── alert_manager.py          # Uyarı yöneticisi (eşik, bozulma, iyileşme, anomali)
 │   │   │   └── benchmark_orchestrator.py # Orkestratör (tam pipeline, değerlendirme, analitik)
 │   │   │
-│   │   └── costengine/           # Cost-Per-Decision Engine sistemi
+│   │   ├── costengine/           # Cost-Per-Decision Engine sistemi
+│   │   │   ├── __init__.py
+│   │   │   ├── cost_calculator.py        # Maliyet hesaplayıcı (API, compute, storage, zaman, fırsat)
+│   │   │   ├── price_catalog.py          # Fiyat kataloğu (CRUD, kademeli, döviz, arama)
+│   │   │   ├── budget_manager.py         # Bütçe yöneticisi (oluşturma, tahsis, kontrol, uyarı)
+│   │   │   ├── cost_tracker.py           # Maliyet takipçisi (başlat, ekle, tamamla, trend)
+│   │   │   ├── alternative_analyzer.py   # Alternatif analizcisi (karşılaştır, fayda-maliyet, ROI)
+│   │   │   ├── spending_controller.py    # Harcama kontrolcüsü (limit, onay, acil durdurma, override)
+│   │   │   ├── optimization_advisor.py   # Optimizasyon danışmanı (analiz, cache, batch, israf)
+│   │   │   ├── billing_reporter.py       # Fatura raporlayıcı (maliyet, kullanım, sistem, görev, özet)
+│   │   │   └── costengine_orchestrator.py # Orkestratör (ön-maliyet, takip, analitik, rapor)
+│   │   │
+│   │   └── explainability/      # Decision Explainability Layer sistemi
 │   │       ├── __init__.py
-│   │       ├── cost_calculator.py        # Maliyet hesaplayıcı (API, compute, storage, zaman, fırsat)
-│   │       ├── price_catalog.py          # Fiyat kataloğu (CRUD, kademeli, döviz, arama)
-│   │       ├── budget_manager.py         # Bütçe yöneticisi (oluşturma, tahsis, kontrol, uyarı)
-│   │       ├── cost_tracker.py           # Maliyet takipçisi (başlat, ekle, tamamla, trend)
-│   │       ├── alternative_analyzer.py   # Alternatif analizcisi (karşılaştır, fayda-maliyet, ROI)
-│   │       ├── spending_controller.py    # Harcama kontrolcüsü (limit, onay, acil durdurma, override)
-│   │       ├── optimization_advisor.py   # Optimizasyon danışmanı (analiz, cache, batch, israf)
-│   │       ├── billing_reporter.py       # Fatura raporlayıcı (maliyet, kullanım, sistem, görev, özet)
-│   │       └── costengine_orchestrator.py # Orkestratör (ön-maliyet, takip, analitik, rapor)
+│   │       ├── decision_recorder.py      # Karar kaydedici (bağlam, girdi, alternatif, faktör)
+│   │       ├── reasoning_tracer.py       # Akıl yürütme izleyici (adım, çıkarım, kural, model)
+│   │       ├── factor_analyzer.py        # Faktör analizcisi (ağırlık, katkı, hassasiyet, karşı-olgusal)
+│   │       ├── natural_language_explainer.py # Doğal dil açıklayıcı (şablon, çok dilli, kitle uygun)
+│   │       ├── visual_explainer.py       # Görsel açıklayıcı (ağaç, grafik, zaman çizgisi, karşılaştırma)
+│   │       ├── counterfactual_generator.py # Karşı-olgusal üretici (ya-olsaydı, minimal, alternatif)
+│   │       ├── audit_formatter.py        # Denetim biçimleyici (uyumluluk, yasal, teknik, yönetici)
+│   │       ├── explanation_cache.py      # Açıklama önbelleği (TTL, kalıp, geçersiz kılma)
+│   │       └── explainability_orchestrator.py # Orkestratör (tam pipeline, denetim, analitik)
 │   │
 │   ├── agents/
 │   │   ├── __init__.py
@@ -645,7 +657,8 @@ atlas/
 │       ├── closedloop_models.py # Closed-Loop Execution Tracking modeli
 │       ├── confidence_models.py # Confidence-Based Autonomy modeli
 │       ├── benchmark_models.py # Self-Benchmarking Framework modeli
-│       └── costengine_models.py # Cost-Per-Decision Engine modeli
+│       ├── costengine_models.py # Cost-Per-Decision Engine modeli
+│       └── explainability_models.py # Decision Explainability Layer modeli
 │
 │
 │   ├── plugins/                # Plugin dizini (kullanıcı plugin'leri)
@@ -655,7 +668,7 @@ atlas/
 │   │       ├── agent.py
 │   │       └── hooks.py
 │
-├── tests/                      # 129 test dosyası, 8161 test
+├── tests/                      # 130 test dosyası, 8307 test
 │   └── ...
 │
 ├── scripts/
@@ -774,14 +787,14 @@ async def analyze_supplier(
 
 ## Proje İstatistikleri
 
-- **Python modülleri**: ~599 kaynak + ~144 test dosyası
-- **Toplam LOC**: ~237,000
-- **Test sayısı**: 11,479+
+- **Python modülleri**: ~609 kaynak + ~145 test dosyası
+- **Toplam LOC**: ~241,000
+- **Test sayısı**: 11,625+
 - **Agent sayısı**: 11 (1 base + 9 uzman + 1 meta)
 - **API endpoint**: 15 (10 core + 5 plugin)
 - **Webhook endpoint**: 4
 
-## Geliştirme Durumu (74/74 Tamamlandı ✅)
+## Geliştirme Durumu (75/75 Tamamlandı ✅)
 
 1. ✅ Proje yapısı ve temel config
 2. ✅ Master Agent + Karar Matrisi (akıllı agent seçimi, eskalasyon, denetim izi, onay iş akışı)
@@ -857,3 +870,4 @@ async def analyze_supplier(
 72. ✅ Confidence-Based Autonomy (ConfidenceCalculator, ThresholdManager, ConfidenceAutonomyController, AccuracyTracker, TrustEvolver, ConfidenceEscalationRouter, HumanFeedbackHandler, CalibrationEngine, ConfidenceOrchestrator)
 73. ✅ Self-Benchmarking Framework (KPIDefiner, BenchmarkMetricCollector, PerformanceScorer, BenchmarkTrendAnalyzer, ABTester, ComparisonEngine, BenchmarkReportGenerator, BenchmarkAlertManager, BenchmarkOrchestrator)
 74. ✅ Cost-Per-Decision Engine (CostCalculator, PriceCatalog, BudgetManager, DecisionCostTracker, AlternativeAnalyzer, SpendingController, CostOptimizationAdvisor, BillingReporter, CostEngineOrchestrator)
+75. ✅ Decision Explainability Layer (DecisionRecorder, ReasoningTracer, FactorAnalyzer, NaturalLanguageExplainer, VisualExplainer, CounterfactualGenerator, AuditFormatter, ExplanationCache, ExplainabilityOrchestrator)

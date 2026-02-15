@@ -479,6 +479,13 @@ class Settings(BaseSettings):
     cost_alert_threshold: float = 0.8
     require_approval_above: float = 50.0
 
+    # Decision Explainability Layer
+    explainability_enabled: bool = True
+    default_explanation_depth: str = "standard"
+    cache_explanations: bool = True
+    include_counterfactuals: bool = True
+    explanation_language: str = "en"
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""
