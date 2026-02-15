@@ -493,6 +493,13 @@ class Settings(BaseSettings):
     require_validation: bool = True
     notify_on_acquisition: bool = True
 
+    # Goal Decomposition & Self-Tasking
+    goaldecomp_enabled: bool = True
+    max_decomposition_depth: int = 5
+    auto_assign_tasks: bool = False
+    replan_on_failure: bool = True
+    validate_before_execute: bool = True
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""

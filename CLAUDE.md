@@ -556,17 +556,29 @@ atlas/
 │   │   │   ├── explanation_cache.py      # Açıklama önbelleği (TTL, kalıp, geçersiz kılma)
 │   │   │   └── explainability_orchestrator.py # Orkestratör (tam pipeline, denetim, analitik)
 │   │   │
-│   │   └── capgap/              # Capability Gap Detection & Auto-Acquisition sistemi
+│   │   ├── capgap/              # Capability Gap Detection & Auto-Acquisition sistemi
+│   │   │   ├── __init__.py
+│   │   │   ├── gap_detector.py           # Eksiklik tespitçisi (görev analizi, ciddiyet, önceliklendirme)
+│   │   │   ├── capability_mapper.py      # Yetenek haritacısı (kayıt, taksonomi, bağımlılık, kapsam)
+│   │   │   ├── acquisition_planner.py    # Edinme planlayıcı (strateji, maliyet, adım, değerlendirme)
+│   │   │   ├── api_discoverer.py         # API keşfedici (kayıt, arama, uyumluluk, fiyat)
+│   │   │   ├── skill_builder.py          # Beceri inşacı (entegrasyon, sarmalayıcı, adaptör, test)
+│   │   │   ├── learning_accelerator.py   # Öğrenme hızlandırıcı (kalıp, transfer, kısayol, verim)
+│   │   │   ├── validation_engine.py      # Doğrulama motoru (test, entegrasyon, performans, güvenlik)
+│   │   │   ├── progress_tracker.py       # İlerleme takipçisi (durum, engel, ETA, rapor)
+│   │   │   └── capgap_orchestrator.py    # Orkestratör (tespit, edinme, tam pipeline, analitik)
+│   │   │
+│   │   └── goaldecomp/          # Goal Decomposition & Self-Tasking sistemi
 │   │       ├── __init__.py
-│   │       ├── gap_detector.py           # Eksiklik tespitçisi (görev analizi, ciddiyet, önceliklendirme)
-│   │       ├── capability_mapper.py      # Yetenek haritacısı (kayıt, taksonomi, bağımlılık, kapsam)
-│   │       ├── acquisition_planner.py    # Edinme planlayıcı (strateji, maliyet, adım, değerlendirme)
-│   │       ├── api_discoverer.py         # API keşfedici (kayıt, arama, uyumluluk, fiyat)
-│   │       ├── skill_builder.py          # Beceri inşacı (entegrasyon, sarmalayıcı, adaptör, test)
-│   │       ├── learning_accelerator.py   # Öğrenme hızlandırıcı (kalıp, transfer, kısayol, verim)
-│   │       ├── validation_engine.py      # Doğrulama motoru (test, entegrasyon, performans, güvenlik)
-│   │       ├── progress_tracker.py       # İlerleme takipçisi (durum, engel, ETA, rapor)
-│   │       └── capgap_orchestrator.py    # Orkestratör (tespit, edinme, tam pipeline, analitik)
+│   │       ├── goal_parser.py            # Hedef ayrıştırıcı (NL parse, niyet, kriter, kısıt, belirsizlik)
+│   │       ├── decomposition_engine.py   # Ayrıştırma motoru (AND/OR ağaç, paralellik, kritik yol)
+│   │       ├── task_generator.py         # Görev üretici (atomik görev, spesifikasyon, zaman tahmini)
+│   │       ├── prerequisite_analyzer.py  # Önkoşul analizcisi (bağımlılık, sıralama, döngü, risk)
+│   │       ├── self_assigner.py          # Kendine atayıcı (yetenek eşleme, yük dengeleme, delegasyon)
+│   │       ├── progress_synthesizer.py   # İlerleme sentezleyici (rollup, engel, ETA, rapor)
+│   │       ├── replanning_engine.py      # Yeniden planlama (hata kurtarma, kapsam, kaynak, fırsat)
+│   │       ├── goal_validator.py         # Hedef doğrulayıcı (fizibilite, tamlık, tutarlılık, kaynak)
+│   │       └── goaldecomp_orchestrator.py # Orkestratör (tam pipeline, atama, analitik)
 │   │
 │   ├── agents/
 │   │   ├── __init__.py
@@ -671,7 +683,8 @@ atlas/
 │       ├── benchmark_models.py # Self-Benchmarking Framework modeli
 │       ├── costengine_models.py # Cost-Per-Decision Engine modeli
 │       ├── explainability_models.py # Decision Explainability Layer modeli
-│       └── capgap_models.py   # Capability Gap Detection modeli
+│       ├── capgap_models.py   # Capability Gap Detection modeli
+│       └── goaldecomp_models.py # Goal Decomposition modeli
 │
 │
 │   ├── plugins/                # Plugin dizini (kullanıcı plugin'leri)
@@ -800,14 +813,14 @@ async def analyze_supplier(
 
 ## Proje İstatistikleri
 
-- **Python modülleri**: ~620 kaynak + ~146 test dosyası
-- **Toplam LOC**: ~245,000
-- **Test sayısı**: 11,760+
+- **Python modülleri**: ~631 kaynak + ~147 test dosyası
+- **Toplam LOC**: ~249,000
+- **Test sayısı**: 11,902+
 - **Agent sayısı**: 11 (1 base + 9 uzman + 1 meta)
 - **API endpoint**: 15 (10 core + 5 plugin)
 - **Webhook endpoint**: 4
 
-## Geliştirme Durumu (76/76 Tamamlandı ✅)
+## Geliştirme Durumu (77/77 Tamamlandı ✅)
 
 1. ✅ Proje yapısı ve temel config
 2. ✅ Master Agent + Karar Matrisi (akıllı agent seçimi, eskalasyon, denetim izi, onay iş akışı)
@@ -885,3 +898,4 @@ async def analyze_supplier(
 74. ✅ Cost-Per-Decision Engine (CostCalculator, PriceCatalog, BudgetManager, DecisionCostTracker, AlternativeAnalyzer, SpendingController, CostOptimizationAdvisor, BillingReporter, CostEngineOrchestrator)
 75. ✅ Decision Explainability Layer (DecisionRecorder, ReasoningTracer, FactorAnalyzer, NaturalLanguageExplainer, VisualExplainer, CounterfactualGenerator, AuditFormatter, ExplanationCache, ExplainabilityOrchestrator)
 76. ✅ Capability Gap Detection & Auto-Acquisition (GapDetector, CapabilityMapper, AcquisitionPlanner, CapabilityAPIDiscoverer, SkillBuilder, LearningAccelerator, CapabilityValidationEngine, AcquisitionProgressTracker, CapGapOrchestrator)
+77. ✅ Goal Decomposition & Self-Tasking (GoalParser, DecompositionEngine, TaskGenerator, PrerequisiteAnalyzer, SelfAssigner, ProgressSynthesizer, ReplanningEngine, GoalValidator, GoalDecompOrchestrator)
