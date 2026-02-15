@@ -381,6 +381,13 @@ class Settings(BaseSettings):
     feature_flag_default: bool = False
     hot_reload_enabled: bool = True
 
+    # Observability & Tracing
+    observability_enabled: bool = True
+    trace_sampling_rate: float = 1.0
+    metrics_interval: int = 60
+    alert_evaluation_interval: int = 30
+    observability_retention_days: int = 30
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""
