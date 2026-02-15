@@ -486,6 +486,13 @@ class Settings(BaseSettings):
     include_counterfactuals: bool = True
     explanation_language: str = "en"
 
+    # Capability Gap Detection & Auto-Acquisition
+    capgap_enabled: bool = True
+    auto_acquire: bool = False
+    max_acquisition_time_hours: int = 24
+    require_validation: bool = True
+    notify_on_acquisition: bool = True
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""
