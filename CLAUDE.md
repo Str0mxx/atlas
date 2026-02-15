@@ -580,17 +580,29 @@ atlas/
 │   │   │   ├── goal_validator.py         # Hedef doğrulayıcı (fizibilite, tamlık, tutarlılık, kaynak)
 │   │   │   └── goaldecomp_orchestrator.py # Orkestratör (tam pipeline, atama, analitik)
 │   │   │
-│   │   └── learntransfer/       # Cross-System Learning Transfer sistemi
+│   │   ├── learntransfer/       # Cross-System Learning Transfer sistemi
+│   │   │   ├── __init__.py
+│   │   │   ├── knowledge_extractor.py    # Bilgi çıkarıcı (deneyim, başarı faktörü, başarısızlık dersi, kural, güven)
+│   │   │   ├── similarity_analyzer.py    # Benzerlik analizcisi (Jaccard, çok boyutlu, potansiyel, eşik, sıralama)
+│   │   │   ├── knowledge_adapter.py      # Bilgi adaptörü (doğrudan, ölçekleme, çeviri, kısıtlama, güven)
+│   │   │   ├── transfer_validator.py     # Transfer doğrulayıcı (uygulanabilirlik, risk, çatışma, performans, güvenlik)
+│   │   │   ├── knowledge_injector.py     # Bilgi enjektörü (ekle, değiştir, birleştir, geri alma, doğrulama)
+│   │   │   ├── transfer_tracker.py       # Transfer takipçisi (kayıt, sonuç, başarı, etki, atıf)
+│   │   │   ├── feedback_loop.py          # Geri bildirim döngüsü (etkinlik, iyileştirme, öğrenme, optimizasyon)
+│   │   │   ├── knowledge_network.py      # Bilgi ağı (graf, ilişki, yayılım, etki, görselleştirme)
+│   │   │   └── learntransfer_orchestrator.py # Orkestratör (Extract→Adapt→Validate→Inject→Track pipeline)
+│   │   │
+│   │   └── entitymem/           # Unified Entity Memory sistemi
 │   │       ├── __init__.py
-│   │       ├── knowledge_extractor.py    # Bilgi çıkarıcı (deneyim, başarı faktörü, başarısızlık dersi, kural, güven)
-│   │       ├── similarity_analyzer.py    # Benzerlik analizcisi (Jaccard, çok boyutlu, potansiyel, eşik, sıralama)
-│   │       ├── knowledge_adapter.py      # Bilgi adaptörü (doğrudan, ölçekleme, çeviri, kısıtlama, güven)
-│   │       ├── transfer_validator.py     # Transfer doğrulayıcı (uygulanabilirlik, risk, çatışma, performans, güvenlik)
-│   │       ├── knowledge_injector.py     # Bilgi enjektörü (ekle, değiştir, birleştir, geri alma, doğrulama)
-│   │       ├── transfer_tracker.py       # Transfer takipçisi (kayıt, sonuç, başarı, etki, atıf)
-│   │       ├── feedback_loop.py          # Geri bildirim döngüsü (etkinlik, iyileştirme, öğrenme, optimizasyon)
-│   │       ├── knowledge_network.py      # Bilgi ağı (graf, ilişki, yayılım, etki, görselleştirme)
-│   │       └── learntransfer_orchestrator.py # Orkestratör (Extract→Adapt→Validate→Inject→Track pipeline)
+│   │       ├── entity_registry.py        # Varlık kaydı (oluşturma, tip, benzersiz ID, alias, yaşam döngüsü)
+│   │       ├── profile_builder.py        # Profil oluşturucu (toplama, birleştirme, çatışma, tamlık, güncelleme)
+│   │       ├── interaction_logger.py     # Etkileşim kaydedici (loglama, kanal, zaman, bağlam, duygu)
+│   │       ├── relationship_mapper.py    # İlişki haritacısı (ilişki, tip, güç, çift yönlü, hiyerarşi)
+│   │       ├── timeline_builder.py       # Zaman çizelgesi (kronolojik, kilometre taşı, dönem, kalıp, projeksiyon)
+│   │       ├── preference_learner.py     # Tercih öğrenici (iletişim, zamanlama, ilgi, davranış)
+│   │       ├── context_provider.py       # Bağlam sağlayıcı (bağlam, etkileşim, bekleyen, ilişki, özet)
+│   │       ├── privacy_manager.py        # Gizlilik yöneticisi (saklama, erişim, anonimleştirme, onay, GDPR)
+│   │       └── entitymem_orchestrator.py # Orkestratör (tam yönetim, çapraz kanal, sorgu, analitik, export)
 │   │
 │   ├── agents/
 │   │   ├── __init__.py
@@ -697,7 +709,8 @@ atlas/
 │       ├── explainability_models.py # Decision Explainability Layer modeli
 │       ├── capgap_models.py   # Capability Gap Detection modeli
 │       ├── goaldecomp_models.py # Goal Decomposition modeli
-│       └── learntransfer_models.py # Cross-System Learning Transfer modeli
+│       ├── learntransfer_models.py # Cross-System Learning Transfer modeli
+│       └── entitymem_models.py  # Unified Entity Memory modeli
 │
 │
 │   ├── plugins/                # Plugin dizini (kullanıcı plugin'leri)
@@ -826,14 +839,14 @@ async def analyze_supplier(
 
 ## Proje İstatistikleri
 
-- **Python modülleri**: ~642 kaynak + ~148 test dosyası
-- **Toplam LOC**: ~253,000
-- **Test sayısı**: 12,013+
+- **Python modülleri**: ~653 kaynak + ~149 test dosyası
+- **Toplam LOC**: ~257,000
+- **Test sayısı**: 12,131+
 - **Agent sayısı**: 11 (1 base + 9 uzman + 1 meta)
 - **API endpoint**: 15 (10 core + 5 plugin)
 - **Webhook endpoint**: 4
 
-## Geliştirme Durumu (78/78 Tamamlandı ✅)
+## Geliştirme Durumu (79/79 Tamamlandı ✅)
 
 1. ✅ Proje yapısı ve temel config
 2. ✅ Master Agent + Karar Matrisi (akıllı agent seçimi, eskalasyon, denetim izi, onay iş akışı)
@@ -913,3 +926,4 @@ async def analyze_supplier(
 76. ✅ Capability Gap Detection & Auto-Acquisition (GapDetector, CapabilityMapper, AcquisitionPlanner, CapabilityAPIDiscoverer, SkillBuilder, LearningAccelerator, CapabilityValidationEngine, AcquisitionProgressTracker, CapGapOrchestrator)
 77. ✅ Goal Decomposition & Self-Tasking (GoalParser, DecompositionEngine, TaskGenerator, PrerequisiteAnalyzer, SelfAssigner, ProgressSynthesizer, ReplanningEngine, GoalValidator, GoalDecompOrchestrator)
 78. ✅ Cross-System Learning Transfer (KnowledgeExtractor, SimilarityAnalyzer, KnowledgeAdapter, TransferValidator, KnowledgeInjector, TransferTracker, TransferFeedbackLoop, KnowledgeNetwork, LearnTransferOrchestrator)
+79. ✅ Unified Entity Memory (EntityRegistry, ProfileBuilder, InteractionLogger, RelationshipMapper, TimelineBuilder, EntityPreferenceLearner, EntityContextProvider, EntityPrivacyManager, EntityMemOrchestrator)

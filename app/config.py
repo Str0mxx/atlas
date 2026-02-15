@@ -507,6 +507,13 @@ class Settings(BaseSettings):
     require_transfer_validation: bool = True
     max_transfer_age_days: int = 90
 
+    # Entity Memory
+    entitymem_enabled: bool = True
+    auto_merge_duplicates: bool = False
+    retention_days: int = 365
+    privacy_mode: str = "standard"
+    max_interactions_stored: int = 10000
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""
