@@ -616,6 +616,18 @@ atlas/
 │   │       ├── compliance_reporter.py    # Uyumluluk raporlayıcı (durum, ihlal, trend, denetim, export)
 │   │       └── regulatory_orchestrator.py # Orkestratör (tam pipeline, karar kontrolü, uygulama, analitik)
 │   │
+│   │   └── proactive/            # Always-On Proactive Brain sistemi
+│   │       ├── __init__.py
+│   │       ├── continuous_scanner.py      # Sürekli tarayıcı (arka plan, çoklu kaynak, örüntü, değişiklik, zamanlama)
+│   │       ├── opportunity_ranker.py      # Fırsat sıralayıcı (puanlama, değer, aciliyet, fizibilite, öncelik)
+│   │       ├── proactive_anomaly_detector.py # Anomali dedektörü (bazal, sapma, şiddet, kök neden, uyarı)
+│   │       ├── proactive_notifier.py      # Bildirimci (akıllı bildirim, kanal, zamanlama, gruplama, override)
+│   │       ├── periodic_reporter.py       # Periyodik raporlayıcı (günlük, haftalık, özel, metrik, trend)
+│   │       ├── priority_queue.py          # Öncelik kuyruğu (öncelik, işleme, deadline, sıralama, taşma)
+│   │       ├── sleep_cycle_manager.py     # Uyku döngüsü (müsaitlik, sessiz saat, uyanma, acil, saat dilimi)
+│   │       ├── action_decider.py          # Aksiyon karar verici (oto/eskalasyon, güven, etki, risk, onay)
+│   │       └── proactive_orchestrator.py  # Orkestratör (7/24 beyin, Tara→Tespit→Sırala→Karar→Aksiyon)
+│   │
 │   ├── agents/
 │   │   ├── __init__.py
 │   │   ├── base_agent.py            # Temel agent sınıfı (execute/analyze/report)
@@ -723,7 +735,8 @@ atlas/
 │       ├── goaldecomp_models.py # Goal Decomposition modeli
 │       ├── learntransfer_models.py # Cross-System Learning Transfer modeli
 │       ├── entitymem_models.py  # Unified Entity Memory modeli
-│       └── regulatory_models.py # Regulatory & Constraint Engine modeli
+│       ├── regulatory_models.py # Regulatory & Constraint Engine modeli
+│       └── proactive_models.py # Always-On Proactive Brain modeli
 │
 │
 │   ├── plugins/                # Plugin dizini (kullanıcı plugin'leri)
@@ -733,7 +746,7 @@ atlas/
 │   │       ├── agent.py
 │   │       └── hooks.py
 │
-├── tests/                      # 130 test dosyası, 8307 test
+├── tests/                      # 131 test dosyası, 8445 test
 │   └── ...
 │
 ├── scripts/
@@ -852,14 +865,14 @@ async def analyze_supplier(
 
 ## Proje İstatistikleri
 
-- **Python modülleri**: ~664 kaynak + ~150 test dosyası
-- **Toplam LOC**: ~261,000
-- **Test sayısı**: 12,240+
+- **Python modülleri**: ~674 kaynak + ~151 test dosyası
+- **Toplam LOC**: ~263,500
+- **Test sayısı**: 12,378+
 - **Agent sayısı**: 11 (1 base + 9 uzman + 1 meta)
 - **API endpoint**: 15 (10 core + 5 plugin)
 - **Webhook endpoint**: 4
 
-## Geliştirme Durumu (80/80 Tamamlandı ✅)
+## Geliştirme Durumu (81/81 Tamamlandı ✅)
 
 1. ✅ Proje yapısı ve temel config
 2. ✅ Master Agent + Karar Matrisi (akıllı agent seçimi, eskalasyon, denetim izi, onay iş akışı)
@@ -941,3 +954,4 @@ async def analyze_supplier(
 78. ✅ Cross-System Learning Transfer (KnowledgeExtractor, SimilarityAnalyzer, KnowledgeAdapter, TransferValidator, KnowledgeInjector, TransferTracker, TransferFeedbackLoop, KnowledgeNetwork, LearnTransferOrchestrator)
 79. ✅ Unified Entity Memory (EntityRegistry, ProfileBuilder, InteractionLogger, RelationshipMapper, TimelineBuilder, EntityPreferenceLearner, EntityContextProvider, EntityPrivacyManager, EntityMemOrchestrator)
 80. ✅ Regulatory & Constraint Engine (RuleRepository, ConstraintDefiner, RegulatoryComplianceChecker, JurisdictionManager, RateLimitEnforcer, RuleUpdater, RegulatoryExceptionHandler, RegulatoryComplianceReporter, RegulatoryOrchestrator)
+81. ✅ Always-On Proactive Brain (ContinuousScanner, OpportunityRanker, ProactiveAnomalyDetector, ProactiveNotifier, PeriodicReporter, ProactivePriorityQueue, SleepCycleManager, ActionDecider, ProactiveOrchestrator)

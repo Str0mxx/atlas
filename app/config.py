@@ -521,6 +521,13 @@ class Settings(BaseSettings):
     violation_alert: bool = True
     exception_approval_required: bool = True
 
+    # Proactive Brain
+    proactive_enabled: bool = True
+    scan_interval_minutes: int = 5
+    proactive_quiet_hours_start: int = 23
+    proactive_quiet_hours_end: int = 7
+    auto_action_threshold: float = 0.8
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""
