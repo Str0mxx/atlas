@@ -459,6 +459,18 @@ atlas/
 │   │       ├── module_manager.py        # Modül yöneticisi (kayıt, sürüm, örnekleme, doğrulama)
 │   │       ├── compliance_checker.py    # Uyumluluk denetçisi (politika, operatör, muafiyet, rapor)
 │   │       └── iac_orchestrator.py      # Orkestratör (pipeline, plan/apply, durum, drift, uyumluluk)
+│   │   │
+│   │   └── backup/              # Backup & Disaster Recovery sistemi
+│   │       ├── __init__.py
+│   │       ├── backup_scheduler.py      # Yedekleme zamanlayıcı (cron, saklama, pencere, öncelik, takvim)
+│   │       ├── backup_executor.py       # Yedekleme yürütücü (full, incremental, differential, paralel)
+│   │       ├── storage_backend.py       # Depolama arka ucu (yerel, bulut, şifreleme, sıkıştırma)
+│   │       ├── restore_manager.py       # Geri yükleme (tam, seçmeli, point-in-time, doğrulama)
+│   │       ├── replication_manager.py   # Replikasyon (bölgeler arası, sync/async, tutarlılık, gecikme)
+│   │       ├── disaster_planner.py      # Felaket planlayıcı (DR plan, RTO/RPO, runbook, eskalasyon)
+│   │       ├── failover_controller.py   # Yük devri (otomatik/manuel, sağlık, DNS, trafik)
+│   │       ├── recovery_tester.py       # Kurtarma test (tatbikat, doğrulama, performans, rapor)
+│   │       └── backup_orchestrator.py   # Orkestratör (pipeline, yedekleme/geri yükleme, DR, uyarı)
 │   │
 │   ├── agents/
 │   │   ├── __init__.py
@@ -554,7 +566,8 @@ atlas/
 │       ├── notification_system.py # Notification & Alert System modeli
 │       ├── pipeline.py   # Data Pipeline & ETL System modeli
 │       ├── container_models.py # Container & Orchestration modeli
-│       └── iac_models.py # Infrastructure as Code modeli
+│       ├── iac_models.py # Infrastructure as Code modeli
+│       └── backup_models.py # Backup & Disaster Recovery modeli
 │
 │
 │   ├── plugins/                # Plugin dizini (kullanıcı plugin'leri)
@@ -683,14 +696,14 @@ async def analyze_supplier(
 
 ## Proje İstatistikleri
 
-- **Python modülleri**: ~567 kaynak + ~141 test dosyası
-- **Toplam LOC**: ~227,000
-- **Test sayısı**: 10,276+
+- **Python modülleri**: ~578 kaynak + ~142 test dosyası
+- **Toplam LOC**: ~230,000
+- **Test sayısı**: 10,453+
 - **Agent sayısı**: 11 (1 base + 9 uzman + 1 meta)
 - **API endpoint**: 15 (10 core + 5 plugin)
 - **Webhook endpoint**: 4
 
-## Geliştirme Durumu (67/67 Tamamlandı ✅)
+## Geliştirme Durumu (68/68 Tamamlandı ✅)
 
 1. ✅ Proje yapısı ve temel config
 2. ✅ Master Agent + Karar Matrisi (akıllı agent seçimi, eskalasyon, denetim izi, onay iş akışı)
@@ -759,3 +772,4 @@ async def analyze_supplier(
 65. ✅ GraphQL & API Federation (SchemaBuilder, ResolverManager, QueryExecutor, DataLoader, SubscriptionManager, FederationGateway, Introspection, QueryComplexity, GraphQLOrchestrator)
 66. ✅ Container & Orchestration Management (ContainerBuilder, ImageRegistry, ContainerRuntime, PodManager, DeploymentController, ServiceExposer, ResourceQuota, HelmManager, ContainerOrchestrator)
 67. ✅ Infrastructure as Code (ResourceDefiner, IaCTemplateEngine, IaCStateManager, PlanGenerator, ResourceProvisioner, IaCDriftDetector, ModuleManager, IaCComplianceChecker, IaCOrchestrator)
+68. ✅ Backup & Disaster Recovery (BackupScheduler, BackupExecutor, BackupStorageBackend, RestoreManager, BackupReplicationManager, DisasterPlanner, FailoverController, RecoveryTester, BackupOrchestrator)

@@ -430,6 +430,13 @@ class Settings(BaseSettings):
     parallel_operations: int = 4
     iac_drift_check_interval: int = 3600
 
+    # Backup & Disaster Recovery
+    backup_enabled: bool = True
+    default_retention_days: int = 30
+    backup_compression_enabled: bool = True
+    backup_encryption_enabled: bool = False
+    rpo_hours: int = 1
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""
