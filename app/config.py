@@ -444,6 +444,13 @@ class Settings(BaseSettings):
     iam_mfa_required: bool = False
     iam_password_min_length: int = 8
 
+    # Rate Limiting & Throttling
+    ratelimit_enabled: bool = True
+    default_requests_per_minute: int = 60
+    ratelimit_burst_multiplier: float = 1.5
+    ratelimit_quota_reset_hour: int = 0
+    ratelimit_violation_penalty_minutes: int = 15
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""

@@ -483,6 +483,18 @@ atlas/
 │   │       ├── oauth_provider.py       # OAuth sağlayıcı (auth code, client credentials, scope)
 │   │       ├── audit_log.py            # Denetim günlüğü (erişim, değişiklik, giriş, uyumluluk)
 │   │       └── iam_orchestrator.py     # Orkestratör (pipeline, politika zorlama, izleme, analitik)
+│   │   │
+│   │   └── ratelimit/            # Rate Limiting & Throttling sistemi
+│   │       ├── __init__.py
+│   │       ├── token_bucket.py         # Token kovası (üretim, tüketim, patlama, dolum hızı)
+│   │       ├── sliding_window.py       # Kayan pencere (zaman tabanlı, istek sayma, hassasiyet)
+│   │       ├── leaky_bucket.py         # Sızdıran kova (sabit çıkış, kuyruk, taşma, gecikme)
+│   │       ├── quota_manager.py        # Kota yöneticisi (günlük/aylık, kullanıcı, API, sıfırlama)
+│   │       ├── throttle_controller.py  # Kısma kontrolcüsü (adaptif, yük, öncelik, geri basınç)
+│   │       ├── rate_policy.py          # Hız politikası (katman, endpoint, kullanıcı, dinamik)
+│   │       ├── violation_handler.py    # İhlal yöneticisi (tespit, ceza, Retry-After, itiraz)
+│   │       ├── rate_analytics.py       # Hız analitiği (kalıp, zirve, trend, kapasite)
+│   │       └── ratelimit_orchestrator.py # Orkestratör (çoklu algoritma, dağıtık, izleme)
 │   │
 │   ├── agents/
 │   │   ├── __init__.py
@@ -580,7 +592,8 @@ atlas/
 │       ├── container_models.py # Container & Orchestration modeli
 │       ├── iac_models.py # Infrastructure as Code modeli
 │       ├── backup_models.py # Backup & Disaster Recovery modeli
-│       └── iam_models.py # Identity & Access Management modeli
+│       ├── iam_models.py # Identity & Access Management modeli
+│       └── ratelimit_models.py # Rate Limiting & Throttling modeli
 │
 │
 │   ├── plugins/                # Plugin dizini (kullanıcı plugin'leri)
@@ -711,12 +724,12 @@ async def analyze_supplier(
 
 - **Python modülleri**: ~578 kaynak + ~142 test dosyası
 - **Toplam LOC**: ~230,000
-- **Test sayısı**: 10,656+
+- **Test sayısı**: 10,843+
 - **Agent sayısı**: 11 (1 base + 9 uzman + 1 meta)
 - **API endpoint**: 15 (10 core + 5 plugin)
 - **Webhook endpoint**: 4
 
-## Geliştirme Durumu (69/69 Tamamlandı ✅)
+## Geliştirme Durumu (70/70 Tamamlandı ✅)
 
 1. ✅ Proje yapısı ve temel config
 2. ✅ Master Agent + Karar Matrisi (akıllı agent seçimi, eskalasyon, denetim izi, onay iş akışı)
@@ -787,3 +800,4 @@ async def analyze_supplier(
 67. ✅ Infrastructure as Code (ResourceDefiner, IaCTemplateEngine, IaCStateManager, PlanGenerator, ResourceProvisioner, IaCDriftDetector, ModuleManager, IaCComplianceChecker, IaCOrchestrator)
 68. ✅ Backup & Disaster Recovery (BackupScheduler, BackupExecutor, BackupStorageBackend, RestoreManager, BackupReplicationManager, DisasterPlanner, FailoverController, RecoveryTester, BackupOrchestrator)
 69. ✅ Identity & Access Management (IdentityProvider, RoleManager, PermissionManager, IAMPolicyEngine, GroupManager, IAMSessionManager, OAuthProvider, IAMAuditLog, IAMOrchestrator)
+70. ✅ Rate Limiting & Throttling (TokenBucket, SlidingWindow, LeakyBucket, QuotaManager, ThrottleController, RatePolicy, ViolationHandler, RateAnalytics, RateLimitOrchestrator)
