@@ -458,6 +458,13 @@ class Settings(BaseSettings):
     experiment_duration_hours: int = 24
     auto_apply_learnings: bool = False
 
+    # Confidence-Based Autonomy
+    confidence_enabled: bool = True
+    auto_execute_threshold: float = 0.8
+    ask_human_threshold: float = 0.3
+    trust_decay_rate: float = 0.01
+    calibration_interval_hours: int = 24
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""

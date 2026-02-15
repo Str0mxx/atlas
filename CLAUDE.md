@@ -496,7 +496,7 @@ atlas/
 │   │       ├── rate_analytics.py       # Hız analitiği (kalıp, zirve, trend, kapasite)
 │   │       └── ratelimit_orchestrator.py # Orkestratör (çoklu algoritma, dağıtık, izleme)
 │   │
-│   │   └── closedloop/            # Closed-Loop Execution Tracking sistemi
+│   │   ├── closedloop/            # Closed-Loop Execution Tracking sistemi
 │   │       ├── __init__.py
 │   │       ├── action_tracker.py        # Aksiyon takipçisi (kayıt, loglama, zincirleme)
 │   │       ├── outcome_detector.py      # Sonuç tespiti (başarı/başarısızlık, metrik, yan etki)
@@ -507,6 +507,18 @@ atlas/
 │   │       ├── experiment_tracker.py    # Deney takibi (A/B, hipotez, anlamlılık, kazanan)
 │   │       ├── improvement_engine.py    # İyileştirme (tespit, öncelik, uygulama, etki, yineleme)
 │   │       └── closedloop_orchestrator.py # Orkestratör (tam döngü, entegrasyon, raporlama)
+│   │
+│   │   └── confidence/            # Confidence-Based Autonomy sistemi
+│   │       ├── __init__.py
+│   │       ├── confidence_calculator.py   # Güven hesaplayıcı (çoklu faktör, veri kalitesi, model)
+│   │       ├── threshold_manager.py       # Eşik yöneticisi (dinamik, aksiyon/alan, adaptif, marj)
+│   │       ├── autonomy_controller.py     # Otonomi kontrolcüsü (auto/suggest/ask, acil, denetim)
+│   │       ├── accuracy_tracker.py        # Doğruluk takibi (sonuç, tarihçe, trend, kalibrasyon)
+│   │       ├── trust_evolver.py           # Güven evrimcisi (kazanma, kayıp, azalma, kurtarma)
+│   │       ├── escalation_router.py       # Eskalasyon yönlendirici (kime, aciliyet, zaman aşımı)
+│   │       ├── human_feedback.py          # İnsan geri bildirimi (karar, düzeltme, tercih, uyuşmazlık)
+│   │       ├── calibration_engine.py      # Kalibrasyon motoru (Brier, güvenilirlik, oto-düzeltme)
+│   │       └── confidence_orchestrator.py # Orkestratör (tam pipeline, karar, güven, raporlama)
 │   │
 │   ├── agents/
 │   │   ├── __init__.py
@@ -606,7 +618,8 @@ atlas/
 │       ├── backup_models.py # Backup & Disaster Recovery modeli
 │       ├── iam_models.py # Identity & Access Management modeli
 │       ├── ratelimit_models.py # Rate Limiting & Throttling modeli
-│       └── closedloop_models.py # Closed-Loop Execution Tracking modeli
+│       ├── closedloop_models.py # Closed-Loop Execution Tracking modeli
+│       └── confidence_models.py # Confidence-Based Autonomy modeli
 │
 │
 │   ├── plugins/                # Plugin dizini (kullanıcı plugin'leri)
@@ -737,12 +750,12 @@ async def analyze_supplier(
 
 - **Python modülleri**: ~578 kaynak + ~142 test dosyası
 - **Toplam LOC**: ~230,000
-- **Test sayısı**: 11,006+
+- **Test sayısı**: 11,136+
 - **Agent sayısı**: 11 (1 base + 9 uzman + 1 meta)
 - **API endpoint**: 15 (10 core + 5 plugin)
 - **Webhook endpoint**: 4
 
-## Geliştirme Durumu (71/71 Tamamlandı ✅)
+## Geliştirme Durumu (72/72 Tamamlandı ✅)
 
 1. ✅ Proje yapısı ve temel config
 2. ✅ Master Agent + Karar Matrisi (akıllı agent seçimi, eskalasyon, denetim izi, onay iş akışı)
@@ -815,3 +828,4 @@ async def analyze_supplier(
 69. ✅ Identity & Access Management (IdentityProvider, RoleManager, PermissionManager, IAMPolicyEngine, GroupManager, IAMSessionManager, OAuthProvider, IAMAuditLog, IAMOrchestrator)
 70. ✅ Rate Limiting & Throttling (TokenBucket, SlidingWindow, LeakyBucket, QuotaManager, ThrottleController, RatePolicy, ViolationHandler, RateAnalytics, RateLimitOrchestrator)
 71. ✅ Closed-Loop Execution Tracking (ActionTracker, OutcomeDetector, FeedbackCollector, CausalityAnalyzer, LearningIntegrator, LoopMonitor, ClosedLoopExperimentTracker, ImprovementEngine, ClosedLoopOrchestrator)
+72. ✅ Confidence-Based Autonomy (ConfidenceCalculator, ThresholdManager, ConfidenceAutonomyController, AccuracyTracker, TrustEvolver, ConfidenceEscalationRouter, HumanFeedbackHandler, CalibrationEngine, ConfidenceOrchestrator)
