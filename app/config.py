@@ -542,6 +542,13 @@ class Settings(BaseSettings):
     multichannel_auto_escalate: bool = True
     unified_inbox_enabled: bool = True
 
+    # Runtime Capability Factory
+    capfactory_enabled: bool = True
+    sandbox_timeout_seconds: int = 60
+    capfactory_auto_deploy: bool = False
+    min_test_coverage: float = 80.0
+    capfactory_rollback_on_failure: bool = True
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""

@@ -137,6 +137,18 @@ atlas/
 │   │   │   ├── autobiographical.py      # Özyaşam hafızası (bölümler, kimlik, anlatı)
 │   │   │   └── memory_palace_manager.py # Orkestratör (kodlama, yönlendirme, arama)
 │   │   │
+│   │   ├── capfactory/         # Runtime Capability Factory sistemi
+│   │   │   ├── __init__.py
+│   │   │   ├── need_analyzer.py         # İhtiyaç analizi (anahtar kelime, karmaşıklık, fizibilite)
+│   │   │   ├── solution_architect.py    # Çözüm mimarisi (bileşen, bağımlılık, kaynak tahmini)
+│   │   │   ├── rapid_prototyper.py      # Hızlı prototip (şablon, kod üretimi, iterasyon)
+│   │   │   ├── sandbox_environment.py   # Sandbox ortamı (izolasyon, kaynak limiti, temizlik)
+│   │   │   ├── auto_tester.py           # Otomatik test (birim, entegrasyon, güvenlik, kapsam)
+│   │   │   ├── safe_deployer.py         # Güvenli dağıtım (canary, staging, promote, rollback)
+│   │   │   ├── capability_registry.py   # Yetenek kaydı (katalog, versiyon, kullanım, keşif)
+│   │   │   ├── rollback_on_failure.py   # Hata geri alma (checkpoint, tespit, bildirim, post-mortem)
+│   │   │   └── capfactory_orchestrator.py # Orkestratör (Analyze→Design→Build→Test→Deploy pipeline)
+│   │   │
 │   │   ├── business/            # Autonomous Business Runner sistemi
 │   │   │   ├── __init__.py
 │   │   │   ├── opportunity_detector.py  # Fırsat tespiti (pazar tarama, trend, rakip, boşluk, lead scoring)
@@ -719,6 +731,7 @@ atlas/
 │       ├── bootstrap.py       # Self-bootstrapping modeli
 │       ├── selfcode.py        # Self-coding agent modeli
 │       ├── memory_palace.py   # Memory Palace hafıza modeli
+│       ├── capfactory_models.py # Runtime Capability Factory modeli
 │       ├── business.py        # Autonomous Business Runner modeli
 │       ├── nlp_engine.py      # NLP Engine modeli
 │       ├── predictive.py      # Predictive Intelligence modeli
@@ -772,7 +785,7 @@ atlas/
 │   │       ├── agent.py
 │   │       └── hooks.py
 │
-├── tests/                      # 159 test dosyası, 12677 test
+├── tests/                      # 160 test dosyası, 12800 test
 │   └── ...
 │
 ├── scripts/
@@ -891,14 +904,14 @@ async def analyze_supplier(
 
 ## Proje İstatistikleri
 
-- **Python modülleri**: ~782 kaynak + ~159 test dosyası
-- **Toplam LOC**: ~270,000
-- **Test sayısı**: 12,677+
+- **Python modülleri**: ~793 kaynak + ~160 test dosyası
+- **Toplam LOC**: ~274,000
+- **Test sayısı**: 12,800+
 - **Agent sayısı**: 11 (1 base + 9 uzman + 1 meta)
 - **API endpoint**: 15 (10 core + 5 plugin)
 - **Webhook endpoint**: 4
 
-## Geliştirme Durumu (83/83 Tamamlandı ✅)
+## Geliştirme Durumu (84/84 Tamamlandı ✅)
 
 1. ✅ Proje yapısı ve temel config
 2. ✅ Master Agent + Karar Matrisi (akıllı agent seçimi, eskalasyon, denetim izi, onay iş akışı)
@@ -983,3 +996,4 @@ async def analyze_supplier(
 81. ✅ Always-On Proactive Brain (ContinuousScanner, OpportunityRanker, ProactiveAnomalyDetector, ProactiveNotifier, PeriodicReporter, ProactivePriorityQueue, SleepCycleManager, ActionDecider, ProactiveOrchestrator)
 82. ✅ Voice Call Interface (CallInitiator, SpeechToText, TextToSpeech, VoiceConversationManager, UrgencyClassifier, CallScheduler, VoiceAuthenticator, CallRecorder, VoiceCallOrchestrator)
 83. ✅ Multi-Channel Command Center (ChannelRouter, ContextCarrier, AvailabilityTracker, CommandInterpreter, ResponseFormatter, ChannelPreferenceEngine, EscalationPathManager, UnifiedInbox, MultiChannelOrchestrator)
+84. ✅ Runtime Capability Factory (NeedAnalyzer, SolutionArchitect, RapidPrototyper, SandboxEnvironment, CapabilityAutoTester, SafeDeployer, RuntimeCapabilityRegistry, RollbackOnFailure, CapFactoryOrchestrator)
