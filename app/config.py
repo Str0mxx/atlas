@@ -535,6 +535,13 @@ class Settings(BaseSettings):
     recording_enabled: bool = True
     emergency_override: bool = True
 
+    # Multi-Channel Command Center
+    multichannel_enabled: bool = True
+    multichannel_default_channel: str = "telegram"
+    context_timeout_minutes: int = 30
+    multichannel_auto_escalate: bool = True
+    unified_inbox_enabled: bool = True
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""
