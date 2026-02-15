@@ -416,6 +416,13 @@ class Settings(BaseSettings):
     introspection_enabled: bool = True
     playground_enabled: bool = True
 
+    # Container & Orchestration Management
+    container_enabled: bool = True
+    default_cpu_limit: str = "1.0"
+    default_memory_limit: str = "512Mi"
+    registry_url: str = "localhost:5000"
+    auto_cleanup: bool = True
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""
