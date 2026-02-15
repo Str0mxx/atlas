@@ -402,6 +402,13 @@ class Settings(BaseSettings):
     drift_check_interval: int = 3600
     auto_retrain: bool = False
 
+    # Stream Processing & Real-Time Analytics
+    streaming_enabled: bool = True
+    default_window_size: int = 60
+    checkpoint_interval: int = 300
+    max_lateness: int = 10
+    parallelism: int = 4
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""
