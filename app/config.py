@@ -388,6 +388,13 @@ class Settings(BaseSettings):
     alert_evaluation_interval: int = 30
     observability_retention_days: int = 30
 
+    # Service Mesh & Microservices
+    servicemesh_enabled: bool = True
+    default_timeout_ms: int = 30000
+    circuit_failure_threshold: int = 5
+    retry_max_attempts: int = 3
+    load_balancer_algorithm: str = "round_robin"
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""
