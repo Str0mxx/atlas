@@ -423,6 +423,13 @@ class Settings(BaseSettings):
     registry_url: str = "localhost:5000"
     auto_cleanup: bool = True
 
+    # Infrastructure as Code
+    iac_enabled: bool = True
+    state_backend: str = "local"
+    auto_approve: bool = False
+    parallel_operations: int = 4
+    iac_drift_check_interval: int = 3600
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""

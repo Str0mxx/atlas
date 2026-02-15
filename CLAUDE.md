@@ -447,6 +447,18 @@ atlas/
 │   │       ├── response_cache.py      # Yanıt önbelleği (TTL, geçersiz kılma, ısındırma, hit rate)
 │   │       ├── error_handler.py       # Hata yönetimi (sınıflandırma, yeniden deneme, yedek yanıt)
 │   │       └── integration_hub.py     # Orkestratör (merkezi entegrasyon, servis orkestrasyon, izleme)
+│   │   │
+│   │   └── iac/                 # Infrastructure as Code sistemi
+│   │       ├── __init__.py
+│   │       ├── resource_definer.py      # Kaynak tanımlayıcı (tip, özellik, bağımlılık, koşul, çıktı)
+│   │       ├── template_engine.py       # Şablon motoru (değişken, koşul, döngü, fonksiyon, include)
+│   │       ├── state_manager.py         # Durum yöneticisi (depolama, kilitleme, sürümleme, import/export)
+│   │       ├── plan_generator.py        # Plan üretici (fark, maliyet, risk, onay/red)
+│   │       ├── resource_provisioner.py  # Kaynak sağlayıcı (CRUD, plan uygulama, geri alma, hook)
+│   │       ├── drift_detector.py        # Kayma tespitçisi (baseline, ciddiyet, uyarı, düzeltme)
+│   │       ├── module_manager.py        # Modül yöneticisi (kayıt, sürüm, örnekleme, doğrulama)
+│   │       ├── compliance_checker.py    # Uyumluluk denetçisi (politika, operatör, muafiyet, rapor)
+│   │       └── iac_orchestrator.py      # Orkestratör (pipeline, plan/apply, durum, drift, uyumluluk)
 │   │
 │   ├── agents/
 │   │   ├── __init__.py
@@ -540,7 +552,9 @@ atlas/
 │       ├── scheduler.py  # Time & Schedule Management modeli
 │       ├── localization.py # Multi-Language & Localization modeli
 │       ├── notification_system.py # Notification & Alert System modeli
-│       └── pipeline.py   # Data Pipeline & ETL System modeli
+│       ├── pipeline.py   # Data Pipeline & ETL System modeli
+│       ├── container_models.py # Container & Orchestration modeli
+│       └── iac_models.py # Infrastructure as Code modeli
 │
 │
 │   ├── plugins/                # Plugin dizini (kullanıcı plugin'leri)
@@ -669,14 +683,14 @@ async def analyze_supplier(
 
 ## Proje İstatistikleri
 
-- **Python modülleri**: ~557 kaynak + ~140 test dosyası
-- **Toplam LOC**: ~224,000
-- **Test sayısı**: 10,054+
+- **Python modülleri**: ~567 kaynak + ~141 test dosyası
+- **Toplam LOC**: ~227,000
+- **Test sayısı**: 10,276+
 - **Agent sayısı**: 11 (1 base + 9 uzman + 1 meta)
 - **API endpoint**: 15 (10 core + 5 plugin)
 - **Webhook endpoint**: 4
 
-## Geliştirme Durumu (66/66 Tamamlandı ✅)
+## Geliştirme Durumu (67/67 Tamamlandı ✅)
 
 1. ✅ Proje yapısı ve temel config
 2. ✅ Master Agent + Karar Matrisi (akıllı agent seçimi, eskalasyon, denetim izi, onay iş akışı)
@@ -744,3 +758,4 @@ async def analyze_supplier(
 64. ✅ Stream Processing & Real-Time Analytics (StreamSource, StreamProcessor, WindowManager, StreamAggregator, StreamJoiner, CEPEngine, StreamSink, RealtimeDashboard, StreamingOrchestrator)
 65. ✅ GraphQL & API Federation (SchemaBuilder, ResolverManager, QueryExecutor, DataLoader, SubscriptionManager, FederationGateway, Introspection, QueryComplexity, GraphQLOrchestrator)
 66. ✅ Container & Orchestration Management (ContainerBuilder, ImageRegistry, ContainerRuntime, PodManager, DeploymentController, ServiceExposer, ResourceQuota, HelmManager, ContainerOrchestrator)
+67. ✅ Infrastructure as Code (ResourceDefiner, IaCTemplateEngine, IaCStateManager, PlanGenerator, ResourceProvisioner, IaCDriftDetector, ModuleManager, IaCComplianceChecker, IaCOrchestrator)
