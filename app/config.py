@@ -374,6 +374,13 @@ class Settings(BaseSettings):
     consensus_timeout: int = 30
     heartbeat_interval: int = 5
 
+    # Configuration Management
+    config_mgmt_enabled: bool = True
+    config_cache_ttl: int = 300
+    secret_rotation_days: int = 90
+    feature_flag_default: bool = False
+    hot_reload_enabled: bool = True
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""
