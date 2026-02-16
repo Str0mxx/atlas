@@ -710,6 +710,13 @@ class Settings(BaseSettings):
     min_sample_size: int = 100
     auto_rollout: bool = True
 
+    # --- Disaster & Crisis Management ---
+    crisismgr_enabled: bool = True
+    auto_escalate: bool = True
+    simulation_frequency: str = "monthly"
+    notification_channels: str = "telegram,email"
+    post_crisis_analysis: bool = True
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""

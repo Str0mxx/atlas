@@ -389,6 +389,18 @@ atlas/
 │   │   │   ├── multivariate_tester.py     # Çok değişkenli test (faktöriyel, etkileşim, optimizasyon)
 │   │   │   └── abtesting_orchestrator.py  # Orkestratör (Design→Split→Measure→Analyze→Rollout)
 │   │   │
+│   │   ├── crisismgr/          # Disaster & Crisis Management sistemi
+│   │   │   ├── __init__.py
+│   │   │   ├── crisis_detector.py         # Kriz tespiti (anomali, eşik, patern, sinyal füzyon, erken uyarı)
+│   │   │   ├── escalation_protocol.py     # Eskalasyon protokolü (seviye, iletişim zinciri, yanıt süresi, otomatik)
+│   │   │   ├── communication_template.py  # İletişim şablonu (oluşturma, hedef kitle, ton adaptasyonu, mesaj)
+│   │   │   ├── stakeholder_notifier.py    # Paydaş bilgilendirme (yönlendirme, öncelik, onay takibi, denetim)
+│   │   │   ├── action_plan_generator.py   # Aksiyon planı (üretim, görev atama, zaman çizelgesi, kaynak)
+│   │   │   ├── post_crisis_analyzer.py    # Kriz sonrası analiz (kök neden, zaman çizelgesi, etki, ders)
+│   │   │   ├── simulation_runner.py       # Simülasyon (tatbikat, senaryo, yanıt zamanlama, boşluk, eğitim)
+│   │   │   ├── recovery_tracker.py        # Kurtarma takibi (ilerleme, kilometre taşı, kaynak, doğrulama)
+│   │   │   └── crisismgr_orchestrator.py  # Orkestratör (Detect→Escalate→Communicate→Act→Recover→Learn)
+│   │   │
 │   │   ├── extcomm/            # External Communication Agent sistemi
 │   │   │   ├── __init__.py
 │   │   │   ├── email_composer.py       # Email yazıcı (şablon, ton, kişiselleştirme, konu optimizasyonu)
@@ -1030,6 +1042,7 @@ atlas/
 │       ├── calendarintel_models.py # Scheduling & Calendar Intelligence modeli
 │       ├── knowledgebase_models.py # Knowledge Base & Wiki Engine modeli
 │       ├── abtesting_models.py    # A/B Testing & Experiment Platform modeli
+│       ├── crisismgr_models.py    # Disaster & Crisis Management modeli
 │       ├── capfactory_models.py # Runtime Capability Factory modeli
 │       ├── business.py        # Autonomous Business Runner modeli
 │       ├── nlp_engine.py      # NLP Engine modeli
@@ -1084,7 +1097,7 @@ atlas/
 │   │       ├── agent.py
 │   │       └── hooks.py
 │
-├── tests/                      # 178 test dosyası, 14861 test
+├── tests/                      # 179 test dosyası, 14939 test
 │   └── ...
 │
 ├── scripts/
@@ -1203,14 +1216,14 @@ async def analyze_supplier(
 
 ## Proje İstatistikleri
 
-- **Python modülleri**: ~1046 kaynak + ~183 test dosyası
-- **Toplam LOC**: ~353,000
-- **Test sayısı**: 15,394+
+- **Python modülleri**: ~1057 kaynak + ~184 test dosyası
+- **Toplam LOC**: ~356,000
+- **Test sayısı**: 15,472+
 - **Agent sayısı**: 11 (1 base + 9 uzman + 1 meta)
 - **API endpoint**: 15 (10 core + 5 plugin)
 - **Webhook endpoint**: 4
 
-## Geliştirme Durumu (107/107 Tamamlandı ✅)
+## Geliştirme Durumu (108/108 Tamamlandı ✅)
 
 1. ✅ Proje yapısı ve temel config
 2. ✅ Master Agent + Karar Matrisi (akıllı agent seçimi, eskalasyon, denetim izi, onay iş akışı)
@@ -1319,3 +1332,4 @@ async def analyze_supplier(
 105. ✅ Scheduling & Calendar Intelligence (MeetingOptimizer, CalendarAvailabilityFinder, CalendarTimezoneManager, CalendarConflictResolver, PrepBriefGenerator, AgendaCreator, MeetingFollowUpScheduler, CalendarAnalyzer, CalendarIntelOrchestrator)
 106. ✅ Knowledge Base & Wiki Engine (WikiBuilder, AutoDocumenter, FAQGenerator, KBSearchIndexer, KnowledgeLinker, KnowledgeGapFinder, VersionedContent, KBContributor, KnowledgeBaseOrchestrator)
 107. ✅ A/B Testing & Experiment Platform (ABExperimentDesigner, VariantManager, TrafficSplitter, ABStatisticalAnalyzer, WinnerDetector, AutoRollout, ExperimentArchive, MultivariateTester, ABTestingOrchestrator)
+108. ✅ Disaster & Crisis Management (CrisisMgrDetector, EscalationProtocol, CrisisCommunicationTemplate, StakeholderNotifier, CrisisActionPlanGenerator, PostCrisisAnalyzer, CrisisSimulationRunner, CrisisRecoveryTracker, CrisisMgrOrchestrator)
