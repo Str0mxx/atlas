@@ -605,6 +605,13 @@ class Settings(BaseSettings):
     alert_threshold: float = 1000.0
     auto_categorize: bool = True
 
+    # --- Autonomous Negotiation Engine ---
+    negotiation_enabled: bool = True
+    auto_respond: bool = False
+    min_acceptable_score: float = 60.0
+    max_rounds: int = 10
+    require_approval: bool = True
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""
