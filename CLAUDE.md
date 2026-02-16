@@ -533,6 +533,18 @@ atlas/
 │   │   │   ├── event_roi_calculator.py      # ROI hesaplayıcı (maliyet, lead, gelir, ROI, karşılaştırma)
 │   │   │   └── eventintel_orchestrator.py   # Orkestratör (Discover→Register→Attend→Network→Follow-up)
 │   │   │
+│   │   ├── referral/           # Referral & Word-of-Mouth Engine sistemi
+│   │   │   ├── __init__.py
+│   │   │   ├── referral_program_builder.py    # Program oluşturucu (tasarım, ödül yapısı, kural, tier, varyant)
+│   │   │   ├── tracking_link_generator.py     # Takip linki üretici (link, UTM, kısa URL, QR, deep link)
+│   │   │   ├── reward_calculator.py           # Ödül hesaplayıcı (hesaplama, kademeli, limit, döviz, vergi)
+│   │   │   ├── ambassador_manager.py          # Elçi yöneticisi (kayıt, performans, tier, iletişim, takdir)
+│   │   │   ├── referral_conversion_tracker.py # Dönüşüm takipçisi (takip, atıf, huni, süre, kalite)
+│   │   │   ├── incentive_optimizer.py         # Teşvik optimizasyonu (test, optimal ödül, zamanlama, segment, ROI)
+│   │   │   ├── viral_coefficient.py           # Viral katsayı (K-faktör, büyüme model, döngü, projeksiyon, kıyaslama)
+│   │   │   ├── referral_fraud_detector.py     # Dolandırıcılık tespiti (self-referral, sahte hesap, desen, hız, kara liste)
+│   │   │   └── referral_orchestrator.py       # Orkestratör (Create→Share→Track→Reward→Optimize)
+│   │   │
 │   │   ├── extcomm/            # External Communication Agent sistemi
 │   │   │   ├── __init__.py
 │   │   │   ├── email_composer.py       # Email yazıcı (şablon, ton, kişiselleştirme, konu optimizasyonu)
@@ -1186,6 +1198,7 @@ atlas/
 │       ├── partnership_models.py # Network & Partnership Finder modeli
 │       ├── community_models.py  # Community & Audience Builder modeli
 │       ├── eventintel_models.py # Event & Conference Intelligence modeli
+│       ├── referral_models.py  # Referral & Word-of-Mouth Engine modeli
 │       ├── capfactory_models.py # Runtime Capability Factory modeli
 │       ├── business.py        # Autonomous Business Runner modeli
 │       ├── nlp_engine.py      # NLP Engine modeli
@@ -1359,14 +1372,14 @@ async def analyze_supplier(
 
 ## Proje İstatistikleri
 
-- **Python modülleri**: ~1178 kaynak + ~196 test dosyası
-- **Toplam LOC**: ~494,000
-- **Test sayısı**: 16,520+
+- **Python modülleri**: ~1189 kaynak + ~197 test dosyası
+- **Toplam LOC**: ~500,000
+- **Test sayısı**: 16,619+
 - **Agent sayısı**: 11 (1 base + 9 uzman + 1 meta)
 - **API endpoint**: 15 (10 core + 5 plugin)
 - **Webhook endpoint**: 4
 
-## Geliştirme Durumu (119/119 Tamamlandı ✅)
+## Geliştirme Durumu (120/120 Tamamlandı ✅)
 
 1. ✅ Proje yapısı ve temel config
 2. ✅ Master Agent + Karar Matrisi (akıllı agent seçimi, eskalasyon, denetim izi, onay iş akışı)
@@ -1487,3 +1500,4 @@ async def analyze_supplier(
 117. ✅ Network & Partnership Finder (PartnerDiscovery, PartnerCompatibilityScorer, IndustryMapper, NetworkingEventFinder, ConnectionBroker, PartnershipTracker, DealFlowManager, InvestorFinder, PartnershipOrchestrator)
 118. ✅ Community & Audience Builder (AudienceSegmenter, GrowthTactician, CommunityManager, MemberAnalyzer, CommunityContentPersonalizer, CommunityRetentionEngine, ViralLoopDesigner, EngagementGamifier, CommunityOrchestrator)
 119. ✅ Event & Conference Intelligence (EventDiscovery, EventRelevanceScorer, RegistrationAutomator, EventAgendaAnalyzer, NetworkingPlanner, PostEventFollowUp, SpeakerTracker, EventROICalculator, EventIntelOrchestrator)
+120. ✅ Referral & Word-of-Mouth Engine (ReferralProgramBuilder, TrackingLinkGenerator, ReferralRewardCalculator, AmbassadorManager, ReferralConversionTracker, IncentiveOptimizer, ViralCoefficientCalculator, ReferralFraudDetector, ReferralOrchestrator)

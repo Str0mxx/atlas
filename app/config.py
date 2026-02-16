@@ -794,6 +794,13 @@ class Settings(BaseSettings):
     followup_auto: bool = True
     roi_tracking: bool = True
 
+    # Referral & Word-of-Mouth Engine
+    referral_enabled: bool = True
+    default_reward_type: str = "credit"
+    fraud_detection: bool = True
+    auto_payout: bool = True
+    viral_tracking: bool = True
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""
