@@ -871,6 +871,13 @@ class Settings(BaseSettings):
     verification_schedule: str = "weekly"
     succession_enabled: bool = True
 
+    # Unified Dashboard & Control Panel
+    dashboard_enabled: bool = True
+    realtime_updates: bool = True
+    mobile_enabled: bool = True
+    telegram_mini: bool = True
+    auto_refresh_seconds: int = 30
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""
