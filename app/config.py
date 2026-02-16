@@ -864,6 +864,13 @@ class Settings(BaseSettings):
     selfdev_certification_focus: bool = True
     selfdev_mentor_matching: bool = True
 
+    # Digital Legacy & Backup Manager
+    digitallegacy_enabled: bool = True
+    backup_frequency: str = "daily"
+    encryption_level: str = "aes256"
+    verification_schedule: str = "weekly"
+    succession_enabled: bool = True
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""
