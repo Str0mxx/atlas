@@ -329,6 +329,18 @@ atlas/
 │   │   │   ├── risk_scorer.py          # Risk puanlayıcı (hesaplama, çok faktör, güven, eşik, açıklama)
 │   │   │   └── frauddetect_orchestrator.py # Orkestratör (Scan→Match→Score→Triage→Report pipeline)
 │   │   │
+│   │   ├── docmgr/            # Smart Document Manager sistemi
+│   │   │   ├── __init__.py
+│   │   │   ├── document_classifier.py   # Sınıflandırıcı (oto-sınıf, tip tespit, kategori, güven, çoklu etiket)
+│   │   │   ├── auto_tagger.py           # Etiketleyici (anahtar kelime, varlık, konu, özel etiket, öneri)
+│   │   │   ├── version_tracker.py       # Sürüm takipçisi (geçmiş, değişiklik, diff, geri alma, dal)
+│   │   │   ├── doc_search_engine.py     # Arama motoru (tam metin, semantik, filtre, faset, ilgililik)
+│   │   │   ├── summary_generator.py     # Özet üretici (oto-özet, anahtar nokta, TL;DR, özel uzunluk, çoklu)
+│   │   │   ├── template_manager.py      # Şablon yöneticisi (kütüphane, değişken, sürüm, paylaşım, analitik)
+│   │   │   ├── expiry_tracker.py        # Süre takipçisi (bitiş, yenileme, uyumluluk, oto-arşiv, uyarı)
+│   │   │   ├── access_controller.py     # Erişim kontrolcüsü (izin, paylaşım, denetim, şifreleme, filigran)
+│   │   │   └── docmgr_orchestrator.py   # Orkestratör (Upload→Classify→Tag→Index→Track pipeline)
+│   │   │
 │   │   ├── extcomm/            # External Communication Agent sistemi
 │   │   │   ├── __init__.py
 │   │   │   ├── email_composer.py       # Email yazıcı (şablon, ton, kişiselleştirme, konu optimizasyonu)
@@ -965,6 +977,7 @@ atlas/
 │       ├── feedbackopt_models.py # Feedback Loop Optimizer modeli
 │       ├── frauddetect_models.py # Anomaly & Fraud Detector modeli
 │       ├── brandmon_models.py   # Reputation & Brand Monitor modeli
+│       ├── docmgr_models.py     # Smart Document Manager modeli
 │       ├── capfactory_models.py # Runtime Capability Factory modeli
 │       ├── business.py        # Autonomous Business Runner modeli
 │       ├── nlp_engine.py      # NLP Engine modeli
@@ -1019,7 +1032,7 @@ atlas/
 │   │       ├── agent.py
 │   │       └── hooks.py
 │
-├── tests/                      # 173 test dosyası, 14414 test
+├── tests/                      # 174 test dosyası, 14517 test
 │   └── ...
 │
 ├── scripts/
@@ -1138,14 +1151,14 @@ async def analyze_supplier(
 
 ## Proje İstatistikleri
 
-- **Python modülleri**: ~991 kaynak + ~178 test dosyası
-- **Toplam LOC**: ~338,000
-- **Test sayısı**: 14,947+
+- **Python modülleri**: ~1002 kaynak + ~179 test dosyası
+- **Toplam LOC**: ~341,000
+- **Test sayısı**: 15,050+
 - **Agent sayısı**: 11 (1 base + 9 uzman + 1 meta)
 - **API endpoint**: 15 (10 core + 5 plugin)
 - **Webhook endpoint**: 4
 
-## Geliştirme Durumu (102/102 Tamamlandı ✅)
+## Geliştirme Durumu (103/103 Tamamlandı ✅)
 
 1. ✅ Proje yapısı ve temel config
 2. ✅ Master Agent + Karar Matrisi (akıllı agent seçimi, eskalasyon, denetim izi, onay iş akışı)
@@ -1249,3 +1262,4 @@ async def analyze_supplier(
 100. ✅ Feedback Loop Optimizer (UserSatisfactionTracker, OutcomeCorrelator, StrategyRanker, AutoTuner, FeedbackExperimentDesigner, ImpactMeasurer, ContinuousImprover, LearningSynthesizer, FeedbackOptOrchestrator)
 101. ✅ Anomaly & Fraud Detector (AnomalyScanner, FraudPatternMatcher, BehaviorBaseline, AlertTriager, FalsePositiveFilter, FraudIncidentReporter, LearningDetector, FraudRiskScorer, FraudDetectOrchestrator)
 102. ✅ Reputation & Brand Monitor (MentionTracker, BrandSentimentAggregator, ReviewMonitor, CrisisDetector, ResponseSuggester, BrandHealthScore, CompetitorBrandTracker, InfluencerTracker, BrandMonOrchestrator)
+103. ✅ Smart Document Manager (DocumentClassifier, AutoTagger, DocVersionTracker, DocSearchEngine, DocSummaryGenerator, DocTemplateManager, ExpiryTracker, DocAccessController, DocMgrOrchestrator)

@@ -675,6 +675,13 @@ class Settings(BaseSettings):
     auto_respond: bool = True
     competitor_tracking: bool = True
 
+    # --- Smart Document Manager ---
+    docmgr_enabled: bool = True
+    auto_classify: bool = True
+    auto_tag: bool = True
+    expiry_alert_days: int = 30
+    version_retention: int = 50
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""
