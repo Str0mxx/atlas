@@ -305,6 +305,18 @@ atlas/
 │   │   │   ├── learning_synthesizer.py  # Öğrenme sentezleyici (içgörü, bilgi, uygulama, çapraz, hafıza)
 │   │   │   └── feedbackopt_orchestrator.py # Orkestratör (Collect→Correlate→Rank→Tune→Measure→Improve pipeline)
 │   │   │
+│   │   ├── frauddetect/       # Anomaly & Fraud Detector sistemi
+│   │   │   ├── __init__.py
+│   │   │   ├── anomaly_scanner.py      # Anomali tarayıcı (kalıp, istatistiksel, zaman serisi, davranışsal, çok boyutlu)
+│   │   │   ├── fraud_pattern_matcher.py # Kalıp eşleştirici (bilinen kalıp, kural, imza, bulanık eşleştirme)
+│   │   │   ├── behavior_baseline.py    # Davranış temeli (öğrenme, profil, sapma, adaptif, mevsimsel)
+│   │   │   ├── alert_triager.py        # Uyarı önceliklendirici (puanlama, öncelik, gruplama, yineleme, yönlendirme)
+│   │   │   ├── false_positive_filter.py # FP filtresi (tespit, geri bildirim, kural, eşik, doğruluk)
+│   │   │   ├── incident_reporter.py    # Olay raporlayıcı (belgeleme, kanıt, çizelge, bildirim, uyumluluk)
+│   │   │   ├── learning_detector.py    # Öğrenen dedektör (ML tespit, eğitim, özellik, versiyon)
+│   │   │   ├── risk_scorer.py          # Risk puanlayıcı (hesaplama, çok faktör, güven, eşik, açıklama)
+│   │   │   └── frauddetect_orchestrator.py # Orkestratör (Scan→Match→Score→Triage→Report pipeline)
+│   │   │
 │   │   ├── extcomm/            # External Communication Agent sistemi
 │   │   │   ├── __init__.py
 │   │   │   ├── email_composer.py       # Email yazıcı (şablon, ton, kişiselleştirme, konu optimizasyonu)
@@ -939,6 +951,7 @@ atlas/
 │       ├── purchasing_models.py # Autonomous Purchasing Agent modeli
 │       ├── guardian_models.py   # Health & Uptime Guardian modeli
 │       ├── feedbackopt_models.py # Feedback Loop Optimizer modeli
+│       ├── frauddetect_models.py # Anomaly & Fraud Detector modeli
 │       ├── capfactory_models.py # Runtime Capability Factory modeli
 │       ├── business.py        # Autonomous Business Runner modeli
 │       ├── nlp_engine.py      # NLP Engine modeli
@@ -993,7 +1006,7 @@ atlas/
 │   │       ├── agent.py
 │   │       └── hooks.py
 │
-├── tests/                      # 171 test dosyası, 14219 test
+├── tests/                      # 172 test dosyası, 14327 test
 │   └── ...
 │
 ├── scripts/
@@ -1112,14 +1125,14 @@ async def analyze_supplier(
 
 ## Proje İstatistikleri
 
-- **Python modülleri**: ~969 kaynak + ~176 test dosyası
-- **Toplam LOC**: ~332,000
-- **Test sayısı**: 14,752+
+- **Python modülleri**: ~980 kaynak + ~177 test dosyası
+- **Toplam LOC**: ~335,000
+- **Test sayısı**: 14,860+
 - **Agent sayısı**: 11 (1 base + 9 uzman + 1 meta)
 - **API endpoint**: 15 (10 core + 5 plugin)
 - **Webhook endpoint**: 4
 
-## Geliştirme Durumu (100/100 Tamamlandı ✅)
+## Geliştirme Durumu (101/101 Tamamlandı ✅)
 
 1. ✅ Proje yapısı ve temel config
 2. ✅ Master Agent + Karar Matrisi (akıllı agent seçimi, eskalasyon, denetim izi, onay iş akışı)
@@ -1221,3 +1234,4 @@ async def analyze_supplier(
 98. ✅ Autonomous Purchasing Agent (PriceComparator, SupplierFinder, PurchaseDecisionEngine, OrderTracker, QualityVerifier, PurchaseBudgetChecker, ReorderPredictor, VendorManager, PurchasingOrchestrator)
 99. ✅ Health & Uptime Guardian (SystemPulseChecker, UptimeTracker, DegradationPredictor, GuardianAutoScaler, IncidentResponder, PostmortemGenerator, SLAEnforcer, RecoveryAutomator, GuardianOrchestrator)
 100. ✅ Feedback Loop Optimizer (UserSatisfactionTracker, OutcomeCorrelator, StrategyRanker, AutoTuner, FeedbackExperimentDesigner, ImpactMeasurer, ContinuousImprover, LearningSynthesizer, FeedbackOptOrchestrator)
+101. ✅ Anomaly & Fraud Detector (AnomalyScanner, FraudPatternMatcher, BehaviorBaseline, AlertTriager, FalsePositiveFilter, FraudIncidentReporter, LearningDetector, FraudRiskScorer, FraudDetectOrchestrator)

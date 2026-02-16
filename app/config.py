@@ -661,6 +661,13 @@ class Settings(BaseSettings):
     improvement_threshold: float = 0.1
     learning_integration: bool = True
 
+    # --- Anomaly & Fraud Detector ---
+    frauddetect_enabled: bool = True
+    sensitivity_level: str = "medium"
+    auto_block: bool = True
+    learning_enabled: bool = True
+    alert_threshold: float = 0.7
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""
