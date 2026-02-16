@@ -724,6 +724,13 @@ class Settings(BaseSettings):
     mentor_matching: bool = True
     progress_notifications: bool = True
 
+    # --- Autonomous Revenue Optimizer ---
+    revenueopt_enabled: bool = True
+    auto_pricing: bool = True
+    churn_alert_threshold: float = 50.0
+    upsell_auto: bool = True
+    forecast_horizon_days: int = 90
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""
