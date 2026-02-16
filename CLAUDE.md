@@ -545,6 +545,18 @@ atlas/
 │   │   │   ├── referral_fraud_detector.py     # Dolandırıcılık tespiti (self-referral, sahte hesap, desen, hız, kara liste)
 │   │   │   └── referral_orchestrator.py       # Orkestratör (Create→Share→Track→Reward→Optimize)
 │   │   │
+│   │   ├── scenario/           # Scenario Planning & War Gaming sistemi
+│   │   │   ├── __init__.py
+│   │   │   ├── scenario_builder.py            # Senaryo oluşturucu (oluşturma, değişken, varsayım, dallanma, şablon)
+│   │   │   ├── probability_estimator.py       # Olasılık tahmincisi (değerlendirme, uzman, tarihsel, Bayes, güven aralığı)
+│   │   │   ├── impact_calculator.py           # Etki hesaplayıcı (finansal, operasyonel, stratejik, zaman, dalga)
+│   │   │   ├── decision_tree_generator.py     # Karar ağacı üretici (ağaç, seçenek, sonuç, yol, görselleştirme)
+│   │   │   ├── worst_case_analyzer.py         # En kötü durum analizcisi (olumsuzluk, risk, azaltma, hayatta kalma, stres)
+│   │   │   ├── best_case_optimizer.py         # En iyi durum optimizasyonu (olumlu, fırsat, kaynak, zamanlama, başarı)
+│   │   │   ├── strategic_recommender.py       # Stratejik önerici (strateji, risk-getiri, öncelik, eylem, olasılık planı)
+│   │   │   ├── war_game_simulator.py          # Savaş oyunu simülatörü (rekabet, hamle, pazar, oyuncu, sonuç)
+│   │   │   └── scenario_orchestrator.py       # Orkestratör (Build→Analyze→Simulate→Recommend)
+│   │   │
 │   │   ├── extcomm/            # External Communication Agent sistemi
 │   │   │   ├── __init__.py
 │   │   │   ├── email_composer.py       # Email yazıcı (şablon, ton, kişiselleştirme, konu optimizasyonu)
@@ -1199,6 +1211,7 @@ atlas/
 │       ├── community_models.py  # Community & Audience Builder modeli
 │       ├── eventintel_models.py # Event & Conference Intelligence modeli
 │       ├── referral_models.py  # Referral & Word-of-Mouth Engine modeli
+│       ├── scenario_models.py # Scenario Planning & War Gaming modeli
 │       ├── capfactory_models.py # Runtime Capability Factory modeli
 │       ├── business.py        # Autonomous Business Runner modeli
 │       ├── nlp_engine.py      # NLP Engine modeli
@@ -1372,14 +1385,14 @@ async def analyze_supplier(
 
 ## Proje İstatistikleri
 
-- **Python modülleri**: ~1189 kaynak + ~197 test dosyası
-- **Toplam LOC**: ~500,000
-- **Test sayısı**: 16,619+
+- **Python modülleri**: ~1200 kaynak + ~198 test dosyası
+- **Toplam LOC**: ~506,000
+- **Test sayısı**: 16,721+
 - **Agent sayısı**: 11 (1 base + 9 uzman + 1 meta)
 - **API endpoint**: 15 (10 core + 5 plugin)
 - **Webhook endpoint**: 4
 
-## Geliştirme Durumu (120/120 Tamamlandı ✅)
+## Geliştirme Durumu (121/121 Tamamlandı ✅)
 
 1. ✅ Proje yapısı ve temel config
 2. ✅ Master Agent + Karar Matrisi (akıllı agent seçimi, eskalasyon, denetim izi, onay iş akışı)
@@ -1501,3 +1514,4 @@ async def analyze_supplier(
 118. ✅ Community & Audience Builder (AudienceSegmenter, GrowthTactician, CommunityManager, MemberAnalyzer, CommunityContentPersonalizer, CommunityRetentionEngine, ViralLoopDesigner, EngagementGamifier, CommunityOrchestrator)
 119. ✅ Event & Conference Intelligence (EventDiscovery, EventRelevanceScorer, RegistrationAutomator, EventAgendaAnalyzer, NetworkingPlanner, PostEventFollowUp, SpeakerTracker, EventROICalculator, EventIntelOrchestrator)
 120. ✅ Referral & Word-of-Mouth Engine (ReferralProgramBuilder, TrackingLinkGenerator, ReferralRewardCalculator, AmbassadorManager, ReferralConversionTracker, IncentiveOptimizer, ViralCoefficientCalculator, ReferralFraudDetector, ReferralOrchestrator)
+121. ✅ Scenario Planning & War Gaming (ScenarioBuilder, ScenarioProbabilityEstimator, ScenarioImpactCalculator, DecisionTreeGenerator, WorstCaseAnalyzer, BestCaseOptimizer, StrategicRecommender, WarGameSimulator, ScenarioOrchestrator)

@@ -801,6 +801,13 @@ class Settings(BaseSettings):
     auto_payout: bool = True
     viral_tracking: bool = True
 
+    # Scenario Planning & War Gaming
+    scenario_enabled: bool = True
+    simulation_iterations: int = 1000
+    scenario_risk_tolerance: str = "medium"
+    scenario_auto_update: bool = True
+    war_game_enabled: bool = True
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""
