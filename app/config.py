@@ -689,6 +689,13 @@ class Settings(BaseSettings):
     digest_frequency: str = "daily"
     spam_threshold: float = 0.5
 
+    # --- Scheduling & Calendar Intelligence ---
+    calendarintel_enabled: bool = True
+    auto_schedule: bool = True
+    prep_brief_enabled: bool = True
+    conflict_auto_resolve: bool = True
+    analytics_enabled: bool = True
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""
