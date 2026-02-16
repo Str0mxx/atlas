@@ -668,6 +668,13 @@ class Settings(BaseSettings):
     learning_enabled: bool = True
     alert_threshold: float = 0.7
 
+    # --- Reputation & Brand Monitor ---
+    brandmon_enabled: bool = True
+    scan_frequency_minutes: int = 30
+    crisis_threshold: float = 0.4
+    auto_respond: bool = True
+    competitor_tracking: bool = True
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""
