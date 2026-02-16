@@ -605,6 +605,18 @@ atlas/
 │   │   │   ├── competitive_position_analyzer.py # Rekabet pozisyonu analizcisi (haritalama, farklılaşma, hendek, zafiyet, strateji)
 │   │   │   └── bizmodel_orchestrator.py       # Orkestratör (Build→Analyze→Test→Optimize)
 │   │   │
+│   │   ├── personalfin/       # Personal Finance Manager sistemi
+│   │   │   ├── __init__.py
+│   │   │   ├── bank_account_connector.py    # Banka bağlayıcı (hesap bağlama, bakiye, senkron, çoklu banka, güvenlik)
+│   │   │   ├── spending_categorizer.py      # Harcama kategorize (otomatik, özel, mağaza eşleme, örüntü, bölme)
+│   │   │   ├── budget_planner.py            # Bütçe planlayıcı (oluşturma, kategori, takip, uyarı, ayarlama)
+│   │   │   ├── savings_advisor.py           # Tasarruf danışmanı (hedef, öneri, otomatik kural, ilerleme, optimizasyon)
+│   │   │   ├── bill_reminder.py             # Fatura hatırlatıcı (takip, vade uyarısı, otomatik ödeme, geçmiş, gecikme)
+│   │   │   ├── personal_investment_tracker.py # Yatırım takipçisi (portföy, performans, dağılım, temettü, vergi)
+│   │   │   ├── financial_goal_tracker.py    # Hedef takipçisi (belirleme, ilerleme, kilometre taşı, projeksiyon, strateji)
+│   │   │   ├── net_worth_calculator.py      # Net değer hesaplayıcı (varlık, borç, hesaplama, trend, projeksiyon)
+│   │   │   └── personalfin_orchestrator.py  # Orkestratör (Track→Budget→Save→Invest→Grow)
+│   │   │
 │   │   ├── extcomm/            # External Communication Agent sistemi
 │   │   │   ├── __init__.py
 │   │   │   ├── email_composer.py       # Email yazıcı (şablon, ton, kişiselleştirme, konu optimizasyonu)
@@ -1264,6 +1276,7 @@ atlas/
 │       ├── investanalyzer_models.py # Investment & ROI Analyzer modeli
 │       ├── okrengine_models.py # Goal Tracking & OKR Engine modeli
 │       ├── bizmodel_models.py # Business Model Canvas & Pivot Detector modeli
+│       ├── personalfin_models.py # Personal Finance Manager modeli
 │       ├── capfactory_models.py # Runtime Capability Factory modeli
 │       ├── business.py        # Autonomous Business Runner modeli
 │       ├── nlp_engine.py      # NLP Engine modeli
@@ -1437,14 +1450,14 @@ async def analyze_supplier(
 
 ## Proje İstatistikleri
 
-- **Python modülleri**: ~1244 kaynak + ~202 test dosyası
-- **Toplam LOC**: ~530,000
-- **Test sayısı**: 17,153+
+- **Python modülleri**: ~1255 kaynak + ~203 test dosyası
+- **Toplam LOC**: ~536,000
+- **Test sayısı**: 17,258+
 - **Agent sayısı**: 11 (1 base + 9 uzman + 1 meta)
 - **API endpoint**: 15 (10 core + 5 plugin)
 - **Webhook endpoint**: 4
 
-## Geliştirme Durumu (125/125 Tamamlandı ✅)
+## Geliştirme Durumu (126/126 Tamamlandı ✅)
 
 1. ✅ Proje yapısı ve temel config
 2. ✅ Master Agent + Karar Matrisi (akıllı agent seçimi, eskalasyon, denetim izi, onay iş akışı)
@@ -1571,3 +1584,4 @@ async def analyze_supplier(
 123. ✅ Investment & ROI Analyzer (InvestmentCalculator, IRREngine, PaybackAnalyzer, RiskReturnMapper, OpportunityCostCalculator, InvestmentPortfolioOptimizer, InvestmentRecommender, DueDiligenceTracker, InvestAnalyzerOrchestrator)
 124. ✅ Goal Tracking & OKR Engine (ObjectiveDefiner, KeyResultTracker, OKRProgressVisualizer, AlignmentChecker, CadenceManager, OKRScoreCalculator, StrategicReviewer, OKRCoach, OKREngineOrchestrator)
 125. ✅ Business Model Canvas & Pivot Detector (CanvasBuilder, RevenueStreamAnalyzer, BizCustomerSegmenter, CostStructureMapper, ValuePropositionTester, PivotSignalDetector, BusinessModelOptimizer, CompetitivePositionAnalyzer, BizModelOrchestrator)
+126. ✅ Personal Finance Manager (BankAccountConnector, SpendingCategorizer, PersonalBudgetPlanner, SavingsAdvisor, BillReminder, PersonalInvestmentTracker, PersonalFinancialGoalTracker, NetWorthCalculator, PersonalFinOrchestrator)

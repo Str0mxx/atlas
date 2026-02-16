@@ -836,6 +836,13 @@ class Settings(BaseSettings):
     bizmodel_canvas_versioning: bool = True
     bizmodel_competitive_tracking: bool = True
 
+    # Personal Finance Manager
+    personalfin_enabled: bool = True
+    personalfin_currency: str = "TRY"
+    personalfin_auto_categorize: bool = True
+    personalfin_budget_alerts: bool = True
+    personalfin_savings_auto: bool = True
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""
