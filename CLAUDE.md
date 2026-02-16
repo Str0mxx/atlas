@@ -221,6 +221,18 @@ atlas/
 │   │   │   ├── communication_manager.py  # İletişim yöneticisi (mesaj, ton, zamanlama, kanal, yanıt)
 │   │   │   └── negotiation_orchestrator.py # Orkestratör (Plan→Offer→Analyze→Counter→Close pipeline)
 │   │   │
+│   │   ├── projectmgr/           # Project & Deadline Manager sistemi
+│   │   │   ├── __init__.py
+│   │   │   ├── project_tracker.py        # Proje takipçisi (yaşam döngüsü, durum, sağlık, takım, kaynak)
+│   │   │   ├── milestone_manager.py      # Kilometre taşı (tanımlama, ilerleme, doğrulama, bağımlılık, kutlama)
+│   │   │   ├── dependency_resolver.py    # Bağımlılık çözücü (haritalama, kritik yol, döngü, etki, sıralama)
+│   │   │   ├── deadline_predictor.py     # Son tarih tahmincisi (tamamlanma, risk, geçmiş, tampon, güven)
+│   │   │   ├── blocker_detector.py       # Engel tespitçisi (tanımlama, etki, çözüm, eskalasyon, takip)
+│   │   │   ├── progress_reporter.py      # İlerleme raporlayıcı (durum, burndown, hız, paydaş, format)
+│   │   │   ├── auto_escalator.py         # Otomatik eskalasyon (kurallar, tetik, bildirim, takip, doğrulama)
+│   │   │   ├── resource_balancer.py      # Kaynak dengeleyici (iş yükü, tahsis, çatışma, kapasite, optimizasyon)
+│   │   │   └── projectmgr_orchestrator.py # Orkestratör (Track→Predict→Alert→Report→Escalate pipeline)
+│   │   │
 │   │   ├── extcomm/            # External Communication Agent sistemi
 │   │   │   ├── __init__.py
 │   │   │   ├── email_composer.py       # Email yazıcı (şablon, ton, kişiselleştirme, konu optimizasyonu)
@@ -848,6 +860,7 @@ atlas/
 │       ├── taskmem_models.py    # Task Memory & Command Learning modeli
 │       ├── financial_models.py  # Financial Intelligence & Tracker modeli
 │       ├── negotiation_models.py # Autonomous Negotiation Engine modeli
+│       ├── projectmgr_models.py # Project & Deadline Manager modeli
 │       ├── capfactory_models.py # Runtime Capability Factory modeli
 │       ├── business.py        # Autonomous Business Runner modeli
 │       ├── nlp_engine.py      # NLP Engine modeli
@@ -902,7 +915,7 @@ atlas/
 │   │       ├── agent.py
 │   │       └── hooks.py
 │
-├── tests/                      # 169 test dosyası, 13938 test
+├── tests/                      # 170 test dosyası, 14094 test
 │   └── ...
 │
 ├── scripts/
@@ -1021,14 +1034,14 @@ async def analyze_supplier(
 
 ## Proje İstatistikleri
 
-- **Python modülleri**: ~892 kaynak + ~169 test dosyası
-- **Toplam LOC**: ~310,000
-- **Test sayısı**: 13,938+
+- **Python modülleri**: ~903 kaynak + ~170 test dosyası
+- **Toplam LOC**: ~314,000
+- **Test sayısı**: 14,094+
 - **Agent sayısı**: 11 (1 base + 9 uzman + 1 meta)
 - **API endpoint**: 15 (10 core + 5 plugin)
 - **Webhook endpoint**: 4
 
-## Geliştirme Durumu (93/93 Tamamlandı ✅)
+## Geliştirme Durumu (94/94 Tamamlandı ✅)
 
 1. ✅ Proje yapısı ve temel config
 2. ✅ Master Agent + Karar Matrisi (akıllı agent seçimi, eskalasyon, denetim izi, onay iş akışı)
@@ -1123,3 +1136,4 @@ async def analyze_supplier(
 91. ✅ Task Memory & Command Learning (CommandPatternLearner, TaskPreferenceTracker, TaskFeedbackIntegrator, TaskTemplateBuilder, QualityImprover, CommandPredictor, ExecutionMemory, PersonalizationEngine, TaskMemOrchestrator)
 92. ✅ Financial Intelligence & Tracker (IncomeTracker, ExpenseAnalyzer, CashFlowPredictor, InvoiceManager, ProfitabilityCalculator, FinancialAlertEngine, TaxEstimator, FinancialReporter, FinancialOrchestrator)
 93. ✅ Autonomous Negotiation Engine (NegotiationStrategyPlanner, OfferGenerator, CounterOfferAnalyzer, ConcessionTracker, WinWinOptimizer, DealScorer, NegotiationMemory, NegotiationCommunicationManager, NegotiationOrchestrator)
+94. ✅ Project & Deadline Manager (ProjectTracker, MilestoneManager, ProjectDependencyResolver, DeadlinePredictor, BlockerDetector, ProjectProgressReporter, AutoEscalator, ProjectResourceBalancer, ProjectMgrOrchestrator)

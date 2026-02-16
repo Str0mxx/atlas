@@ -612,6 +612,13 @@ class Settings(BaseSettings):
     max_rounds: int = 10
     require_approval: bool = True
 
+    # --- Project & Deadline Manager ---
+    projectmgr_enabled: bool = True
+    auto_escalate: bool = True
+    deadline_warning_days: int = 7
+    progress_report_frequency: str = "weekly"
+    blocker_alert: bool = True
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""
