@@ -401,6 +401,18 @@ atlas/
 │   │   │   ├── recovery_tracker.py        # Kurtarma takibi (ilerleme, kilometre taşı, kaynak, doğrulama)
 │   │   │   └── crisismgr_orchestrator.py  # Orkestratör (Detect→Escalate→Communicate→Act→Recover→Learn)
 │   │   │
+│   │   ├── onboarding/         # Onboarding & Training Assistant sistemi
+│   │   │   ├── __init__.py
+│   │   │   ├── skill_assessor.py          # Beceri değerlendirme (değerlendirme, bilgi testi, boşluk, seviye)
+│   │   │   ├── learning_path_builder.py   # Öğrenme yolu (kişisel yol, ön koşul, süre, kilometre taşı)
+│   │   │   ├── tutorial_generator.py      # Eğitim üretimi (adım adım, interaktif, video, kod, alıştırma)
+│   │   │   ├── onboarding_progress_tracker.py # İlerleme takibi (tamamlanma, zaman, puan, terk tespiti)
+│   │   │   ├── quiz_builder.py            # Quiz oluşturma (soru üretimi, çoklu format, puanlama)
+│   │   │   ├── certification_manager.py   # Sertifika yönetimi (kriter, sınav, üretim, süre, yenileme)
+│   │   │   ├── adaptive_difficulty.py     # Adaptif zorluk (performans, ayarlama, hayal kırıklığı önleme)
+│   │   │   ├── mentor_matcher.py          # Mentor eşleme (beceri, müsaitlik, uyumluluk, geri bildirim)
+│   │   │   └── onboarding_orchestrator.py # Orkestratör (Assess→Plan→Train→Track→Certify)
+│   │   │
 │   │   ├── extcomm/            # External Communication Agent sistemi
 │   │   │   ├── __init__.py
 │   │   │   ├── email_composer.py       # Email yazıcı (şablon, ton, kişiselleştirme, konu optimizasyonu)
@@ -1043,6 +1055,7 @@ atlas/
 │       ├── knowledgebase_models.py # Knowledge Base & Wiki Engine modeli
 │       ├── abtesting_models.py    # A/B Testing & Experiment Platform modeli
 │       ├── crisismgr_models.py    # Disaster & Crisis Management modeli
+│       ├── onboarding_models.py   # Onboarding & Training Assistant modeli
 │       ├── capfactory_models.py # Runtime Capability Factory modeli
 │       ├── business.py        # Autonomous Business Runner modeli
 │       ├── nlp_engine.py      # NLP Engine modeli
@@ -1097,7 +1110,7 @@ atlas/
 │   │       ├── agent.py
 │   │       └── hooks.py
 │
-├── tests/                      # 179 test dosyası, 14939 test
+├── tests/                      # 180 test dosyası, 15024 test
 │   └── ...
 │
 ├── scripts/
@@ -1216,14 +1229,14 @@ async def analyze_supplier(
 
 ## Proje İstatistikleri
 
-- **Python modülleri**: ~1057 kaynak + ~184 test dosyası
-- **Toplam LOC**: ~356,000
-- **Test sayısı**: 15,472+
+- **Python modülleri**: ~1068 kaynak + ~185 test dosyası
+- **Toplam LOC**: ~359,000
+- **Test sayısı**: 15,557+
 - **Agent sayısı**: 11 (1 base + 9 uzman + 1 meta)
 - **API endpoint**: 15 (10 core + 5 plugin)
 - **Webhook endpoint**: 4
 
-## Geliştirme Durumu (108/108 Tamamlandı ✅)
+## Geliştirme Durumu (109/109 Tamamlandı ✅)
 
 1. ✅ Proje yapısı ve temel config
 2. ✅ Master Agent + Karar Matrisi (akıllı agent seçimi, eskalasyon, denetim izi, onay iş akışı)
@@ -1333,3 +1346,4 @@ async def analyze_supplier(
 106. ✅ Knowledge Base & Wiki Engine (WikiBuilder, AutoDocumenter, FAQGenerator, KBSearchIndexer, KnowledgeLinker, KnowledgeGapFinder, VersionedContent, KBContributor, KnowledgeBaseOrchestrator)
 107. ✅ A/B Testing & Experiment Platform (ABExperimentDesigner, VariantManager, TrafficSplitter, ABStatisticalAnalyzer, WinnerDetector, AutoRollout, ExperimentArchive, MultivariateTester, ABTestingOrchestrator)
 108. ✅ Disaster & Crisis Management (CrisisMgrDetector, EscalationProtocol, CrisisCommunicationTemplate, StakeholderNotifier, CrisisActionPlanGenerator, PostCrisisAnalyzer, CrisisSimulationRunner, CrisisRecoveryTracker, CrisisMgrOrchestrator)
+109. ✅ Onboarding & Training Assistant (SkillAssessor, LearningPathBuilder, TutorialGenerator, OnboardingProgressTracker, QuizBuilder, CertificationManager, AdaptiveDifficulty, MentorMatcher, OnboardingOrchestrator)

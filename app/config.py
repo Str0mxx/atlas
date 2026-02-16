@@ -717,6 +717,13 @@ class Settings(BaseSettings):
     notification_channels: str = "telegram,email"
     post_crisis_analysis: bool = True
 
+    # --- Onboarding & Training Assistant ---
+    onboarding_enabled: bool = True
+    adaptive_learning: bool = True
+    certification_enabled: bool = True
+    mentor_matching: bool = True
+    progress_notifications: bool = True
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""
