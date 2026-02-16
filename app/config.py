@@ -738,6 +738,13 @@ class Settings(BaseSettings):
     health_check_interval: int = 60
     automation_enabled: bool = True
 
+    # Location & Geofence Intelligence
+    geolocation_enabled: bool = True
+    tracking_interval_seconds: int = 10
+    geofence_precision: str = "high"
+    history_retention_days: int = 30
+    fleet_tracking: bool = True
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""
