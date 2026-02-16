@@ -773,6 +773,13 @@ class Settings(BaseSettings):
     socialmedia_sentiment_threshold: float = 0.5
     socialmedia_posting_approval: bool = True
 
+    # Network & Partnership Finder
+    partnership_enabled: bool = True
+    partnership_auto_discovery: bool = True
+    partnership_min_compatibility: float = 0.5
+    partnership_event_tracking: bool = True
+    partnership_investor_search: bool = True
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""
