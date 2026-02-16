@@ -787,6 +787,13 @@ class Settings(BaseSettings):
     personalization_level: str = "medium"
     viral_features: bool = True
 
+    # Event & Conference Intelligence
+    eventintel_enabled: bool = True
+    auto_register: bool = True
+    networking_enabled: bool = True
+    followup_auto: bool = True
+    roi_tracking: bool = True
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""
