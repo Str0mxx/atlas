@@ -461,6 +461,18 @@ atlas/
 │   │   │   ├── inventory_auditor.py      # Envanter denetçisi (zamanlama, tutarsızlık, uzlaştırma, rapor, uyum)
 │   │   │   └── assettrack_orchestrator.py # Orkestratör (Register→Track→Maintain→Audit)
 │   │   │
+│   │   ├── visualintel/        # Camera & Visual Intelligence sistemi
+│   │   │   ├── __init__.py
+│   │   │   ├── image_analyzer.py         # Görüntü analizi (işleme, özellik, kalite, metadata, format)
+│   │   │   ├── ocr_engine.py             # OCR motoru (metin, çok dilli, el yazısı, tablo, güven)
+│   │   │   ├── object_detector.py        # Nesne tespiti (tespit, sınıflandırma, bbox, sayım, takip)
+│   │   │   ├── scene_classifier.py       # Sahne sınıflandırma (tanıma, bağlam, ortam, aktivite, etiket)
+│   │   │   ├── visual_anomaly_detector.py # Görsel anomali (anomali, değişiklik, izinsiz giriş, kusur, uyarı)
+│   │   │   ├── document_scanner.py       # Doküman tarama (tespit, perspektif, iyileştirme, çoklu sayfa, PDF)
+│   │   │   ├── video_stream_processor.py # Video akış (akış, kare, hareket, kayıt, oynatma)
+│   │   │   ├── visual_search.py          # Görsel arama (benzerlik, ters arama, eşleme, ürün, indeks)
+│   │   │   └── visualintel_orchestrator.py # Orkestratör (Capture→Analyze→Detect→Extract)
+│   │   │
 │   │   ├── extcomm/            # External Communication Agent sistemi
 │   │   │   ├── __init__.py
 │   │   │   ├── email_composer.py       # Email yazıcı (şablon, ton, kişiselleştirme, konu optimizasyonu)
@@ -1108,6 +1120,7 @@ atlas/
 │       ├── iotcontrol_models.py   # IoT & Device Controller modeli
 │       ├── geolocation_models.py # Location & Geofence Intelligence modeli
 │       ├── assettrack_models.py # Physical Inventory & Asset Tracker modeli
+│       ├── visualintel_models.py # Camera & Visual Intelligence modeli
 │       ├── capfactory_models.py # Runtime Capability Factory modeli
 │       ├── business.py        # Autonomous Business Runner modeli
 │       ├── nlp_engine.py      # NLP Engine modeli
@@ -1162,7 +1175,7 @@ atlas/
 │   │       ├── agent.py
 │   │       └── hooks.py
 │
-├── tests/                      # 184 test dosyası, 15354 test
+├── tests/                      # 185 test dosyası, 15425 test
 │   └── ...
 │
 ├── scripts/
@@ -1281,14 +1294,14 @@ async def analyze_supplier(
 
 ## Proje İstatistikleri
 
-- **Python modülleri**: ~1110 kaynak + ~189 test dosyası
-- **Toplam LOC**: ~371,000
-- **Test sayısı**: 15,887+
+- **Python modülleri**: ~1120 kaynak + ~190 test dosyası
+- **Toplam LOC**: ~374,000
+- **Test sayısı**: 15,958+
 - **Agent sayısı**: 11 (1 base + 9 uzman + 1 meta)
 - **API endpoint**: 15 (10 core + 5 plugin)
 - **Webhook endpoint**: 4
 
-## Geliştirme Durumu (113/113 Tamamlandı ✅)
+## Geliştirme Durumu (114/114 Tamamlandı ✅)
 
 1. ✅ Proje yapısı ve temel config
 2. ✅ Master Agent + Karar Matrisi (akıllı agent seçimi, eskalasyon, denetim izi, onay iş akışı)
@@ -1403,3 +1416,4 @@ async def analyze_supplier(
 111. ✅ IoT & Device Controller (DeviceDiscovery, MQTTBridge, DeviceCommander, SensorDataCollector, AutomationRuleEngine, DeviceHealthMonitor, SceneManager, ProtocolAdapter, IoTControlOrchestrator)
 112. ✅ Location & Geofence Intelligence (GeofenceManager, LocationTracker, ProximityTrigger, RouteOptimizer, ETACalculator, LocationHistory, GeoAlertEngine, FleetTracker, GeolocationOrchestrator)
 113. ✅ Physical Inventory & Asset Tracker (AssetRegistry, BarcodeScanner, StockLevelTracker, AssetMaintenanceScheduler, DepreciationCalculator, AssetLocationMapper, InventoryReorderTrigger, InventoryAuditor, AssetTrackOrchestrator)
+114. ✅ Camera & Visual Intelligence (ImageAnalyzer, OCREngine, ObjectDetector, SceneClassifier, VisualAnomalyDetector, DocumentScanner, VideoStreamProcessor, VisualSearch, VisualIntelOrchestrator)

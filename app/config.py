@@ -752,6 +752,13 @@ class Settings(BaseSettings):
     audit_frequency: str = "quarterly"
     barcode_format: str = "qr"
 
+    # Camera & Visual Intelligence
+    visualintel_enabled: bool = True
+    ocr_language: str = "en"
+    detection_confidence: float = 0.5
+    video_retention_hours: int = 72
+    anomaly_sensitivity: str = "medium"
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""
