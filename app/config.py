@@ -598,6 +598,13 @@ class Settings(BaseSettings):
     prediction_enabled: bool = True
     personalization_level: str = "moderate"
 
+    # --- Financial Intelligence & Tracker ---
+    financial_enabled: bool = True
+    currency: str = "TRY"
+    tax_rate: float = 0.20
+    alert_threshold: float = 1000.0
+    auto_categorize: bool = True
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""
