@@ -745,6 +745,13 @@ class Settings(BaseSettings):
     history_retention_days: int = 30
     fleet_tracking: bool = True
 
+    # Physical Inventory & Asset Tracker
+    assettrack_enabled: bool = True
+    auto_reorder: bool = True
+    depreciation_method: str = "straight_line"
+    audit_frequency: str = "quarterly"
+    barcode_format: str = "qr"
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""
