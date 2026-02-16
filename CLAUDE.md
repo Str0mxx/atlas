@@ -509,6 +509,18 @@ atlas/
 │   │   │   ├── investor_finder.py           # Yatırımcı bulucu (keşif, tez eşleme, portföy, sıcak yol, iletişim)
 │   │   │   └── partnership_orchestrator.py  # Orkestratör (Discover→Score→Connect→Track→Deal)
 │   │   │
+│   │   ├── community/          # Community & Audience Builder sistemi
+│   │   │   ├── __init__.py
+│   │   │   ├── audience_segmenter.py        # İzleyici segmentleyici (demografik, davranışsal, ilgi, değer, dinamik)
+│   │   │   ├── growth_tactician.py          # Büyüme taktikçisi (strateji, kanal, edinme, dönüşüm, deney)
+│   │   │   ├── community_manager.py         # Topluluk yöneticisi (platform, moderasyon, küratörlük, etkinlik, etkileşim)
+│   │   │   ├── member_analyzer.py           # Üye analizcisi (profil, aktivite, katkı, etki, churn)
+│   │   │   ├── content_personalizer.py      # İçerik kişiselleştirici (kişisel, öneri, tercih, A/B, optimizasyon)
+│   │   │   ├── retention_engine.py          # Tutundurma motoru (strateji, yeniden etkileşim, geri kazanım, sadakat, churn)
+│   │   │   ├── viral_loop_designer.py       # Viral döngü tasarımcısı (referans, paylaşım, ağ, katsayı, model)
+│   │   │   ├── engagement_gamifier.py       # Oyunlaştırma motoru (puan, rozet, sıralama, meydan okuma, ödül)
+│   │   │   └── community_orchestrator.py    # Orkestratör (Build→Engage→Retain→Grow)
+│   │   │
 │   │   ├── extcomm/            # External Communication Agent sistemi
 │   │   │   ├── __init__.py
 │   │   │   ├── email_composer.py       # Email yazıcı (şablon, ton, kişiselleştirme, konu optimizasyonu)
@@ -1160,6 +1172,7 @@ atlas/
 │       ├── smartspeaker_models.py # Voice Command & Smart Speaker Bridge modeli
 │       ├── socialmedia_models.py # Social Media Intelligence & Automation modeli
 │       ├── partnership_models.py # Network & Partnership Finder modeli
+│       ├── community_models.py  # Community & Audience Builder modeli
 │       ├── capfactory_models.py # Runtime Capability Factory modeli
 │       ├── business.py        # Autonomous Business Runner modeli
 │       ├── nlp_engine.py      # NLP Engine modeli
@@ -1333,14 +1346,14 @@ async def analyze_supplier(
 
 ## Proje İstatistikleri
 
-- **Python modülleri**: ~1156 kaynak + ~194 test dosyası
-- **Toplam LOC**: ~488,000
-- **Test sayısı**: 16,318+
+- **Python modülleri**: ~1167 kaynak + ~195 test dosyası
+- **Toplam LOC**: ~491,000
+- **Test sayısı**: 16,424+
 - **Agent sayısı**: 11 (1 base + 9 uzman + 1 meta)
 - **API endpoint**: 15 (10 core + 5 plugin)
 - **Webhook endpoint**: 4
 
-## Geliştirme Durumu (117/117 Tamamlandı ✅)
+## Geliştirme Durumu (118/118 Tamamlandı ✅)
 
 1. ✅ Proje yapısı ve temel config
 2. ✅ Master Agent + Karar Matrisi (akıllı agent seçimi, eskalasyon, denetim izi, onay iş akışı)
@@ -1459,3 +1472,4 @@ async def analyze_supplier(
 115. ✅ Voice Command & Smart Speaker Bridge (AlexaSkillConnector, GoogleAssistantBridge, SiriShortcuts, VoiceCommandParser, SmartSpeakerResponseFormatter, MultiDeviceSync, WakeWordHandler, SpeakerConversationContext, SmartSpeakerOrchestrator)
 116. ✅ Social Media Intelligence & Automation (SocialPlatformConnector, SocialContentScheduler, EngagementAnalyzer, SocialTrendDetector, SocialInfluencerFinder, CommentManager, SocialListening, SocialCampaignTracker, SocialMediaOrchestrator)
 117. ✅ Network & Partnership Finder (PartnerDiscovery, PartnerCompatibilityScorer, IndustryMapper, NetworkingEventFinder, ConnectionBroker, PartnershipTracker, DealFlowManager, InvestorFinder, PartnershipOrchestrator)
+118. ✅ Community & Audience Builder (AudienceSegmenter, GrowthTactician, CommunityManager, MemberAnalyzer, CommunityContentPersonalizer, CommunityRetentionEngine, ViralLoopDesigner, EngagementGamifier, CommunityOrchestrator)

@@ -780,6 +780,13 @@ class Settings(BaseSettings):
     partnership_event_tracking: bool = True
     partnership_investor_search: bool = True
 
+    # Community & Audience Builder
+    community_enabled: bool = True
+    gamification_enabled: bool = True
+    auto_moderation: bool = True
+    personalization_level: str = "medium"
+    viral_features: bool = True
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""
