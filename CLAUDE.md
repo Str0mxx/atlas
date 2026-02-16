@@ -641,6 +641,18 @@ atlas/
 │   │   │   ├── expense_tracker.py             # Harcama takip (kayıt, döviz, bütçe, fiş, rapor)
 │   │   │   └── travel_orchestrator.py         # Orkestratör (Search→Book→Plan→Track)
 │   │   │
+│   │   ├── selfdev/            # Learning & Self-Development Coach sistemi
+│   │   │   ├── __init__.py
+│   │   │   ├── skill_gap_analyzer.py          # Beceri açığı (değerlendirme, hedef, boşluk, öncelik, yol haritası)
+│   │   │   ├── course_recommender.py          # Kurs öneri (keşif, platform, kalite, fiyat, kişiselleştirme)
+│   │   │   ├── reading_list_builder.py        # Okuma listesi (kitap, kümeleme, ilerleme, not, yorum)
+│   │   │   ├── podcast_curator.py             # Podcast küratör (keşif, bölüm, eşleme, süre, kuyruk)
+│   │   │   ├── daily_learning_planner.py      # Günlük planlayıcı (hedef, zaman, alışkanlık, seri, esneklik)
+│   │   │   ├── selfdev_progress_tracker.py    # İlerleme takip (kayıt, beceri, kilometre taşı, rozet, analitik)
+│   │   │   ├── certification_path.py          # Sertifika yolu (harita, gereksinim, çalışma, sınav, tahmin)
+│   │   │   ├── mentor_finder.py               # Mentor bulucu (eşleme, hizalama, müsaitlik, oturum, geri bildirim)
+│   │   │   └── selfdev_orchestrator.py        # Orkestratör (Assess→Plan→Learn→Track→Certify)
+│   │   │
 │   │   ├── extcomm/            # External Communication Agent sistemi
 │   │   │   ├── __init__.py
 │   │   │   ├── email_composer.py       # Email yazıcı (şablon, ton, kişiselleştirme, konu optimizasyonu)
@@ -1303,6 +1315,7 @@ atlas/
 │       ├── personalfin_models.py # Personal Finance Manager modeli
 │       ├── wellness_models.py # Health & Wellness Tracker modeli
 │       ├── travel_models.py   # Travel & Logistics Planner modeli
+│       ├── selfdev_models.py # Learning & Self-Development Coach modeli
 │       ├── capfactory_models.py # Runtime Capability Factory modeli
 │       ├── business.py        # Autonomous Business Runner modeli
 │       ├── nlp_engine.py      # NLP Engine modeli
@@ -1476,14 +1489,14 @@ async def analyze_supplier(
 
 ## Proje İstatistikleri
 
-- **Python modülleri**: ~1277 kaynak + ~205 test dosyası
-- **Toplam LOC**: ~548,000
-- **Test sayısı**: 17,487+
+- **Python modülleri**: ~1288 kaynak + ~206 test dosyası
+- **Toplam LOC**: ~554,000
+- **Test sayısı**: 17,583+
 - **Agent sayısı**: 11 (1 base + 9 uzman + 1 meta)
 - **API endpoint**: 15 (10 core + 5 plugin)
 - **Webhook endpoint**: 4
 
-## Geliştirme Durumu (128/128 Tamamlandı ✅)
+## Geliştirme Durumu (129/129 Tamamlandı ✅)
 
 1. ✅ Proje yapısı ve temel config
 2. ✅ Master Agent + Karar Matrisi (akıllı agent seçimi, eskalasyon, denetim izi, onay iş akışı)
@@ -1613,3 +1626,4 @@ async def analyze_supplier(
 126. ✅ Personal Finance Manager (BankAccountConnector, SpendingCategorizer, PersonalBudgetPlanner, SavingsAdvisor, BillReminder, PersonalInvestmentTracker, PersonalFinancialGoalTracker, NetWorthCalculator, PersonalFinOrchestrator)
 127. ✅ Health & Wellness Tracker (WellnessReminder, ExerciseSuggester, SleepAnalyzer, MealPlanner, MedicalAppointmentTracker, StressEstimator, HealthReportGenerator, MedicationTracker, WellnessOrchestrator)
 128. ✅ Travel & Logistics Planner (FlightFinder, HotelComparator, TransferPlanner, VisaRequirementChecker, ItineraryBuilder, TravelPriceAlertSetter, TravelDocumentManager, TravelExpenseTracker, TravelOrchestrator)
+129. ✅ Learning & Self-Development Coach (SelfDevSkillGapAnalyzer, CourseRecommender, ReadingListBuilder, PodcastCurator, DailyLearningPlanner, SelfDevProgressTracker, CertificationPath, SelfDevMentorFinder, SelfDevOrchestrator)

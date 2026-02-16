@@ -857,6 +857,13 @@ class Settings(BaseSettings):
     travel_auto_checklist: bool = True
     travel_expense_tracking: bool = True
 
+    # Learning & Self-Development Coach
+    selfdev_enabled: bool = True
+    selfdev_daily_learning_minutes: int = 30
+    selfdev_streak_tracking: bool = True
+    selfdev_certification_focus: bool = True
+    selfdev_mentor_matching: bool = True
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""
