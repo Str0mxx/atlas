@@ -593,6 +593,18 @@ atlas/
 │   │   │   ├── okr_coach.py                   # OKR koçu (en iyi pratik, yazım yardımı, iyileştirme, tuzak, eğitim)
 │   │   │   └── okrengine_orchestrator.py      # Orkestratör (Define→Track→Schedule→Review→Coach)
 │   │   │
+│   │   ├── bizmodel/          # Business Model Canvas & Pivot Detector sistemi
+│   │   │   ├── __init__.py
+│   │   │   ├── canvas_builder.py              # Kanvas oluşturucu (oluşturma, bölüm yönetimi, şablon, versiyon, işbirliği)
+│   │   │   ├── revenue_stream_analyzer.py     # Gelir akışı analizcisi (analiz, dağılım, büyüme, fiyatlama, çeşitlendirme)
+│   │   │   ├── customer_segmenter.py          # Müşteri segmentleyici (segmentleme, değer, davranış, ihtiyaç, öncelik)
+│   │   │   ├── cost_structure_mapper.py       # Maliyet yapısı haritacısı (analiz, sabit/değişken, sürücüler, optimizasyon, kıyaslama)
+│   │   │   ├── value_proposition_tester.py    # Değer önerisi test edici (test, geri bildirim, karşılaştırma, uyum, iterasyon)
+│   │   │   ├── pivot_signal_detector.py       # Pivot sinyal tespitçisi (uyarı, metrik, pazar, trend, pivot önerisi)
+│   │   │   ├── model_optimizer.py             # Model optimizasyoncusu (öneri, senaryo, ödünleşim, yol haritası, etki)
+│   │   │   ├── competitive_position_analyzer.py # Rekabet pozisyonu analizcisi (haritalama, farklılaşma, hendek, zafiyet, strateji)
+│   │   │   └── bizmodel_orchestrator.py       # Orkestratör (Build→Analyze→Test→Optimize)
+│   │   │
 │   │   ├── extcomm/            # External Communication Agent sistemi
 │   │   │   ├── __init__.py
 │   │   │   ├── email_composer.py       # Email yazıcı (şablon, ton, kişiselleştirme, konu optimizasyonu)
@@ -1251,6 +1263,7 @@ atlas/
 │       ├── warroom_models.py  # Competitive War Room modeli
 │       ├── investanalyzer_models.py # Investment & ROI Analyzer modeli
 │       ├── okrengine_models.py # Goal Tracking & OKR Engine modeli
+│       ├── bizmodel_models.py # Business Model Canvas & Pivot Detector modeli
 │       ├── capfactory_models.py # Runtime Capability Factory modeli
 │       ├── business.py        # Autonomous Business Runner modeli
 │       ├── nlp_engine.py      # NLP Engine modeli
@@ -1424,14 +1437,14 @@ async def analyze_supplier(
 
 ## Proje İstatistikleri
 
-- **Python modülleri**: ~1233 kaynak + ~201 test dosyası
-- **Toplam LOC**: ~524,000
-- **Test sayısı**: 17,030+
+- **Python modülleri**: ~1244 kaynak + ~202 test dosyası
+- **Toplam LOC**: ~530,000
+- **Test sayısı**: 17,153+
 - **Agent sayısı**: 11 (1 base + 9 uzman + 1 meta)
 - **API endpoint**: 15 (10 core + 5 plugin)
 - **Webhook endpoint**: 4
 
-## Geliştirme Durumu (124/124 Tamamlandı ✅)
+## Geliştirme Durumu (125/125 Tamamlandı ✅)
 
 1. ✅ Proje yapısı ve temel config
 2. ✅ Master Agent + Karar Matrisi (akıllı agent seçimi, eskalasyon, denetim izi, onay iş akışı)
@@ -1557,3 +1570,4 @@ async def analyze_supplier(
 122. ✅ Competitive War Room (CompetitorTracker, PriceWatcher, ProductLaunchDetector, HiringSignalAnalyzer, CompetitorPatentMonitor, CompetitorProfileCard, ThreatAssessor, CompetitiveIntelAggregator, WarRoomOrchestrator)
 123. ✅ Investment & ROI Analyzer (InvestmentCalculator, IRREngine, PaybackAnalyzer, RiskReturnMapper, OpportunityCostCalculator, InvestmentPortfolioOptimizer, InvestmentRecommender, DueDiligenceTracker, InvestAnalyzerOrchestrator)
 124. ✅ Goal Tracking & OKR Engine (ObjectiveDefiner, KeyResultTracker, OKRProgressVisualizer, AlignmentChecker, CadenceManager, OKRScoreCalculator, StrategicReviewer, OKRCoach, OKREngineOrchestrator)
+125. ✅ Business Model Canvas & Pivot Detector (CanvasBuilder, RevenueStreamAnalyzer, BizCustomerSegmenter, CostStructureMapper, ValuePropositionTester, PivotSignalDetector, BusinessModelOptimizer, CompetitivePositionAnalyzer, BizModelOrchestrator)

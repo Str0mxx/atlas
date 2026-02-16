@@ -829,6 +829,13 @@ class Settings(BaseSettings):
     okr_alignment_check: bool = True
     okr_coaching_enabled: bool = True
 
+    # Business Model Canvas & Pivot Detector
+    bizmodel_enabled: bool = True
+    bizmodel_auto_analysis: bool = True
+    bizmodel_pivot_detection: bool = True
+    bizmodel_canvas_versioning: bool = True
+    bizmodel_competitive_tracking: bool = True
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""
