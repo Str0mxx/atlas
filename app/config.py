@@ -808,6 +808,13 @@ class Settings(BaseSettings):
     scenario_auto_update: bool = True
     war_game_enabled: bool = True
 
+    # Competitive War Room
+    warroom_enabled: bool = True
+    monitoring_frequency: str = "daily"
+    alert_on_changes: bool = True
+    auto_profile_update: bool = True
+    warroom_threat_threshold: float = 0.6
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""
