@@ -281,6 +281,18 @@ atlas/
 │   │   │   ├── vendor_manager.py        # Satıcı yöneticisi (profil, performans, sözleşme, ilişki, müzakere)
 │   │   │   └── purchasing_orchestrator.py # Orkestratör (Find→Compare→Decide→Order→Track→Verify pipeline)
 │   │   │
+│   │   ├── guardian/           # Health & Uptime Guardian sistemi
+│   │   │   ├── __init__.py
+│   │   │   ├── system_pulse_checker.py  # Nabız kontrolcüsü (sağlık, bileşen, bağımlılık, yanıt, kaynak)
+│   │   │   ├── uptime_tracker.py        # Çalışma süresi takipçisi (uptime, kesinti, SLA, metrik, trend)
+│   │   │   ├── degradation_predictor.py # Bozulma tahmincisi (trend, anomali, arıza, uyarı, risk)
+│   │   │   ├── auto_scaler.py           # Otomatik ölçekleyici (yük, tetik, kaynak, soğuma, maliyet)
+│   │   │   ├── incident_responder.py    # Olay yanıtlayıcı (tespit, düzeltme, eskalasyon, iletişim, durum)
+│   │   │   ├── postmortem_generator.py  # Rapor üretici (çizelge, kök neden, etki, eylem, ders)
+│   │   │   ├── sla_enforcer.py          # SLA uygulayıcı (tanım, uyumluluk, ihlal, alarm, rapor)
+│   │   │   ├── recovery_automator.py    # Kurtarma otomatikleştirici (prosedür, düzeltme, geri alma, doğrulama)
+│   │   │   └── guardian_orchestrator.py # Orkestratör (Monitor→Predict→Respond→Recover→Report pipeline)
+│   │   │
 │   │   ├── extcomm/            # External Communication Agent sistemi
 │   │   │   ├── __init__.py
 │   │   │   ├── email_composer.py       # Email yazıcı (şablon, ton, kişiselleştirme, konu optimizasyonu)
@@ -913,6 +925,7 @@ atlas/
 │       ├── legal_models.py    # Legal & Contract Analyzer modeli
 │       ├── contentgen_models.py # Content & Copy Generator modeli
 │       ├── purchasing_models.py # Autonomous Purchasing Agent modeli
+│       ├── guardian_models.py   # Health & Uptime Guardian modeli
 │       ├── capfactory_models.py # Runtime Capability Factory modeli
 │       ├── business.py        # Autonomous Business Runner modeli
 │       ├── nlp_engine.py      # NLP Engine modeli
@@ -1086,14 +1099,14 @@ async def analyze_supplier(
 
 ## Proje İstatistikleri
 
-- **Python modülleri**: ~947 kaynak + ~174 test dosyası
-- **Toplam LOC**: ~328,000
-- **Test sayısı**: 14,562+
+- **Python modülleri**: ~958 kaynak + ~175 test dosyası
+- **Toplam LOC**: ~330,000
+- **Test sayısı**: 14,662+
 - **Agent sayısı**: 11 (1 base + 9 uzman + 1 meta)
 - **API endpoint**: 15 (10 core + 5 plugin)
 - **Webhook endpoint**: 4
 
-## Geliştirme Durumu (98/98 Tamamlandı ✅)
+## Geliştirme Durumu (99/99 Tamamlandı ✅)
 
 1. ✅ Proje yapısı ve temel config
 2. ✅ Master Agent + Karar Matrisi (akıllı agent seçimi, eskalasyon, denetim izi, onay iş akışı)
@@ -1193,3 +1206,4 @@ async def analyze_supplier(
 96. ✅ Legal & Contract Analyzer (ContractParser, ClauseExtractor, RiskHighlighter, LegalComplianceChecker, LegalDeadlineExtractor, LegalSummarizer, ContractComparator, LegalNegotiationAdvisor, LegalOrchestrator)
 97. ✅ Content & Copy Generator (CopyWriter, SEOOptimizer, MultiLangContent, ABTestCopy, BrandVoiceManager, ContentCalendar, PlatformAdapter, ContentPerformanceAnalyzer, ContentGenOrchestrator)
 98. ✅ Autonomous Purchasing Agent (PriceComparator, SupplierFinder, PurchaseDecisionEngine, OrderTracker, QualityVerifier, PurchaseBudgetChecker, ReorderPredictor, VendorManager, PurchasingOrchestrator)
+99. ✅ Health & Uptime Guardian (SystemPulseChecker, UptimeTracker, DegradationPredictor, GuardianAutoScaler, IncidentResponder, PostmortemGenerator, SLAEnforcer, RecoveryAutomator, GuardianOrchestrator)

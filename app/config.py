@@ -647,6 +647,13 @@ class Settings(BaseSettings):
     quality_check: bool = True
     multi_supplier: bool = True
 
+    # --- Health & Uptime Guardian ---
+    guardian_enabled: bool = True
+    health_check_interval: int = 60
+    auto_remediate: bool = True
+    sla_target: float = 99.9
+    incident_auto_escalate: bool = True
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""
