@@ -365,6 +365,18 @@ atlas/
 │   │   │   ├── calendar_analyzer.py       # Takvim analizcisi (zaman tahsisi, yük, kalıp, öneri, eğilim)
 │   │   │   └── calendarintel_orchestrator.py # Orkestratör (Schedule→Optimize→Prepare→Follow-up)
 │   │   │
+│   │   ├── knowledgebase/     # Knowledge Base & Wiki Engine sistemi
+│   │   │   ├── __init__.py
+│   │   │   ├── wiki_builder.py            # Wiki oluşturucu (sayfa, hiyerarşi, bağlantı, şablon, biçim)
+│   │   │   ├── auto_documenter.py         # Otomatik belgeleyici (kod, süreç, karar, değişiklik)
+│   │   │   ├── faq_generator.py           # SSS üretici (soru çıkarma, yanıt, kategori, popülerlik)
+│   │   │   ├── kb_search_indexer.py       # Arama indeksleyici (tam metin, semantik, eşanlamlı)
+│   │   │   ├── knowledge_linker.py        # Bilgi bağlayıcı (otomatik, ilgili, çapraz, geri bağlantı)
+│   │   │   ├── gap_finder.py              # Boşluk bulucu (kapsam, eksik, güncellik, kalite, öncelik)
+│   │   │   ├── versioned_content.py       # Versiyonlu içerik (versiyon, geçmiş, fark, geri alma)
+│   │   │   ├── kb_contributor.py          # Katkı yöneticisi (takip, inceleme, puan, oyunlaştırma)
+│   │   │   └── knowledgebase_orchestrator.py # Orkestratör (Create→Index→Link→Maintain)
+│   │   │
 │   │   ├── extcomm/            # External Communication Agent sistemi
 │   │   │   ├── __init__.py
 │   │   │   ├── email_composer.py       # Email yazıcı (şablon, ton, kişiselleştirme, konu optimizasyonu)
@@ -1004,6 +1016,7 @@ atlas/
 │       ├── docmgr_models.py     # Smart Document Manager modeli
 │       ├── emailintel_models.py # Email Intelligence & Auto-Responder modeli
 │       ├── calendarintel_models.py # Scheduling & Calendar Intelligence modeli
+│       ├── knowledgebase_models.py # Knowledge Base & Wiki Engine modeli
 │       ├── capfactory_models.py # Runtime Capability Factory modeli
 │       ├── business.py        # Autonomous Business Runner modeli
 │       ├── nlp_engine.py      # NLP Engine modeli
@@ -1058,7 +1071,7 @@ atlas/
 │   │       ├── agent.py
 │   │       └── hooks.py
 │
-├── tests/                      # 176 test dosyası, 14692 test
+├── tests/                      # 177 test dosyası, 14777 test
 │   └── ...
 │
 ├── scripts/
@@ -1177,14 +1190,14 @@ async def analyze_supplier(
 
 ## Proje İstatistikleri
 
-- **Python modülleri**: ~1024 kaynak + ~181 test dosyası
-- **Toplam LOC**: ~347,000
-- **Test sayısı**: 15,225+
+- **Python modülleri**: ~1035 kaynak + ~182 test dosyası
+- **Toplam LOC**: ~350,000
+- **Test sayısı**: 15,310+
 - **Agent sayısı**: 11 (1 base + 9 uzman + 1 meta)
 - **API endpoint**: 15 (10 core + 5 plugin)
 - **Webhook endpoint**: 4
 
-## Geliştirme Durumu (105/105 Tamamlandı ✅)
+## Geliştirme Durumu (106/106 Tamamlandı ✅)
 
 1. ✅ Proje yapısı ve temel config
 2. ✅ Master Agent + Karar Matrisi (akıllı agent seçimi, eskalasyon, denetim izi, onay iş akışı)
@@ -1291,3 +1304,4 @@ async def analyze_supplier(
 103. ✅ Smart Document Manager (DocumentClassifier, AutoTagger, DocVersionTracker, DocSearchEngine, DocSummaryGenerator, DocTemplateManager, ExpiryTracker, DocAccessController, DocMgrOrchestrator)
 104. ✅ Email Intelligence & Auto-Responder (EmailClassifier, PriorityInbox, EmailSmartResponder, EmailActionExtractor, EmailFollowUpTracker, IntelligentSpamFilter, EmailDigest, ThreadAnalyzer, EmailIntelOrchestrator)
 105. ✅ Scheduling & Calendar Intelligence (MeetingOptimizer, CalendarAvailabilityFinder, CalendarTimezoneManager, CalendarConflictResolver, PrepBriefGenerator, AgendaCreator, MeetingFollowUpScheduler, CalendarAnalyzer, CalendarIntelOrchestrator)
+106. ✅ Knowledge Base & Wiki Engine (WikiBuilder, AutoDocumenter, FAQGenerator, KBSearchIndexer, KnowledgeLinker, KnowledgeGapFinder, VersionedContent, KBContributor, KnowledgeBaseOrchestrator)

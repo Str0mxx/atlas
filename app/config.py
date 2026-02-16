@@ -696,6 +696,13 @@ class Settings(BaseSettings):
     conflict_auto_resolve: bool = True
     analytics_enabled: bool = True
 
+    # --- Knowledge Base & Wiki Engine ---
+    knowledgebase_enabled: bool = True
+    auto_document: bool = True
+    auto_link: bool = True
+    gap_detection: bool = True
+    kb_version_retention: int = 50
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""
