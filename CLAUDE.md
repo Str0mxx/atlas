@@ -173,6 +173,18 @@ atlas/
 │   │   │   ├── export_manager.py        # Dışa aktarma (PDF, Word, HTML, Markdown, e-posta)
 │   │   │   └── reportgen_orchestrator.py # Orkestratör (Data→Analyze→Visualize→Format→Export)
 │   │   │
+│   │   ├── extcomm/            # External Communication Agent sistemi
+│   │   │   ├── __init__.py
+│   │   │   ├── email_composer.py       # Email yazıcı (şablon, ton, kişiselleştirme, konu optimizasyonu)
+│   │   │   ├── email_sender.py         # Email gönderici (SMTP, teslimat, bounce, rate limit, kuyruk)
+│   │   │   ├── linkedin_connector.py   # LinkedIn bağlayıcı (bağlantı, mesaj, profil, rate uyum)
+│   │   │   ├── followup_manager.py     # Takip yöneticisi (zamanlama, hatırlatma, eskalasyon)
+│   │   │   ├── response_handler.py     # Yanıt işleyici (duygu, niyet, kategori, özet)
+│   │   │   ├── contact_database.py     # İletişim veritabanı (kişi, etkileşim, ilişki, segment)
+│   │   │   ├── tone_adapter.py         # Ton adaptörü (alıcı, resmiyet, kültür, sektör)
+│   │   │   ├── campaign_manager.py     # Kampanya yöneticisi (outreach, sekans, A/B, performans)
+│   │   │   └── extcomm_orchestrator.py # Orkestratör (Compose→Send→Track→Follow-up→Analyze)
+│   │   │
 │   │   ├── webnav/             # Intelligent Web Navigator sistemi
 │   │   │   ├── __init__.py
 │   │   │   ├── browser_automation.py    # Headless tarayıcı kontrolü (gezinti, tıklama, JS, SS)
@@ -783,6 +795,7 @@ atlas/
 │       ├── research_engine_models.py # Deep Research Engine modeli
 │       ├── webnav_models.py     # Intelligent Web Navigator modeli
 │       ├── reportgen_models.py  # Report & Insight Generator modeli
+│       ├── extcomm_models.py    # External Communication Agent modeli
 │       ├── capfactory_models.py # Runtime Capability Factory modeli
 │       ├── business.py        # Autonomous Business Runner modeli
 │       ├── nlp_engine.py      # NLP Engine modeli
@@ -956,14 +969,14 @@ async def analyze_supplier(
 
 ## Proje İstatistikleri
 
-- **Python modülleri**: ~837 kaynak + ~164 test dosyası
-- **Toplam LOC**: ~290,000
-- **Test sayısı**: 13,304+
+- **Python modülleri**: ~848 kaynak + ~165 test dosyası
+- **Toplam LOC**: ~294,000
+- **Test sayısı**: 13,416+
 - **Agent sayısı**: 11 (1 base + 9 uzman + 1 meta)
 - **API endpoint**: 15 (10 core + 5 plugin)
 - **Webhook endpoint**: 4
 
-## Geliştirme Durumu (88/88 Tamamlandı ✅)
+## Geliştirme Durumu (89/89 Tamamlandı ✅)
 
 1. ✅ Proje yapısı ve temel config
 2. ✅ Master Agent + Karar Matrisi (akıllı agent seçimi, eskalasyon, denetim izi, onay iş akışı)
@@ -1053,3 +1066,4 @@ async def analyze_supplier(
 86. ✅ Deep Research Engine (MultiSourceCrawler, QueryExpander, SourceRanker, InformationExtractor, CrossValidator, ResearchSynthesizer, ContinuousTracker, ResearchReporter, ResearchOrchestrator)
 87. ✅ Intelligent Web Navigator (BrowserAutomation, FormFiller, LoginManager, PaginationHandler, CaptchaSolver, ScreenshotCapture, StructuredDataExtractor, NavigationRecorder, WebNavOrchestrator)
 88. ✅ Report & Insight Generator (ReportBuilder, ExecutiveSummary, ComparisonMatrix, OpportunityScorer, VisualPresenter, ActionableInsights, TelegramFormatter, ExportManager, ReportGenOrchestrator)
+89. ✅ External Communication Agent (EmailComposer, EmailSender, LinkedInConnector, FollowUpManager, ResponseHandler, ContactDatabase, ToneAdapter, CampaignManager, ExtCommOrchestrator)

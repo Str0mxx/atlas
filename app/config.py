@@ -577,6 +577,13 @@ class Settings(BaseSettings):
     telegram_friendly: bool = True
     auto_export: bool = False
 
+    # --- External Communication Agent ---
+    extcomm_enabled: bool = True
+    default_tone: str = "professional"
+    auto_followup: bool = True
+    followup_days: int = 3
+    daily_send_limit: int = 100
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""
