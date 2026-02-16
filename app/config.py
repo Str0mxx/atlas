@@ -731,6 +731,13 @@ class Settings(BaseSettings):
     upsell_auto: bool = True
     forecast_horizon_days: int = 90
 
+    # --- IoT & Device Controller ---
+    iotcontrol_enabled: bool = True
+    mqtt_broker: str = "localhost:1883"
+    auto_discovery: bool = True
+    health_check_interval: int = 60
+    automation_enabled: bool = True
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""

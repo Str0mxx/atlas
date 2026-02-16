@@ -425,6 +425,18 @@ atlas/
 │   │   │   ├── monetization_advisor.py    # Monetizasyon (fırsat, strateji, akış, pazar, tavsiye)
 │   │   │   └── revenueopt_orchestrator.py # Orkestratör (Track→Analyze→Predict→Optimize→Grow)
 │   │   │
+│   │   ├── iotcontrol/         # IoT & Device Controller sistemi
+│   │   │   ├── __init__.py
+│   │   │   ├── device_discovery.py        # Cihaz keşfi (ağ tarama, protokol, tanıma, kayıt, yetenek)
+│   │   │   ├── mqtt_bridge.py             # MQTT köprüsü (bağlantı, konu, yayın, abonelik, QoS)
+│   │   │   ├── device_commander.py        # Cihaz komut (gönderim, durum, toplu, yanıt, yeniden deneme)
+│   │   │   ├── sensor_data_collector.py   # Sensör veri (toplama, akış, toplam, anomali, depolama)
+│   │   │   ├── automation_rule_engine.py  # Otomasyon kuralları (tanım, tetikleme, aksiyon, zamanlama)
+│   │   │   ├── device_health_monitor.py   # Cihaz sağlık (kontrol, pil, bağlantı, firmware, uyarı)
+│   │   │   ├── scene_manager.py           # Sahne yönetimi (oluşturma, çoklu kontrol, ön ayar, zamanlama)
+│   │   │   ├── protocol_adapter.py        # Protokol adaptörü (Zigbee, Z-Wave, WiFi, BLE, çeviri)
+│   │   │   └── iotcontrol_orchestrator.py # Orkestratör (Discover→Connect→Control→Monitor)
+│   │   │
 │   │   ├── extcomm/            # External Communication Agent sistemi
 │   │   │   ├── __init__.py
 │   │   │   ├── email_composer.py       # Email yazıcı (şablon, ton, kişiselleştirme, konu optimizasyonu)
@@ -1069,6 +1081,7 @@ atlas/
 │       ├── crisismgr_models.py    # Disaster & Crisis Management modeli
 │       ├── onboarding_models.py   # Onboarding & Training Assistant modeli
 │       ├── revenueopt_models.py   # Autonomous Revenue Optimizer modeli
+│       ├── iotcontrol_models.py   # IoT & Device Controller modeli
 │       ├── capfactory_models.py # Runtime Capability Factory modeli
 │       ├── business.py        # Autonomous Business Runner modeli
 │       ├── nlp_engine.py      # NLP Engine modeli
@@ -1123,7 +1136,7 @@ atlas/
 │   │       ├── agent.py
 │   │       └── hooks.py
 │
-├── tests/                      # 181 test dosyası, 15115 test
+├── tests/                      # 182 test dosyası, 15193 test
 │   └── ...
 │
 ├── scripts/
@@ -1242,14 +1255,14 @@ async def analyze_supplier(
 
 ## Proje İstatistikleri
 
-- **Python modülleri**: ~1079 kaynak + ~186 test dosyası
-- **Toplam LOC**: ~362,000
-- **Test sayısı**: 15,648+
+- **Python modülleri**: ~1090 kaynak + ~187 test dosyası
+- **Toplam LOC**: ~365,000
+- **Test sayısı**: 15,726+
 - **Agent sayısı**: 11 (1 base + 9 uzman + 1 meta)
 - **API endpoint**: 15 (10 core + 5 plugin)
 - **Webhook endpoint**: 4
 
-## Geliştirme Durumu (110/110 Tamamlandı ✅)
+## Geliştirme Durumu (111/111 Tamamlandı ✅)
 
 1. ✅ Proje yapısı ve temel config
 2. ✅ Master Agent + Karar Matrisi (akıllı agent seçimi, eskalasyon, denetim izi, onay iş akışı)
@@ -1361,3 +1374,4 @@ async def analyze_supplier(
 108. ✅ Disaster & Crisis Management (CrisisMgrDetector, EscalationProtocol, CrisisCommunicationTemplate, StakeholderNotifier, CrisisActionPlanGenerator, PostCrisisAnalyzer, CrisisSimulationRunner, CrisisRecoveryTracker, CrisisMgrOrchestrator)
 109. ✅ Onboarding & Training Assistant (SkillAssessor, LearningPathBuilder, TutorialGenerator, OnboardingProgressTracker, QuizBuilder, CertificationManager, AdaptiveDifficulty, MentorMatcher, OnboardingOrchestrator)
 110. ✅ Autonomous Revenue Optimizer (RevenueTracker, PricingOptimizer, UpsellDetector, ChurnPredictor, LTVCalculator, CampaignROIAnalyzer, RevenueForecaster, MonetizationAdvisor, RevenueOptOrchestrator)
+111. ✅ IoT & Device Controller (DeviceDiscovery, MQTTBridge, DeviceCommander, SensorDataCollector, AutomationRuleEngine, DeviceHealthMonitor, SceneManager, ProtocolAdapter, IoTControlOrchestrator)
