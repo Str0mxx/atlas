@@ -257,6 +257,18 @@ atlas/
 │   │   │   ├── negotiation_advisor.py    # Müzakere danışmanı (noktalar, alternatif, pazar, kaldıraç, strateji)
 │   │   │   └── legal_orchestrator.py     # Orkestratör (Parse→Extract→Analyze→Compare→Advise pipeline)
 │   │   │
+│   │   ├── contentgen/          # Content & Copy Generator sistemi
+│   │   │   ├── __init__.py
+│   │   │   ├── copy_writer.py           # Metin yazıcı (reklam, başlık, açıklama, CTA, varyasyon)
+│   │   │   ├── seo_optimizer.py         # SEO optimizasyonu (anahtar kelime, meta, okunabilirlik, yapı, puan)
+│   │   │   ├── multilang_content.py     # Çok dilli içerik (çeviri, yerelleştirme, kültürel, ton, kalite)
+│   │   │   ├── ab_test_copy.py          # A/B test metinleri (varyasyon, hipotez, performans, kazanan, öğrenme)
+│   │   │   ├── brand_voice_manager.py   # Marka sesi (tanım, tutarlılık, ton kılavuzu, stil, eğitim)
+│   │   │   ├── content_calendar.py      # İçerik takvimi (yayın, konu, kanal, son tarih, boşluk)
+│   │   │   ├── platform_adapter.py      # Platform adaptörü (format, uzunluk, özellik, uygulama, önizleme)
+│   │   │   ├── performance_analyzer.py  # Performans analizcisi (etkileşim, dönüşüm, karşılaştırma, trend, öneri)
+│   │   │   └── contentgen_orchestrator.py # Orkestratör (Create→Optimize→Adapt→Test→Analyze pipeline)
+│   │   │
 │   │   ├── extcomm/            # External Communication Agent sistemi
 │   │   │   ├── __init__.py
 │   │   │   ├── email_composer.py       # Email yazıcı (şablon, ton, kişiselleştirme, konu optimizasyonu)
@@ -887,6 +899,7 @@ atlas/
 │       ├── peoplemgr_models.py # People & Relationship Manager modeli
 │       ├── projectmgr_models.py # Project & Deadline Manager modeli
 │       ├── legal_models.py    # Legal & Contract Analyzer modeli
+│       ├── contentgen_models.py # Content & Copy Generator modeli
 │       ├── capfactory_models.py # Runtime Capability Factory modeli
 │       ├── business.py        # Autonomous Business Runner modeli
 │       ├── nlp_engine.py      # NLP Engine modeli
@@ -1060,14 +1073,14 @@ async def analyze_supplier(
 
 ## Proje İstatistikleri
 
-- **Python modülleri**: ~925 kaynak + ~172 test dosyası
-- **Toplam LOC**: ~322,000
-- **Test sayısı**: 14,354+
+- **Python modülleri**: ~936 kaynak + ~173 test dosyası
+- **Toplam LOC**: ~326,000
+- **Test sayısı**: 14,469+
 - **Agent sayısı**: 11 (1 base + 9 uzman + 1 meta)
 - **API endpoint**: 15 (10 core + 5 plugin)
 - **Webhook endpoint**: 4
 
-## Geliştirme Durumu (96/96 Tamamlandı ✅)
+## Geliştirme Durumu (97/97 Tamamlandı ✅)
 
 1. ✅ Proje yapısı ve temel config
 2. ✅ Master Agent + Karar Matrisi (akıllı agent seçimi, eskalasyon, denetim izi, onay iş akışı)
@@ -1165,3 +1178,4 @@ async def analyze_supplier(
 94. ✅ Project & Deadline Manager (ProjectTracker, MilestoneManager, ProjectDependencyResolver, DeadlinePredictor, BlockerDetector, ProjectProgressReporter, AutoEscalator, ProjectResourceBalancer, ProjectMgrOrchestrator)
 95. ✅ People & Relationship Manager (ContactProfiler, PeopleInteractionLogger, RelationshipScorer, PeopleFollowUpScheduler, PeopleSentimentTracker, NetworkMapper, BirthdayReminder, RelationshipAdvisor, PeopleMgrOrchestrator)
 96. ✅ Legal & Contract Analyzer (ContractParser, ClauseExtractor, RiskHighlighter, LegalComplianceChecker, LegalDeadlineExtractor, LegalSummarizer, ContractComparator, LegalNegotiationAdvisor, LegalOrchestrator)
+97. ✅ Content & Copy Generator (CopyWriter, SEOOptimizer, MultiLangContent, ABTestCopy, BrandVoiceManager, ContentCalendar, PlatformAdapter, ContentPerformanceAnalyzer, ContentGenOrchestrator)

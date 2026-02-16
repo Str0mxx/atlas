@@ -633,6 +633,13 @@ class Settings(BaseSettings):
     compliance_check: bool = True
     comparison_highlight: bool = True
 
+    # --- Content & Copy Generator ---
+    contentgen_enabled: bool = True
+    default_language: str = "en"
+    seo_optimization: bool = True
+    brand_voice_check: bool = True
+    ab_test_auto: bool = True
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""
