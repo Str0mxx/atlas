@@ -850,6 +850,13 @@ class Settings(BaseSettings):
     wellness_sleep_tracking: bool = True
     wellness_nutrition_tracking: bool = True
 
+    # Travel & Logistics Planner
+    travel_enabled: bool = True
+    travel_default_currency: str = "USD"
+    travel_price_alerts: bool = True
+    travel_auto_checklist: bool = True
+    travel_expense_tracking: bool = True
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""
