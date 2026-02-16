@@ -822,6 +822,13 @@ class Settings(BaseSettings):
     analysis_horizon_years: int = 5
     invest_auto_recommend: bool = True
 
+    # Goal Tracking & OKR Engine
+    okrengine_enabled: bool = True
+    default_cadence: str = "weekly"
+    okr_auto_scoring: bool = True
+    okr_alignment_check: bool = True
+    okr_coaching_enabled: bool = True
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""
