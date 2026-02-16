@@ -703,6 +703,13 @@ class Settings(BaseSettings):
     gap_detection: bool = True
     kb_version_retention: int = 50
 
+    # --- A/B Testing & Experiment Platform ---
+    abtesting_enabled: bool = True
+    default_confidence: float = 0.95
+    auto_stop_enabled: bool = True
+    min_sample_size: int = 100
+    auto_rollout: bool = True
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""
