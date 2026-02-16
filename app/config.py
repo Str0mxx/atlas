@@ -759,6 +759,13 @@ class Settings(BaseSettings):
     video_retention_hours: int = 72
     anomaly_sensitivity: str = "medium"
 
+    # Voice Command & Smart Speaker Bridge
+    smartspeaker_enabled: bool = True
+    default_platform: str = "alexa"
+    wake_word: str = "atlas"
+    response_voice: str = "default"
+    multi_device: bool = True
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""
