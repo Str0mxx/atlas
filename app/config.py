@@ -591,6 +591,13 @@ class Settings(BaseSettings):
     patent_alerts: bool = True
     regulation_monitoring: bool = True
 
+    # --- Task Memory & Command Learning ---
+    taskmem_enabled: bool = True
+    learning_rate: float = 0.1
+    template_auto_create: bool = True
+    prediction_enabled: bool = True
+    personalization_level: str = "moderate"
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""

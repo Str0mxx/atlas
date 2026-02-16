@@ -185,6 +185,18 @@ atlas/
 │   │   │   ├── signal_aggregator.py    # Sinyal toplama (çoklu kaynak, ağırlık, filtre, korelasyon)
 │   │   │   └── marketintel_orchestrator.py # Orkestratör (Scan→Analyze→Predict→Alert)
 │   │   │
+│   │   ├── taskmem/            # Task Memory & Command Learning sistemi
+│   │   │   ├── __init__.py
+│   │   │   ├── command_pattern_learner.py # Komut örüntüsü öğrenme (frekans, sekans, kısayol, takma ad)
+│   │   │   ├── preference_tracker.py      # Tercih takibi (format, detay, stil, kategori, öğrenme)
+│   │   │   ├── feedback_integrator.py     # Geri bildirim (açık, örtük, düzeltme, memnuniyet, iyileştirme)
+│   │   │   ├── task_template_builder.py   # Şablon oluşturucu (çıkarma, değişken, uygulama, versiyon)
+│   │   │   ├── quality_improver.py        # Kalite iyileştirme (puanlama, öneri, A/B test, en iyi uygulama)
+│   │   │   ├── command_predictor.py       # Komut tahmini (Markov, bağlam, zaman, iş akışı, doğrulama)
+│   │   │   ├── execution_memory.py        # Yürütme hafızası (kayıt, başarı oranı, süre, kaynak, ipucu)
+│   │   │   ├── personalization_engine.py  # Kişiselleştirme (profil, adaptasyon, bağlam, öğrenme)
+│   │   │   └── taskmem_orchestrator.py    # Orkestratör (Learn→Remember→Apply→Improve pipeline)
+│   │   │
 │   │   ├── extcomm/            # External Communication Agent sistemi
 │   │   │   ├── __init__.py
 │   │   │   ├── email_composer.py       # Email yazıcı (şablon, ton, kişiselleştirme, konu optimizasyonu)
@@ -809,6 +821,7 @@ atlas/
 │       ├── reportgen_models.py  # Report & Insight Generator modeli
 │       ├── extcomm_models.py    # External Communication Agent modeli
 │       ├── marketintel_models.py # Market & Trend Intelligence modeli
+│       ├── taskmem_models.py    # Task Memory & Command Learning modeli
 │       ├── capfactory_models.py # Runtime Capability Factory modeli
 │       ├── business.py        # Autonomous Business Runner modeli
 │       ├── nlp_engine.py      # NLP Engine modeli
@@ -982,14 +995,14 @@ async def analyze_supplier(
 
 ## Proje İstatistikleri
 
-- **Python modülleri**: ~859 kaynak + ~166 test dosyası
-- **Toplam LOC**: ~298,000
-- **Test sayısı**: 13,511+
+- **Python modülleri**: ~870 kaynak + ~167 test dosyası
+- **Toplam LOC**: ~302,000
+- **Test sayısı**: 13,679+
 - **Agent sayısı**: 11 (1 base + 9 uzman + 1 meta)
 - **API endpoint**: 15 (10 core + 5 plugin)
 - **Webhook endpoint**: 4
 
-## Geliştirme Durumu (90/90 Tamamlandı ✅)
+## Geliştirme Durumu (91/91 Tamamlandı ✅)
 
 1. ✅ Proje yapısı ve temel config
 2. ✅ Master Agent + Karar Matrisi (akıllı agent seçimi, eskalasyon, denetim izi, onay iş akışı)
@@ -1081,3 +1094,4 @@ async def analyze_supplier(
 88. ✅ Report & Insight Generator (ReportBuilder, ExecutiveSummary, ComparisonMatrix, OpportunityScorer, VisualPresenter, ActionableInsights, TelegramFormatter, ExportManager, ReportGenOrchestrator)
 89. ✅ External Communication Agent (EmailComposer, EmailSender, LinkedInConnector, FollowUpManager, ResponseHandler, ContactDatabase, ToneAdapter, CampaignManager, ExtCommOrchestrator)
 90. ✅ Market & Trend Intelligence (TrendTracker, InvestmentAnalyzer, CompetitorMapper, PatentScanner, AcademicTracker, RegulationMonitor, MarketSizeEstimator, SignalAggregator, MarketIntelOrchestrator)
+91. ✅ Task Memory & Command Learning (CommandPatternLearner, TaskPreferenceTracker, TaskFeedbackIntegrator, TaskTemplateBuilder, QualityImprover, CommandPredictor, ExecutionMemory, PersonalizationEngine, TaskMemOrchestrator)
