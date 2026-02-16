@@ -161,6 +161,18 @@ atlas/
 │   │   │   ├── research_reporter.py       # Raporlama (çoklu format, atıf, dışa aktarma)
 │   │   │   └── research_orchestrator.py   # Orkestratör (Query→Crawl→Extract→Validate→Synthesize→Report)
 │   │   │
+│   │   ├── reportgen/          # Report & Insight Generator sistemi
+│   │   │   ├── __init__.py
+│   │   │   ├── report_builder.py        # Rapor oluşturucu (şablon, bölüm, dinamik içerik, stil)
+│   │   │   ├── executive_summary.py     # Yönetici özeti (anahtar nokta, TL;DR, öncelik, aksiyon)
+│   │   │   ├── comparison_matrix.py     # Karşılaştırma matrisi (ağırlıklı analiz, kazanan, tablo)
+│   │   │   ├── opportunity_scorer.py    # Fırsat puanlama (ROI, risk, fizibilite, sıralama)
+│   │   │   ├── visual_presenter.py      # Görsel sunum (grafik, çizge, infografik, tablo)
+│   │   │   ├── actionable_insights.py   # Aksiyon içgörüleri (çıkarma, öneri, sahip, deadline)
+│   │   │   ├── telegram_formatter.py    # Telegram biçimlendirme (emoji, bölme, inline buton)
+│   │   │   ├── export_manager.py        # Dışa aktarma (PDF, Word, HTML, Markdown, e-posta)
+│   │   │   └── reportgen_orchestrator.py # Orkestratör (Data→Analyze→Visualize→Format→Export)
+│   │   │
 │   │   ├── webnav/             # Intelligent Web Navigator sistemi
 │   │   │   ├── __init__.py
 │   │   │   ├── browser_automation.py    # Headless tarayıcı kontrolü (gezinti, tıklama, JS, SS)
@@ -770,6 +782,7 @@ atlas/
 │       ├── availability_models.py # Contextual Availability & Priority modeli
 │       ├── research_engine_models.py # Deep Research Engine modeli
 │       ├── webnav_models.py     # Intelligent Web Navigator modeli
+│       ├── reportgen_models.py  # Report & Insight Generator modeli
 │       ├── capfactory_models.py # Runtime Capability Factory modeli
 │       ├── business.py        # Autonomous Business Runner modeli
 │       ├── nlp_engine.py      # NLP Engine modeli
@@ -943,14 +956,14 @@ async def analyze_supplier(
 
 ## Proje İstatistikleri
 
-- **Python modülleri**: ~826 kaynak + ~163 test dosyası
-- **Toplam LOC**: ~286,000
-- **Test sayısı**: 13,195+
+- **Python modülleri**: ~837 kaynak + ~164 test dosyası
+- **Toplam LOC**: ~290,000
+- **Test sayısı**: 13,304+
 - **Agent sayısı**: 11 (1 base + 9 uzman + 1 meta)
 - **API endpoint**: 15 (10 core + 5 plugin)
 - **Webhook endpoint**: 4
 
-## Geliştirme Durumu (87/87 Tamamlandı ✅)
+## Geliştirme Durumu (88/88 Tamamlandı ✅)
 
 1. ✅ Proje yapısı ve temel config
 2. ✅ Master Agent + Karar Matrisi (akıllı agent seçimi, eskalasyon, denetim izi, onay iş akışı)
@@ -1039,3 +1052,4 @@ async def analyze_supplier(
 85. ✅ Contextual Availability & Priority (AvailabilityLearner, ContextualPriorityScorer, MessageBuffer, InterruptDecider, RoutineDetector, QuietHoursManager, UrgencyOverride, DigestCompiler, AvailabilityOrchestrator)
 86. ✅ Deep Research Engine (MultiSourceCrawler, QueryExpander, SourceRanker, InformationExtractor, CrossValidator, ResearchSynthesizer, ContinuousTracker, ResearchReporter, ResearchOrchestrator)
 87. ✅ Intelligent Web Navigator (BrowserAutomation, FormFiller, LoginManager, PaginationHandler, CaptchaSolver, ScreenshotCapture, StructuredDataExtractor, NavigationRecorder, WebNavOrchestrator)
+88. ✅ Report & Insight Generator (ReportBuilder, ExecutiveSummary, ComparisonMatrix, OpportunityScorer, VisualPresenter, ActionableInsights, TelegramFormatter, ExportManager, ReportGenOrchestrator)

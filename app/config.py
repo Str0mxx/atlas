@@ -570,6 +570,13 @@ class Settings(BaseSettings):
     screenshot_on_error: bool = True
     webnav_max_retries: int = 3
 
+    # --- Report & Insight Generator ---
+    reportgen_enabled: bool = True
+    default_format: str = "markdown"
+    include_visuals: bool = True
+    telegram_friendly: bool = True
+    auto_export: bool = False
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""
