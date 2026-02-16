@@ -619,6 +619,13 @@ class Settings(BaseSettings):
     progress_report_frequency: str = "weekly"
     blocker_alert: bool = True
 
+    # --- People & Relationship Manager ---
+    peoplemgr_enabled: bool = True
+    auto_log_interactions: bool = True
+    relationship_decay_days: int = 90
+    birthday_reminder_days: int = 7
+    sentiment_tracking: bool = True
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""
