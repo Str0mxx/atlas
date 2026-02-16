@@ -766,6 +766,13 @@ class Settings(BaseSettings):
     response_voice: str = "default"
     multi_device: bool = True
 
+    # Social Media Intelligence & Automation
+    socialmedia_enabled: bool = True
+    socialmedia_platforms: str = "instagram,twitter,facebook,linkedin"
+    socialmedia_auto_respond: bool = False
+    socialmedia_sentiment_threshold: float = 0.5
+    socialmedia_posting_approval: bool = True
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""
