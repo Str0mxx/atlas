@@ -654,6 +654,13 @@ class Settings(BaseSettings):
     sla_target: float = 99.9
     incident_auto_escalate: bool = True
 
+    # --- Feedback Loop Optimizer ---
+    feedbackopt_enabled: bool = True
+    auto_tune: bool = True
+    experiment_auto_start: bool = True
+    improvement_threshold: float = 0.1
+    learning_integration: bool = True
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""
