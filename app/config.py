@@ -640,6 +640,13 @@ class Settings(BaseSettings):
     brand_voice_check: bool = True
     ab_test_auto: bool = True
 
+    # --- Autonomous Purchasing Agent ---
+    purchasing_enabled: bool = True
+    auto_purchase_limit: float = 100.0
+    reorder_auto: bool = True
+    quality_check: bool = True
+    multi_supplier: bool = True
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""

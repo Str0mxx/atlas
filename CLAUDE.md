@@ -269,6 +269,18 @@ atlas/
 │   │   │   ├── performance_analyzer.py  # Performans analizcisi (etkileşim, dönüşüm, karşılaştırma, trend, öneri)
 │   │   │   └── contentgen_orchestrator.py # Orkestratör (Create→Optimize→Adapt→Test→Analyze pipeline)
 │   │   │
+│   │   ├── purchasing/         # Autonomous Purchasing Agent sistemi
+│   │   │   ├── __init__.py
+│   │   │   ├── price_comparator.py      # Fiyat karşılaştırıcı (ekleme, karşılaştırma, geçmiş, trend, en iyi, alarm)
+│   │   │   ├── supplier_finder.py       # Tedarikçi bulucu (kayıt, arama, yeterlilik, güvenilirlik, konum, kapasite)
+│   │   │   ├── purchase_decision_engine.py # Karar motoru (kriter, puanlama, bütçe, onay, öneri)
+│   │   │   ├── order_tracker.py         # Sipariş takipçisi (oluşturma, durum, kargo, teslimat, sorun, geçmiş)
+│   │   │   ├── quality_verifier.py      # Kalite doğrulayıcı (kriter, denetim, sorun, geri bildirim, iade)
+│   │   │   ├── budget_checker.py        # Bütçe kontrolcüsü (limit, harcama, kontrol, eşik, tahmin, alarm)
+│   │   │   ├── reorder_predictor.py     # Sipariş tahmincisi (takip, tüketim, analiz, tedarik, ROP, güvenlik, oto)
+│   │   │   ├── vendor_manager.py        # Satıcı yöneticisi (profil, performans, sözleşme, ilişki, müzakere)
+│   │   │   └── purchasing_orchestrator.py # Orkestratör (Find→Compare→Decide→Order→Track→Verify pipeline)
+│   │   │
 │   │   ├── extcomm/            # External Communication Agent sistemi
 │   │   │   ├── __init__.py
 │   │   │   ├── email_composer.py       # Email yazıcı (şablon, ton, kişiselleştirme, konu optimizasyonu)
@@ -900,6 +912,7 @@ atlas/
 │       ├── projectmgr_models.py # Project & Deadline Manager modeli
 │       ├── legal_models.py    # Legal & Contract Analyzer modeli
 │       ├── contentgen_models.py # Content & Copy Generator modeli
+│       ├── purchasing_models.py # Autonomous Purchasing Agent modeli
 │       ├── capfactory_models.py # Runtime Capability Factory modeli
 │       ├── business.py        # Autonomous Business Runner modeli
 │       ├── nlp_engine.py      # NLP Engine modeli
@@ -1073,14 +1086,14 @@ async def analyze_supplier(
 
 ## Proje İstatistikleri
 
-- **Python modülleri**: ~936 kaynak + ~173 test dosyası
-- **Toplam LOC**: ~326,000
-- **Test sayısı**: 14,469+
+- **Python modülleri**: ~947 kaynak + ~174 test dosyası
+- **Toplam LOC**: ~328,000
+- **Test sayısı**: 14,562+
 - **Agent sayısı**: 11 (1 base + 9 uzman + 1 meta)
 - **API endpoint**: 15 (10 core + 5 plugin)
 - **Webhook endpoint**: 4
 
-## Geliştirme Durumu (97/97 Tamamlandı ✅)
+## Geliştirme Durumu (98/98 Tamamlandı ✅)
 
 1. ✅ Proje yapısı ve temel config
 2. ✅ Master Agent + Karar Matrisi (akıllı agent seçimi, eskalasyon, denetim izi, onay iş akışı)
@@ -1179,3 +1192,4 @@ async def analyze_supplier(
 95. ✅ People & Relationship Manager (ContactProfiler, PeopleInteractionLogger, RelationshipScorer, PeopleFollowUpScheduler, PeopleSentimentTracker, NetworkMapper, BirthdayReminder, RelationshipAdvisor, PeopleMgrOrchestrator)
 96. ✅ Legal & Contract Analyzer (ContractParser, ClauseExtractor, RiskHighlighter, LegalComplianceChecker, LegalDeadlineExtractor, LegalSummarizer, ContractComparator, LegalNegotiationAdvisor, LegalOrchestrator)
 97. ✅ Content & Copy Generator (CopyWriter, SEOOptimizer, MultiLangContent, ABTestCopy, BrandVoiceManager, ContentCalendar, PlatformAdapter, ContentPerformanceAnalyzer, ContentGenOrchestrator)
+98. ✅ Autonomous Purchasing Agent (PriceComparator, SupplierFinder, PurchaseDecisionEngine, OrderTracker, QualityVerifier, PurchaseBudgetChecker, ReorderPredictor, VendorManager, PurchasingOrchestrator)
