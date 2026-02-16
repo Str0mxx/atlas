@@ -584,6 +584,13 @@ class Settings(BaseSettings):
     followup_days: int = 3
     daily_send_limit: int = 100
 
+    # --- Market & Trend Intelligence ---
+    marketintel_enabled: bool = True
+    scan_frequency_hours: int = 24
+    competitor_tracking: bool = True
+    patent_alerts: bool = True
+    regulation_monitoring: bool = True
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""
