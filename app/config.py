@@ -815,6 +815,13 @@ class Settings(BaseSettings):
     auto_profile_update: bool = True
     warroom_threat_threshold: float = 0.6
 
+    # Investment & ROI Analyzer
+    investanalyzer_enabled: bool = True
+    default_discount_rate: float = 0.1
+    risk_free_rate: float = 0.03
+    analysis_horizon_years: int = 5
+    invest_auto_recommend: bool = True
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""

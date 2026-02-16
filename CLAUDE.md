@@ -569,6 +569,18 @@ atlas/
 │   │   │   ├── competitive_intel_aggregator.py # İstihbarat toplayıcı (çoklu kaynak, sinyal, içgörü, rapor, dağıtım)
 │   │   │   └── warroom_orchestrator.py        # Orkestratör (Monitor→Analyze→Alert→Respond)
 │   │   │
+│   │   ├── investanalyzer/    # Investment & ROI Analyzer sistemi
+│   │   │   ├── __init__.py
+│   │   │   ├── investment_calculator.py      # Yatırım hesaplayıcı (modelleme, nakit akışı, DCF, hassasiyet, karşılaştırma)
+│   │   │   ├── irr_engine.py                 # IRR motoru (IRR, MIRR, çoklu IRR, hurdle, sıralama)
+│   │   │   ├── payback_analyzer.py           # Geri ödeme analizcisi (basit, iskontolu, başabaş, nakit kurtarma, zaman çizelgesi)
+│   │   │   ├── risk_return_mapper.py         # Risk-getiri haritacısı (risk değerlendirme, getiri, etkin sınır, Sharpe, risk ayarlı)
+│   │   │   ├── opportunity_cost_calculator.py # Fırsat maliyeti (hesaplama, alternatif, kaynak, ödünleşim, en iyi kullanım)
+│   │   │   ├── portfolio_optimizer.py        # Portföy optimizasyonu (oluşturma, çeşitlendirme, yeniden dengeleme, risk, performans)
+│   │   │   ├── investment_recommender.py     # Yatırım önerici (öneri, uyum, öncelik, zamanlama, eylem)
+│   │   │   ├── due_diligence_tracker.py      # DD takipçisi (kontrol listesi, belge, bulgu, risk, rapor)
+│   │   │   └── investanalyzer_orchestrator.py # Orkestratör (Analyze→Model→Compare→Recommend)
+│   │   │
 │   │   ├── extcomm/            # External Communication Agent sistemi
 │   │   │   ├── __init__.py
 │   │   │   ├── email_composer.py       # Email yazıcı (şablon, ton, kişiselleştirme, konu optimizasyonu)
@@ -1225,6 +1237,7 @@ atlas/
 │       ├── referral_models.py  # Referral & Word-of-Mouth Engine modeli
 │       ├── scenario_models.py # Scenario Planning & War Gaming modeli
 │       ├── warroom_models.py  # Competitive War Room modeli
+│       ├── investanalyzer_models.py # Investment & ROI Analyzer modeli
 │       ├── capfactory_models.py # Runtime Capability Factory modeli
 │       ├── business.py        # Autonomous Business Runner modeli
 │       ├── nlp_engine.py      # NLP Engine modeli
@@ -1398,14 +1411,14 @@ async def analyze_supplier(
 
 ## Proje İstatistikleri
 
-- **Python modülleri**: ~1211 kaynak + ~199 test dosyası
-- **Toplam LOC**: ~512,000
-- **Test sayısı**: 16,815+
+- **Python modülleri**: ~1222 kaynak + ~200 test dosyası
+- **Toplam LOC**: ~518,000
+- **Test sayısı**: 16,912+
 - **Agent sayısı**: 11 (1 base + 9 uzman + 1 meta)
 - **API endpoint**: 15 (10 core + 5 plugin)
 - **Webhook endpoint**: 4
 
-## Geliştirme Durumu (122/122 Tamamlandı ✅)
+## Geliştirme Durumu (123/123 Tamamlandı ✅)
 
 1. ✅ Proje yapısı ve temel config
 2. ✅ Master Agent + Karar Matrisi (akıllı agent seçimi, eskalasyon, denetim izi, onay iş akışı)
@@ -1529,3 +1542,4 @@ async def analyze_supplier(
 120. ✅ Referral & Word-of-Mouth Engine (ReferralProgramBuilder, TrackingLinkGenerator, ReferralRewardCalculator, AmbassadorManager, ReferralConversionTracker, IncentiveOptimizer, ViralCoefficientCalculator, ReferralFraudDetector, ReferralOrchestrator)
 121. ✅ Scenario Planning & War Gaming (ScenarioBuilder, ScenarioProbabilityEstimator, ScenarioImpactCalculator, DecisionTreeGenerator, WorstCaseAnalyzer, BestCaseOptimizer, StrategicRecommender, WarGameSimulator, ScenarioOrchestrator)
 122. ✅ Competitive War Room (CompetitorTracker, PriceWatcher, ProductLaunchDetector, HiringSignalAnalyzer, CompetitorPatentMonitor, CompetitorProfileCard, ThreatAssessor, CompetitiveIntelAggregator, WarRoomOrchestrator)
+123. ✅ Investment & ROI Analyzer (InvestmentCalculator, IRREngine, PaybackAnalyzer, RiskReturnMapper, OpportunityCostCalculator, InvestmentPortfolioOptimizer, InvestmentRecommender, DueDiligenceTracker, InvestAnalyzerOrchestrator)
