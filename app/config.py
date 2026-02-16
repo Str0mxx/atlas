@@ -843,6 +843,13 @@ class Settings(BaseSettings):
     personalfin_budget_alerts: bool = True
     personalfin_savings_auto: bool = True
 
+    # Health & Wellness Tracker
+    wellness_enabled: bool = True
+    wellness_reminder_frequency: int = 60
+    wellness_stress_monitoring: bool = True
+    wellness_sleep_tracking: bool = True
+    wellness_nutrition_tracking: bool = True
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""
