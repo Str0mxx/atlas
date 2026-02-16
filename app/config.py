@@ -626,6 +626,13 @@ class Settings(BaseSettings):
     birthday_reminder_days: int = 7
     sentiment_tracking: bool = True
 
+    # --- Legal & Contract Analyzer ---
+    legal_enabled: bool = True
+    risk_threshold: str = "medium"
+    auto_extract_deadlines: bool = True
+    compliance_check: bool = True
+    comparison_highlight: bool = True
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""

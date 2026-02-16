@@ -245,6 +245,18 @@ atlas/
 │   │   │   ├── resource_balancer.py      # Kaynak dengeleyici (iş yükü, tahsis, çatışma, kapasite, optimizasyon)
 │   │   │   └── projectmgr_orchestrator.py # Orkestratör (Track→Predict→Alert→Report→Escalate pipeline)
 │   │   │
+│   │   ├── legal/              # Legal & Contract Analyzer sistemi
+│   │   │   ├── __init__.py
+│   │   │   ├── contract_parser.py        # Sözleşme ayrıştırıcı (doküman, bölüm, yapı, metadata, format)
+│   │   │   ├── clause_extractor.py       # Madde çıkarıcı (tanımlama, sınıflandırma, terim, yükümlülük, hak)
+│   │   │   ├── risk_highlighter.py       # Risk işaretleyici (tanımlama, puanlama, standart, kırmızı bayrak, azaltma)
+│   │   │   ├── compliance_checker.py     # Uyumluluk kontrolcüsü (düzenleyici, standart, eksik, yetki alanı, güncelleme)
+│   │   │   ├── deadline_extractor.py     # Son tarih çıkarıcı (tarih, hesaplama, yenileme, ihbar, takvim)
+│   │   │   ├── legal_summarizer.py       # Hukuki özetleyici (yönetici özeti, anahtar nokta, sade dil, yükümlülük, finansal)
+│   │   │   ├── contract_comparator.py    # Sözleşme karşılaştırıcı (yan yana, fark, versiyon, değişiklik, etki)
+│   │   │   ├── negotiation_advisor.py    # Müzakere danışmanı (noktalar, alternatif, pazar, kaldıraç, strateji)
+│   │   │   └── legal_orchestrator.py     # Orkestratör (Parse→Extract→Analyze→Compare→Advise pipeline)
+│   │   │
 │   │   ├── extcomm/            # External Communication Agent sistemi
 │   │   │   ├── __init__.py
 │   │   │   ├── email_composer.py       # Email yazıcı (şablon, ton, kişiselleştirme, konu optimizasyonu)
@@ -874,6 +886,7 @@ atlas/
 │       ├── negotiation_models.py # Autonomous Negotiation Engine modeli
 │       ├── peoplemgr_models.py # People & Relationship Manager modeli
 │       ├── projectmgr_models.py # Project & Deadline Manager modeli
+│       ├── legal_models.py    # Legal & Contract Analyzer modeli
 │       ├── capfactory_models.py # Runtime Capability Factory modeli
 │       ├── business.py        # Autonomous Business Runner modeli
 │       ├── nlp_engine.py      # NLP Engine modeli
@@ -1047,14 +1060,14 @@ async def analyze_supplier(
 
 ## Proje İstatistikleri
 
-- **Python modülleri**: ~914 kaynak + ~171 test dosyası
-- **Toplam LOC**: ~318,000
-- **Test sayısı**: 14,219+
+- **Python modülleri**: ~925 kaynak + ~172 test dosyası
+- **Toplam LOC**: ~322,000
+- **Test sayısı**: 14,354+
 - **Agent sayısı**: 11 (1 base + 9 uzman + 1 meta)
 - **API endpoint**: 15 (10 core + 5 plugin)
 - **Webhook endpoint**: 4
 
-## Geliştirme Durumu (95/95 Tamamlandı ✅)
+## Geliştirme Durumu (96/96 Tamamlandı ✅)
 
 1. ✅ Proje yapısı ve temel config
 2. ✅ Master Agent + Karar Matrisi (akıllı agent seçimi, eskalasyon, denetim izi, onay iş akışı)
@@ -1151,3 +1164,4 @@ async def analyze_supplier(
 93. ✅ Autonomous Negotiation Engine (NegotiationStrategyPlanner, OfferGenerator, CounterOfferAnalyzer, ConcessionTracker, WinWinOptimizer, DealScorer, NegotiationMemory, NegotiationCommunicationManager, NegotiationOrchestrator)
 94. ✅ Project & Deadline Manager (ProjectTracker, MilestoneManager, ProjectDependencyResolver, DeadlinePredictor, BlockerDetector, ProjectProgressReporter, AutoEscalator, ProjectResourceBalancer, ProjectMgrOrchestrator)
 95. ✅ People & Relationship Manager (ContactProfiler, PeopleInteractionLogger, RelationshipScorer, PeopleFollowUpScheduler, PeopleSentimentTracker, NetworkMapper, BirthdayReminder, RelationshipAdvisor, PeopleMgrOrchestrator)
+96. ✅ Legal & Contract Analyzer (ContractParser, ClauseExtractor, RiskHighlighter, LegalComplianceChecker, LegalDeadlineExtractor, LegalSummarizer, ContractComparator, LegalNegotiationAdvisor, LegalOrchestrator)
