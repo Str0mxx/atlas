@@ -682,6 +682,13 @@ class Settings(BaseSettings):
     expiry_alert_days: int = 30
     version_retention: int = 50
 
+    # --- Email Intelligence & Auto-Responder ---
+    emailintel_enabled: bool = True
+    emailintel_auto_respond: bool = True
+    priority_learning: bool = True
+    digest_frequency: str = "daily"
+    spam_threshold: float = 0.5
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""
