@@ -1028,6 +1028,12 @@ class Settings(BaseSettings):
     auto_test: bool = True
     backup_existing: bool = True
 
+    # Hot Reload & Live Config
+    hotreload_enabled: bool = True
+    watch_interval_ms: int = 1000
+    telegram_config: bool = True
+    auto_validate: bool = True
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""
