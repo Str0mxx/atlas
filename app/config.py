@@ -878,6 +878,156 @@ class Settings(BaseSettings):
     telegram_mini: bool = True
     auto_refresh_seconds: int = 30
 
+    # System Health Dashboard
+    healthdash_enabled: bool = True
+    healthdash_refresh_interval: int = 30
+    healthdash_alert_retention_days: int = 90
+    healthdash_prediction_enabled: bool = True
+    healthdash_heatmap_granularity: str = "system"
+
+    # Decision & Activity Log Dashboard
+    activitylog_enabled: bool = True
+    activitylog_retention_days: int = 365
+    activitylog_search_enabled: bool = True
+    activitylog_compliance_export: bool = True
+    activitylog_causal_tracking: bool = True
+
+    # Financial Dashboard
+    findash_enabled: bool = True
+    findash_default_period: str = "monthly"
+    findash_forecast_months: int = 6
+    findash_budget_alerts: bool = True
+    findash_cost_tracking: bool = True
+
+    # Agent Performance Dashboard
+    agentdash_enabled: bool = True
+    agentdash_ranking_metric: str = "overall"
+    agentdash_comparison_period: str = "weekly"
+    agentdash_improvement_tracking: bool = True
+    agentdash_lifecycle_view: bool = True
+
+    # Vault & Secret Manager
+    vault_enabled: bool = True
+    encryption_algorithm: str = "aes256"
+    rotation_days: int = 90
+    audit_retention_days: int = 365
+    leak_scanning: bool = True
+
+    # Continuous Security Scanner
+    secscan_enabled: bool = True
+    scan_frequency: str = "daily"
+    severity_threshold: str = "medium"
+    auto_patch: bool = False
+    cve_alerts: bool = True
+
+    # Intrusion Detection & Prevention
+    idsips_enabled: bool = True
+    detection_mode: str = "active"
+    auto_block: bool = True
+    threat_feeds: bool = True
+    incident_retention_days: int = 90
+
+    # Data Encryption & Privacy Engine
+    privacy_enabled: bool = True
+    encryption_at_rest: bool = True
+    gdpr_mode: bool = True
+    kvkk_mode: bool = True
+    auto_anonymize: bool = False
+
+    # Zero Trust Access Controller
+    zerotrust_enabled: bool = True
+    mfa_required: bool = True
+    geo_restriction: bool = False
+    session_timeout_minutes: int = 30
+    continuous_auth: bool = True
+
+    # API Key & Credential Lifecycle
+    credlife_enabled: bool = True
+    default_rotation_days: int = 90
+    auto_revoke_leaked: bool = True
+    health_check_frequency: str = "daily"
+    over_permission_alert: bool = True
+
+    # Payment & Financial Data Protector
+    payprotect_enabled: bool = True
+    pci_dss_mode: bool = True
+    dual_approval_threshold: float = 10000.0
+    anomaly_detection: bool = True
+    chargeback_protection: bool = True
+
+    # Penetration Test & Red Team Simulator
+    pentest_enabled: bool = True
+    auto_scan_frequency: str = "weekly"
+    pentest_safe_mode: bool = True
+    social_engineering: bool = True
+    scorecard_enabled: bool = True
+
+    # Compliance & Regulatory Monitor
+    compliance_enabled: bool = True
+    compliance_frameworks: str = (
+        "gdpr,kvkk,pci_dss,soc2"
+    )
+    compliance_auto_remediate: bool = False
+    compliance_report_frequency: str = (
+        "monthly"
+    )
+    compliance_consent_required: bool = True
+
+    # Security Incident Response
+    incident_enabled: bool = True
+    auto_contain: bool = True
+    forensic_collection: bool = True
+    playbook_enabled: bool = True
+    lesson_learning: bool = True
+
+    # Multi-LLM Router & Orchestrator
+    llmrouter_enabled: bool = True
+    default_provider: str = "anthropic"
+    cost_optimization: bool = True
+    auto_fallback: bool = True
+    latency_threshold_ms: int = 5000
+
+    # Prompt Engineering & Optimization
+    prompteng_enabled: bool = True
+    auto_optimize: bool = True
+    ab_testing: bool = True
+    cot_enabled: bool = True
+    version_control: bool = True
+
+    # Fine-Tuning & Custom Model Manager
+    finetune_enabled: bool = True
+    finetune_default_provider: str = "openai"
+    finetune_auto_evaluate: bool = True
+    finetune_drift_monitoring: bool = True
+    finetune_version_retention: int = 10
+
+    # AI Safety & Hallucination Guard
+    aisafety_enabled: bool = True
+    aisafety_hallucination_check: bool = True
+    aisafety_fact_checking: bool = True
+    aisafety_auto_escalate: bool = True
+    aisafety_safety_threshold: float = 0.5
+
+    # AI Ethics & Bias Monitor
+    aiethics_enabled: bool = True
+    aiethics_bias_detection: bool = True
+    aiethics_fairness_metrics: bool = True
+    aiethics_auto_alert: bool = True
+    aiethics_transparency_reports: bool = True
+
+    # Working MVP Core
+    mvpcore_enabled: bool = True
+    websocket_port: int = 8765
+    health_check_interval: int = 30
+    shutdown_timeout: int = 30
+    max_concurrent_tasks: int = 10
+
+    # Interactive Setup Wizard
+    setupwizard_enabled: bool = True
+    interactive_mode: bool = True
+    auto_test: bool = True
+    backup_existing: bool = True
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""
