@@ -1034,6 +1034,13 @@ class Settings(BaseSettings):
     telegram_config: bool = True
     auto_validate: bool = True
 
+    # Local Machine Agent
+    localagent_enabled: bool = True
+    sandbox_mode: bool = True
+    allowed_paths: str = ""
+    command_timeout: int = 30
+    require_approval: bool = False
+
     @property
     def is_production(self) -> bool:
         """Production ortaminda mi kontrol eder."""
