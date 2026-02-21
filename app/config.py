@@ -1034,12 +1034,238 @@ class Settings(BaseSettings):
     telegram_config: bool = True
     auto_validate: bool = True
 
+    # Headless Browser Engine
+    headless_enabled: bool = True
+    browser_type: str = "chromium"
+    pool_size: int = 3
+    timeout_ms: int = 30000
+    screenshot_on_error: bool = True
+
+    # Multi-OS Support
+    multios_enabled: bool = True
+    preferred_shell: str = ""
+    path_style: str = "auto"
+    use_native_commands: bool = True
+
+    # Anti-Detection & Proxy
+    antidetect_enabled: bool = True
+    rotate_fingerprint: bool = True
+    proxy_enabled: bool = False
+    captcha_service: str = "none"
+    stealth_level: str = "medium"
+
+    # Unified LLM Client
+    unifiedllm_enabled: bool = True
+    default_provider: str = "anthropic"
+    fallback_chain: str = "anthropic,openai,gemini"
+    retry_count: int = 3
+    timeout_seconds: int = 30
+
+    # Streaming Token Output
+    streaming_enabled: bool = True
+    buffer_size: int = 64
+    flush_interval_ms: int = 50
+    show_typing: bool = True
+
+    # Local Model Support
+    localmodel_enabled: bool = True
+    ollama_url: str = "http://localhost:11434"
+    vllm_url: str = "http://localhost:8000"
+    auto_fallback: bool = True
+    preferred_local_model: str = ""
+
+    # Streaming Telegram Yanitlari
+    telegramstream_enabled: bool = True
+    update_interval_ms: int = 1000
+    show_cursor: bool = True
+    typing_indicator: bool = True
+
+    # Sesli Mesaj Destegi
+    voicemsg_enabled: bool = True
+    whisper_model: str = "base"
+    tts_enabled: bool = True
+    tts_voice: str = "alloy"
+    max_audio_duration: int = 300
+
+    # WhatsApp Entegrasyonu
+    whatsapp_enabled: bool = False
+    business_api_token: str = ""
+    phone_number_id: str = ""
+    webhook_verify_token: str = ""
+
+    # Slack Entegrasyonu
+    slack_enabled: bool = False
+    slack_bot_token: str = ""
+    slack_app_token: str = ""
+    slack_signing_secret: str = ""
+
+    # Discord Entegrasyonu
+    discord_enabled: bool = False
+    bot_token: str = ""
+    guild_ids: str = ""
+    command_prefix: str = "/"
+
+    # Dosya Alisverisi
+    fileexchange_enabled: bool = True
+    max_file_size_mb: int = 50
+    auto_process: bool = True
+    supported_types: str = "pdf,xlsx,xls,csv,jpg,png,webp,gif,txt,json,zip"
+    cleanup_hours: int = 24
+
+    # Skill Definition Standard
+    skillstandard_enabled: bool = False
+    schema_version: str = "1.0.0"
+    strict_validation: bool = False
+
+    # Unified Channel Abstraction
+    channelunified_enabled: bool = False
+    channelunified_default_channel: str = ""
+    channelunified_media_optimization: bool = True
+    channelunified_fallback_channel: str = ""
+
+    # Web Chat Interface
+    webchat_enabled: bool = False
+    webchat_port: int = 8080
+    webchat_require_auth: bool = False
+    webchat_cors_origins: str = "*"
+    webchat_session_timeout: int = 3600
+
     # Local Machine Agent
     localagent_enabled: bool = True
     sandbox_mode: bool = True
     allowed_paths: str = ""
     command_timeout: int = 30
     require_approval: bool = False
+
+    # Skill Marketplace
+    skillmarket_enabled: bool = False
+    registry_url: str = ""
+    auto_update: bool = True
+    trusted_publishers: str = ""
+
+    # Skill Auto-Installer
+    skillinstall_enabled: bool = False
+    auto_install: bool = False
+    security_scan: bool = True
+    skillinstall_sandbox_mode: bool = True
+
+    # SOUL Identity System
+    soulidentity_enabled: bool = False
+    soul_file_path: str = ""
+    strict_boundaries: bool = True
+    tone_level: str = "professional"
+
+    # Multi-Persona Support
+    multipersona_enabled: bool = False
+    default_persona: str = ""
+    auto_switch: bool = True
+    isolation_level: str = "soft"
+
+    # Persistent Chat History
+    chathistory_enabled: bool = False
+    storage_backend: str = "memory"
+    retention_days: int = 90
+    auto_prune: bool = False
+
+    # Context Window Management
+    contextwindow_enabled: bool = False
+    max_tokens: int = 128000
+    summary_threshold: float = 0.90
+    system_prompt_reserve: int = 2000
+
+    # User Preferences Store
+    userprefs_enabled: bool = False
+    sync_across_channels: bool = False
+    telegram_settings: bool = False
+
+    # Multi-Step Task Executor
+    multistep_enabled: bool = False
+    max_parallel: int = 5
+    retry_count: int = 3
+    timeout_minutes: int = 30
+
+    # Tool/Function Calling
+    toolcalling_enabled: bool = False
+    max_iterations: int = 10
+    require_approval: bool = False
+    timeout_seconds: int = 30
+
+    # Natural Language Cron
+    nlcron_enabled: bool = False
+    timezone: str = "Europe/Istanbul"
+    max_scheduled_jobs: int = 500
+    notification_channel: str = "telegram"
+
+    # Gmail Integration
+    gmail_enabled: bool = False
+    gmail_client_id: str = ""
+    gmail_client_secret: str = ""
+    gmail_auto_label: bool = False
+
+    # Google Calendar Integration
+    gcalendar_enabled: bool = False
+    default_calendar: str = "primary"
+    reminder_minutes: int = 30
+
+    # Google Drive Integration
+    gdrive_enabled: bool = False
+    default_folder: str = "root"
+    auto_organize: bool = False
+
+    # OAuth2 Flow Manager
+    oauth2_enabled: bool = False
+    redirect_uri: str = (
+        "http://localhost:8080/callback"
+    )
+    encryption_key: str = ""
+
+    # Sandboxed Code Execution
+    codesandbox_enabled: bool = False
+    timeout_seconds: int = 30
+    max_memory_mb: int = 256
+    allow_network: bool = False
+
+    # Git Operations
+    gitops_enabled: bool = False
+    default_branch: str = "main"
+    auto_commit: bool = False
+    sign_commits: bool = False
+
+    # One-Click Cloud Deploy
+    clouddeploy_enabled: bool = False
+    deploy_provider: str = "digitalocean"
+    deploy_region: str = "fra1"
+    deploy_auto_ssl: bool = True
+
+    # Auto-Update Mechanism
+    autoupdate_enabled: bool = False
+    check_interval_hours: int = 24
+    auto_apply: bool = False
+    backup_before_update: bool = True
+
+    # Telegram Log Viewer
+    telegramlog_enabled: bool = False
+    log_level: str = "INFO"
+    retention_days: int = 30
+    alert_on_error: bool = True
+
+    # Debug Mode
+    debugmode_enabled: bool = False
+    show_prompts: bool = False
+    show_costs: bool = False
+    max_debug_length: int = 2000
+
+    # Command Approval
+    cmdapproval_enabled: bool = False
+    risk_threshold: str = "medium"
+    require_confirmation: bool = True
+    undo_enabled: bool = True
+
+    # Injection Protection
+    injectionprotect_enabled: bool = False
+    detection_level: str = "medium"
+    block_on_detect: bool = True
+    log_attempts: bool = True
 
     @property
     def is_production(self) -> bool:
