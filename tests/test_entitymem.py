@@ -1119,6 +1119,6 @@ class TestEntityMemConfig:
         assert hasattr(settings, "entitymem_enabled")
         assert settings.entitymem_enabled is True
         assert settings.auto_merge_duplicates is False
-        assert settings.retention_days == 365
+        assert settings.retention_days == 30
         assert settings.privacy_mode == "standard"
         assert settings.max_interactions_stored == 10000

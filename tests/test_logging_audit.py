@@ -912,7 +912,7 @@ class TestLoggingConfig:
         from app.config import Settings
         s = Settings()
         assert s.logging_enabled is True
-        assert s.log_level == "info"
+        assert s.log_level == "INFO"
         assert s.log_retention_days == 90
         assert s.audit_enabled is True
         assert s.export_format == "json"

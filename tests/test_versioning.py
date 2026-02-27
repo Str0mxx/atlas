@@ -1233,7 +1233,7 @@ class TestVersioningConfig:
         assert s.versioning_enabled is True
         assert s.max_snapshots == 100
         assert s.auto_snapshot_interval == 3600
-        assert s.retention_days == 365
+        assert s.retention_days == 30
         assert s.compression_enabled is True
 
     def test_config_values(self):
